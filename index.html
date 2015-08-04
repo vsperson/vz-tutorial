@@ -5,7 +5,7 @@
     <title>Руководство по созданию и управлению контейнерами на базе Virtuozzo by Amet13</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
@@ -42,7 +42,8 @@
 
 <ul>
 <li><a href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation">Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</a></li>
-<li><a href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-Virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2">Установка Virtuozzo на заранее установленный дистрибутив</a></li>
+<li><a href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2">Установка Virtuozzo на заранее установленный дистрибутив</a></li>
+<li><a href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F">Подготовительные действия</a></li>
 </ul>
 </li>
 <li><a href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Ссылки</a></li>
@@ -227,8 +228,6 @@ root и любые другие пользователи и группы</li>
 <li>с помощью установки пакетов и ядра на заранее установленный дистрибутив</li>
 </ul>
 
-<p>Также существует возможность установки утилит Virtuozzo в качестве альтернативы LXC-утилит.</p>
-
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
@@ -272,7 +271,7 @@ root и любые другие пользователи и группы</li>
 
 <p>На этом установка Virtuozzo с помощью ISO-образа завершена.</p>
 
-<p><em>Загрузчик Grub</em>
+<p><em>Меню загрузчика Grub</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub.png" alt="Grub"></p>
 
 <p>Первый вход в систему осуществляется от пользователя <code>vzuser</code>, по SSH.</p>
@@ -289,8 +288,6 @@ Password: пароль_пользователя_root
 <h3>
 <a id="Установка-virtuozzo-на-заранее-установленный-дистрибутив" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo на заранее установленный дистрибутив</h3>
 
-<p>(TODO <a href="https://bugzilla.openvz.org/show_bug.cgi?id=3287">https://bugzilla.openvz.org/show_bug.cgi?id=3287</a>)</p>
-
 <p>Поддерживаемые дистрибутивы:</p>
 
 <ul>
@@ -302,25 +299,79 @@ Password: пароль_пользователя_root
 
 <p>Установка пакетов на примере дистрибутива CentOS 7.</p>
 
-<p>Пакет virtuozzo-release содержит метаинформацию и yum-репозиторий:</p>
+<p>Пакет virtuozzo-release содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum localinstall http://download.openvz.org/virtuozzo/releases/7.0/x86_64/os/Packages/v/virtuozzo-release-7.0.0-10.vz7.x86_64.rpm
+<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0/x86_64/os/Packages/v/virtuozzo-release-7.0.0-10.vz7.x86_64.rpm
 </code></pre>
 
-<p>Установка необходимых RPM-паетов:</p>
+<p>Установка необходимых RPM-пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel
+<pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel ploop
+</code></pre>
+
+<p>В качестве зависимостей также установятся такие пакеты как:</p>
+
+<pre><code>criu libvirt lvm2 nfs-utils quota vcmmd vzctl vztt
+</code></pre>
+
+<p>и многие другие.</p>
+
+<p>После окончания установки пакетов необходимо перезагрузиться:</p>
+
+<pre><code>[root@virtuozzo ~]# reboot
+</code></pre>
+
+<p>В меню загрузчика должны появиться новые пункты <code>Virtuozzo 7</code>.
+Необходимо загрузиться с этого ядра.</p>
+
+<p><em>Меню загрузчика Grub после установки Virtuozzo</em>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub-vz.png" alt="Grub"></p>
+
+<h3>
+<a id="Подготовительные-действия" class="anchor" href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Подготовительные действия</h3>
+
+<p>На сервере важно всегда обновлять программное обеспечение, так как в новых версиях не только могут добавлять новые возможности, но и исправлять уязвимости.
+Указанная ниже команда обновляет все существующие в системе пакеты:</p>
+
+<pre><code>[root@virtuozzo ~]# yum update
+</code></pre>
+
+<p>Для сервера очень важно, чтобы было установлено правильное время.
+Чтобы синхронизировать время с интернетом необходимо установить пакет <code>ntp</code>.</p>
+
+<p>Установка корректной временной зоны:</p>
+
+<pre><code>[root@virtuozzo ~]# timedatectl set-timezone Europe/Moscow
+[root@virtuozzo ~]# date
+Tue Aug  4 14:52:54 MSK 2015
+</code></pre>
+
+<p>Установка <code>ntp</code> и синхронизация времени с удаленными серверавми:</p>
+
+<pre><code>[root@virtuozzo ~]# yum install ntp
+[root@virtuozzo ~]# systemctl start ntpd
+[root@virtuozzo ~]# systemctl enable ntpd
+[root@virtuozzo ~]# ntpdate -q  0.pool.ntp.org  1.pool.ntp.org
+server 91.236.251.5, stratum 2, offset 0.002229, delay 0.05281
+server 82.193.117.90, stratum 1, offset -0.020269, delay 0.04845
+server 78.26.196.124, stratum 2, offset 0.003866, delay 0.05913
+server 217.175.0.36, stratum 3, offset -0.003749, delay 0.06514
+server 79.142.192.4, stratum 2, offset 0.006668, delay 0.05772
+server 195.138.69.242, stratum 2, offset 0.005080, delay 0.05731
+server 91.236.251.12, stratum 2, offset 0.002247, delay 0.05368
+server 91.198.10.20, stratum 2, offset 0.003745, delay 0.05481
+ 4 Aug 14:54:56 ntpdate[2804]: adjust time server 91.236.251.5 offset 0.002229 sec
 </code></pre>
 
 <h2>
 <a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
 
 <ul>
-<li><a href="http://openvz.org/History">http://openvz.org/History</a></li>
+<li><a href="https://openvz.org/History">https://openvz.org/History</a></li>
 <li><a href="https://openvz.org/Quick_installation">https://openvz.org/Quick_installation</a></li>
 <li><a href="https://openvz.org/OpenVZ_with_upstream_kernel">https://openvz.org/OpenVZ_with_upstream_kernel</a></li>
 <li><a href="https://openvz.org/Packages">https://openvz.org/Packages</a></li>
-<li><a href="http://openvz.org/Roadmap">http://openvz.org/Roadmap</a></li>
+<li><a href="https://openvz.org/Roadmap">https://openvz.org/Roadmap</a></li>
 <li><a href="https://openvz.org/Category:HOWTO">https://openvz.org/Category:HOWTO</a></li>
 </ul>
 
@@ -329,7 +380,7 @@ Password: пароль_пользователя_root
 
 <p><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0"></p>
 
-<p><a href="http://creativecommons.org/licenses/by-sa/4.0/deed.ru">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Amet13/virtuozzo-tutorial">Руководство по созданию и управлению контейнерами на базе Virtuozzo</a> is maintained by <a href="https://github.com/Amet13">Amet13</a>.</span>
@@ -342,4 +393,3 @@ Password: пароль_пользователя_root
   
   </body>
 </html>
-
