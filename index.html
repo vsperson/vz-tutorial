@@ -46,6 +46,17 @@
 <li><a href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F">Подготовительные действия</a></li>
 </ul>
 </li>
+<li><a href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1">Управление шаблонами гостевых ОС</a></li>
+<li>
+<a href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2">Создание и настройка контейнеров</a>
+
+<ul>
+<li><a href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B">Конфигурационные файлы</a></li>
+<li><a href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Создание контейнера</a></li>
+<li><a href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Настройка контейнера</a></li>
+<li><a href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4">Запуск и вход</a></li>
+</ul>
+</li>
 <li><a href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Ссылки</a></li>
 <li><a href="#%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F">Лицензия</a></li>
 </ol>
@@ -181,7 +192,7 @@ root и любые другие пользователи и группы</li>
 Кроме этого возможен подсчет расходуемых группой ресурсов, заморозка (freezing) групп, создание контрольных точек (checkpointing) и их перезагрузка.
 Для управления этим полезным механизмом существует специальная библиотека libcgroups, в состав которой входят такие утилиты, как cgcreate, cgexec и некоторые другие.</p>
 
-<p>CRIU (Checkpoint/Restore In Userspace) — обеспечивает создание контрольной точки для произвольного приложения, а также возобновения работы приложения с этой точки.
+<p>CRIU (Checkpoint/Restore In Userspace) — обеспечивает создание контрольной точки для произвольного приложения, а также возобновления работы приложения с этой точки.
 Основной целью CRIU является поддержка миграции контейнеров.
 Уже поддерживаются такие объекты как процессы, память приложений, открытые файлы, конвейеры, IPC сокеты, TCP/IP и UDP сокеты, таймеры, сигналы, терминалы, файловые дескрипторы.
 В разработке также находится миграция TCP соединений.</p>
@@ -254,7 +265,7 @@ root и любые другие пользователи и группы</li>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/partitioning.png" alt="Разметка диска"></p>
 
 <p>Необходимо для раздела <code>/</code> выделить не менее 8GB доступного дискового пространства.
-Размер раздела <code>swap</code> равен примерно половине объекма оперативной памяти.
+Размер раздела <code>swap</code> равен примерно половине объема оперативной памяти.
 Все остальное дисковое пространство выделяется под раздел <code>/vz</code> с файловой системой ext4.</p>
 
 <p><em>Настройки сетевого интерфейса и имени хоста</em>
@@ -346,7 +357,7 @@ Password: пароль_пользователя_root
 Tue Aug  4 14:52:54 MSK 2015
 </code></pre>
 
-<p>Установка <code>ntp</code> и синхронизация времени с удаленными серверавми:</p>
+<p>Установка <code>ntp</code> и синхронизация времени с удаленными серверами:</p>
 
 <pre><code>[root@virtuozzo ~]# yum install ntp
 [root@virtuozzo ~]# systemctl start ntpd
@@ -361,6 +372,208 @@ server 195.138.69.242, stratum 2, offset 0.005080, delay 0.05731
 server 91.236.251.12, stratum 2, offset 0.002247, delay 0.05368
 server 91.198.10.20, stratum 2, offset 0.003745, delay 0.05481
  4 Aug 14:54:56 ntpdate[2804]: adjust time server 91.236.251.5 offset 0.002229 sec
+</code></pre>
+
+<h2>
+<a id="Управление-шаблонами-гостевых-ОС" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление шаблонами гостевых ОС</h2>
+
+<p>На данный момент Virtuozzo поддерживает такие гостевые ОС:</p>
+
+<ul>
+<li>CentOS 7 (x86_64)</li>
+<li>CentOS 6 (x86_64)</li>
+<li>Ubuntu 14.04 LTS (x86_64)</li>
+<li>Debian 8 (x86_64)</li>
+</ul>
+
+<p>Просмотр списка уже имеющихся локальных шаблонов:</p>
+
+<pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
+centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
+</code></pre>
+
+<p>Установка всех доступных шаблонов:</p>
+
+<pre><code>[root@virtuozzo ~]# vzpkg list --available --with-summary | xargs vzpkg install template
+</code></pre>
+
+<p>После этого можно увидеть список доступных локально шаблонов гостевых ОС:</p>
+
+<pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
+centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
+centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
+ubuntu-14.04-x86_64                :Ubuntu 14.04 (for AMD64/Intel EM64T) Virtuozzo Template
+debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo Template
+</code></pre>
+
+<p>Обновление кэша шаблонов:</p>
+
+<pre><code>[root@virtuozzo ~]# vzpkg update cache
+</code></pre>
+
+<h2>
+<a id="Создание-и-настройка-контейнеров" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Создание и настройка контейнеров</h2>
+
+<h3>
+<a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Конфигурационные файлы</h3>
+
+<p>В старых версиях OpenVZ основным идентификатором контейнера является CTID, который вручную указывался при создании контейнера.
+Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.</p>
+
+<p>Каждый контейнер имеет свой конфигурационный файл, который хранится в каталоге <code>/etc/vz/conf/</code>.
+Именуются конфиги по UUID контейнера.
+Например, для контейнера с <code>UUID = {3d32522a-80af-4773-b9fa-ea4915dee4b3}</code>, конфиг будет называться <code>3d32522a-80af-4773-b9fa-ea4915dee4b3.conf</code>.</p>
+
+<p>При создании контейнера можно использовать типовую конфигурацию.
+Типовые файлы конфигураций находятся в том же каталоге <code>/etc/vz/conf/</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# ls /etc/vz/conf/ | grep sample
+ve-basic.conf-sample
+ve-confixx.conf-sample
+ve-vswap.1024MB.conf-sample
+ve-vswap.2048MB.conf-sample
+ve-vswap.256MB.conf-sample
+ve-vswap.512MB.conf-sample
+ve-vswap.plesk.conf-sample
+vps.vzpkgtools.conf-sample
+</code></pre>
+
+<p>В этих конфигурационных файлах описаны контрольные параметры ресурсов, выделенное дисковое пространство, оперативная память и т.д.
+Например, при использовании конфига <code>ve-vswap.512MB.conf-sample</code>, создается контейнер с дисковым пространством 10GB, оперативной памятью 512MB и swap 512MB:</p>
+
+<pre><code>[root@virtuozzo ~]# cat /etc/vz/conf/ve-vswap.512MB.conf-sample | grep "DISKSPACE\|PHYSPAGES\|SWAPPAGES"
+PHYSPAGES="131072:131072"
+SWAPPAGES="131072"
+DISKSPACE="10485760:10485760"
+</code></pre>
+
+<p>Это удобно, так как существует возможность создавать свои конфигурационные файлы для различных вариаций контейнеров.
+Cоздадим свой конфигурационный файл, на базе уже существующего <code>vswap.512MB</code>.
+Исправим в нем только значения <code>PHYSPAGES</code>, <code>SWAPPAGES</code>, <code>DISKSPACE</code>, <code>DISKINODES</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# cp /etc/vz/conf/ve-vswap.512MB.conf-sample /etc/vz/conf/ve-vswap.1GB.conf-sample
+[root@virtuozzo ~]# vim /etc/vz/conf/ve-vswap.1GB.conf-sample
+PHYSPAGES="262144:262144"
+SWAPPAGES="262144"
+DISKSPACE="20971520:20971520"
+DISKINODES="1310720:1310720"
+</code></pre>
+
+<p>Таким образом, при использовании этого конфигурационного файла, будет создаваться контейнер, которому будет доступно 20GB выделенного дискового пространства, 1GB оперативной памяти и 1GB swap.</p>
+
+<h3>
+<a id="Создание-контейнера" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Создание контейнера</h3>
+
+<p>В качестве параметра к идентификатору контейнера может использоваться любое имя:</p>
+
+<pre><code>[root@virtuozzo ~]# CT=first
+[root@virtuozzo ~]# prlctl create $CT --ostemplate debian-8.0-x86_64 --vmtype=ct
+Creating the Virtuozzo Container...
+The Container has been successfully created.
+</code></pre>
+
+<p>Таким образом был создан контейнер с именем <code>first</code> на базе шаблона <code>debian-8.0-x86_64</code>.</p>
+
+<p>Теперь можно просмотреть список имеющихся в системе контейнеров:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list -a
+UUID                                    STATUS       IP_ADDR         T  NAME
+{3d32522a-80af-4773-b9fa-ea4915dee4b3}  stopped      -               CT first
+</code></pre>
+
+<p>Если же при создании контейнера не указывать желаемый шаблон, то Virtuozzo будет использовать шаблон по умолчанию.
+Конфигурационный файл, в котором указаны директивы по умолчанию <code>/etc/vz/vz.conf</code>.
+По умолчанию, используется шаблон <code>centos-6</code> и конфигурационный файл <code>basic</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# cat /etc/vz/vz.conf | grep "CONFIGFILE\|DEF_OSTEMPLATE"
+CONFIGFILE="basic"
+DEF_OSTEMPLATE=".centos-6"
+</code></pre>
+
+<p>Если планируется создание большого количества однотипных контейнеров, основываясь на одном и том же конфиге, то значения можно исправить на нужные.</p>
+
+<h3>
+<a id="Настройка-контейнера" class="anchor" href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Настройка контейнера</h3>
+
+<p>Контейнер создан, его можно запускать.
+Но перед первым запуском необходимо установить его IP адрес, hostname, указать DNS сервер и задать пароль суперпользователя.</p>
+
+<p>Добавление IP адресов:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --ipadd 192.168.0.161/24
+[root@virtuozzo ~]# prlctl set first --ipadd fe80::20c:29ff:fe01:fb08
+Enable automatic reconfiguration for this network adapter.
+</code></pre>
+
+<p>Установка DNS сервера и hostname:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --nameserver 192.168.0.1
+[root@virtuozzo ~]# prlctl set first --hostname first.virtuozzo.localhost
+</code></pre>
+
+<p>Установка пароля суперпользователя:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --userpasswd root:p0oT
+</code></pre>
+
+<p>Пароль будет установлен в контейнер, в файл <code>/etc/shadow</code> и не будет сохранен в конфигурационный файл контейнера.
+Если же пароль будет утерян или забыт, то можно будет просто задать новый.</p>
+
+<p>Для запуска контейнера при старте хост-ноды добавляем:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --onboot yes
+</code></pre>
+
+<h3>
+<a id="Запуск-и-вход" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Запуск и вход</h3>
+
+<p>После настроек нового контейнера. его можно запустить:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl start first
+Starting the CT...
+The CT has been successfully started.
+</code></pre>
+
+<p>Проверяем сетевые интерфейсы внутри гостевой ОС:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl exec first ifconfig | grep "lo\|venet" -A 1
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+--
+venet0    Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:127.0.0.1  P-t-P:127.0.0.1  Bcast:0.0.0.0  Mask:255.255.255.255
+--
+venet0:0  Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:192.168.0.161  P-t-P:192.168.0.161  Bcast:192.168.0.255  Mask:255.255.255.0
+</code></pre>
+
+<p>Также проверим корректность hostname:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl exec first hostname
+first.virtuozzo.localhost
+</code></pre>
+
+<p>Проверяем доступность контейнера в сети и корректность пароля суперпользователя:</p>
+
+<pre><code>[root@virtuozzo ~]# ssh root@192.168.0.161
+root@192.168.0.161's password: p0oT
+root@first:~#
+</code></pre>
+
+<p>Вход в контейнер напрямую с хост-ноды:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl enter first
+entered into CT
+root@first:/#
+</code></pre>
+
+<p>Выход из контейнера:</p>
+
+<pre><code>root@first:/# exit
+logout
+[root@virtuozzo ~]#
 </code></pre>
 
 <h2>
