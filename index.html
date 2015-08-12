@@ -19,9 +19,7 @@
     </section>
 
     <section class="main-content">
-      
-
-<h2>
+      <h2>
 <a id="Содержание" class="anchor" href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Содержание</h2>
 
 <ol>
@@ -33,7 +31,7 @@
 <li><a href="#%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">Полная виртуализация</a></li>
 <li><a href="#%D0%9F%D0%B0%D1%80%D0%B0%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">Паравиртуализация</a></li>
 <li><a href="#%D0%92%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B">Виртуализация уровня операционной системы</a></li>
-<li><a href="#virtuozzo--%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1">Virtuozzo — технология виртуализации уровня ОС</a></li>
+<li><a href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8">Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</a></li>
 </ul>
 </li>
 <li><a href="#%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo">Краткая история проекта Virtuozzo</a></li>
@@ -163,14 +161,16 @@
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/cont-virt.png" alt="Схема виртуализации уровня ОС"></p>
 
 <p>Виртуализация уровня ОС — метод виртуализации, при котором ядро операционной системы поддерживает несколько изолированных экземпляров пространства пользователя вместо одного.
-Эти экземпляры с точки зрения пользователя полностью идентичны реальному серверу.
+С точки зрения пользователя эти экземпляры полностью идентичны реальному серверу.
 Для систем на базе UNIX эта технология может рассматриваться как улучшенная реализация механизма chroot.
 Ядро обеспечивает полную изолированность контейнеров, поэтому программы из разных контейнеров не могут воздействовать друг на друга.</p>
 
 <h3>
-<a id="virtuozzo--технология-виртуализации-уровня-ОС" class="anchor" href="#virtuozzo--%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Virtuozzo — технология виртуализации уровня ОС</h3>
+<a id="virtuozzo--объединение-технологий-виртуализации-уровня-ОС-и-полной-виртуализации" class="anchor" href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</h3>
 
-<p>Virtuozzo позволяет создавать множество защищенных, изолированных друг от друга виртуальных сред (VE) на одном узле.</p>
+<p>Virtuozzo позволяет создавать множество защищенных, изолированных друг от друга контейнеров на одном узле.
+Помимо этого возможно создание виртуальных машин на базе QEMU/KVM.
+Управление контейнерами и виртуальными машинами происходит с помощью специализированных утилит.</p>
 
 <p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP адреса, правила маршрутизации).
 В отличие от KVM или Xen, Virtuozzo использует одно ядро, которое является общим для всех виртуальных сред.</p>
@@ -178,8 +178,8 @@
 <p>Контейнеры можно разделить на две составляющие:</p>
 
 <ul>
-<li>ядро (namespaces, cgroups, CRIU)</li>
-<li>пользовательские утилиты (prlctl, vzctl, vzquota, vzdump...)</li>
+<li>ядро (namespaces, cgroups, CRIU, ploop, vcmmd...)</li>
+<li>пользовательские утилиты (prlctl, vzpkg, vzlist, vzdump...)</li>
 </ul>
 
 <p>Namespaces — пространства имен.
@@ -207,6 +207,15 @@ root и любые другие пользователи и группы</li>
 Уже поддерживаются такие объекты как процессы, память приложений, открытые файлы, конвейеры, IPC сокеты, TCP/IP и UDP сокеты, таймеры, сигналы, терминалы, файловые дескрипторы.
 В разработке также находится миграция TCP соединений.</p>
 
+<p>vcmmd (Virtuozzo containers memory management daemon) — сервис управления механизмом memory cgroups в пространстве пользователя.
+Менеджер памяти 4 поколения управляет memory cgroups.
+memory cgroups присутстсвует в ванильном ядре, поэтому не требует сторонних патчей со стороны Virtuozzo.</p>
+
+<p>Новый менеджер памяти полностью задействует механизм memory cgroups,
+который есть в ванильном ядре. Поэтомы для этой версии нам не необходимости
+держать какие-то свои патчи в ядре. Управление реализовано с помощью сервиса
+vcmmd в пространстве пользователя.</p>
+
 <p>Проведенные тестирования показывают, что OpenVZ (ныне Virtuozzo) является одним из наиболее актуальных решений на рынке виртуализации, так как показывает внушительные результаты в различных тестированиях.</p>
 
 <p><em>График времени отклика системы</em>
@@ -219,7 +228,7 @@ root и любые другие пользователи и группы</li>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/network.png" alt="Пропускная способность сети"></p>
 
 <p>На втором графике — результаты тестирования пропускной способности сети.
-На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10G сети (9.7G отправка и 9.87G прием).</p>
+На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gb отправка и 9.87Gb прием).</p>
 
 <h2>
 <a id="Краткая-история-проекта-virtuozzo" class="anchor" href="#%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Краткая история проекта Virtuozzo</h2>
@@ -252,7 +261,7 @@ root и любые другие пользователи и группы</li>
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
-<p>Дистрибутив Virtuozzo основан на операционой системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL7, утилитами управления и модифицированным установщиком.
+<p>Дистрибутив Virtuozzo основан на операционной системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL7, утилитами управления и модифицированным установщиком.
 Рекомендуется именно этот способ установки Virtuozzo.</p>
 
 <p>Текущая последняя версия ISO-образа доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0/x86_64/iso/</a></p>
@@ -283,7 +292,7 @@ root и любые другие пользователи и группы</li>
 
 <p>Также необходимо задать пароль пользователя <code>root</code> и создать локального пользователя, например <code>vzuser</code>.</p>
 
-<p><em>Задание пароля суперпользователя и создание локального пользователя</em>
+<p><em>Установка пароля суперпользователя и создание локального пользователя</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/user.png" alt="Настройки пользователей"></p>
 
 <p>После установки необходимо перезагрузиться.</p>
@@ -310,7 +319,7 @@ Password: пароль_пользователя_root
 <p>Поддерживаемые дистрибутивы:</p>
 
 <ul>
-<li>Cloud Linux 7</li>
+<li>CloudLinux 7</li>
 <li>CentOS 7</li>
 <li>Scientific Linux 7</li>
 <li>прочие дистрибутивы, основанные на RHEL7</li>
@@ -318,7 +327,7 @@ Password: пароль_пользователя_root
 
 <p>Установка пакетов на примере дистрибутива CentOS 7.</p>
 
-<p>Пакет virtuozzo-release содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
+<p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
 <pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0/x86_64/os/Packages/v/virtuozzo-release-7.0.0-10.vz7.x86_64.rpm
 </code></pre>
@@ -328,19 +337,14 @@ Password: пароль_пользователя_root
 <pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel ploop
 </code></pre>
 
-<p>В качестве зависимостей также установятся такие пакеты как:</p>
+<p>В качестве зависимостей также установятся такие пакеты как <code>criu</code>, <code>libvirt</code>, <code>lvm2</code>, <code>nfs-utils</code>, <code>quota</code>, <code>vcmmd</code>, <code>vzctl</code>, <code>vztt</code> и другие.</p>
 
-<pre><code>criu libvirt lvm2 nfs-utils quota vcmmd vzctl vztt
-</code></pre>
-
-<p>и многие другие.</p>
-
-<p>После окончания установки пакетов необходимо перезагрузиться:</p>
+<p>По окончании установки пакетов необходимо перезагрузиться:</p>
 
 <pre><code>[root@virtuozzo ~]# reboot
 </code></pre>
 
-<p>В меню загрузчика должны появиться новые пункты <code>Virtuozzo 7</code>.
+<p>В меню загрузчика должен появиться новый пункт <code>Virtuozzo 7</code>.
 Необходимо загрузиться с этого ядра.</p>
 
 <p><em>Меню загрузчика Grub после установки Virtuozzo</em>
@@ -428,7 +432,8 @@ debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo
 <a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Конфигурационные файлы</h3>
 
 <p>В старых версиях OpenVZ основным идентификатором контейнера является CTID, который вручную указывался при создании контейнера.
-Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.</p>
+Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.
+Однако существует возможность указания UUID вручную.</p>
 
 <p>Каждый контейнер имеет свой конфигурационный файл, который хранится в каталоге <code>/etc/vz/conf/</code>.
 Именуются конфиги по UUID контейнера.
@@ -451,10 +456,11 @@ vps.vzpkgtools.conf-sample
 <p>В этих конфигурационных файлах описаны контрольные параметры ресурсов, выделенное дисковое пространство, оперативная память и т.д.
 Например, при использовании конфига <code>ve-vswap.512MB.conf-sample</code>, создается контейнер с дисковым пространством 10GB, оперативной памятью 512MB и swap 512MB:</p>
 
-<pre><code>[root@virtuozzo ~]# cat /etc/vz/conf/ve-vswap.512MB.conf-sample | grep "DISKSPACE\|PHYSPAGES\|SWAPPAGES"
+<pre><code>[root@virtuozzo ~]# cat /etc/vz/conf/ve-vswap.512MB.conf-sample | grep "DISKSPACE\|PHYSPAGES\|SWAPPAGES\|DISKINODES"
 PHYSPAGES="131072:131072"
 SWAPPAGES="131072"
 DISKSPACE="10485760:10485760"
+DISKINODES="655360:655360"
 </code></pre>
 
 <p>Это удобно, так как существует возможность создавать свои конфигурационные файлы для различных вариаций контейнеров.
@@ -506,13 +512,12 @@ DEF_OSTEMPLATE=".centos-6"
 <a id="Настройка-контейнера" class="anchor" href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Настройка контейнера</h3>
 
 <p>Контейнер создан, его можно запускать.
-Но перед первым запуском необходимо установить его IP адрес, hostname, указать DNS сервер и задать пароль суперпользователя.</p>
+Но перед первым запуском необходимо установить его IP адреса, hostname, указать DNS сервера и задать пароль суперпользователя.</p>
 
 <p>Добавление IP адресов:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set first --ipadd 192.168.0.161/24
 [root@virtuozzo ~]# prlctl set first --ipadd fe80::20c:29ff:fe01:fb08
-Enable automatic reconfiguration for this network adapter.
 </code></pre>
 
 <p>Установка DNS сервера и hostname:</p>
@@ -667,6 +672,12 @@ Failed to start the CT: PRL_ERR_VZCTL_OPERATION_FAILED
 [root@virtuozzo ~]# prlctl set second --ipadd fe80::20c:29ff:fe01:fb09
 </code></pre>
 
+<p>Смена hostname:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set second --hostname second.virtuozzo.localhost
+The CT has been successfully configured.
+</code></pre>
+
 <p>После этого контейнер можно запустить:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl start second
@@ -686,7 +697,8 @@ Debian GNU/Linux 8 \n \l
 <p>Иногда бывает нужно выполнить команду на нескольких контейнерах.
 Для этого можно использовать команду:</p>
 
-<pre><code>[root@virtuozzo ~]# for i in `prlctl list -o name -H`; do echo "CT $i"; prlctl exec $i cat /etc/issue; done
+<pre><code>[root@virtuozzo ~]# CMD="cat /etc/issue"
+[root@virtuozzo ~]# for i in `prlctl list -o name -H`; do echo "CT $i"; prlctl exec $i $CMD; done
 CT first
 Debian GNU/Linux 8 \n \l
 
@@ -695,7 +707,9 @@ Debian GNU/Linux 8 \n \l
 </code></pre>
 
 <h3>
-<a id="Расширенная-информация-о-контейнере" class="anchor" href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Расширенная информация о контейнере</h3>
+<a id="Расширенная-информация-о-контейнерах" class="anchor" href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>Расширенная информация о контейнерах</h3>
+
+<p>Подробная информация о контейнере:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl list -i first
 Autostop: suspend
@@ -727,6 +741,48 @@ Offline management: (-)
 Hostname: first.virtuozzo.localhost
 DNS Servers: 192.168.0.1
 </code></pre>
+
+<p>Существует также возможность просмотра дополнительной информации о контейнерах:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list -o type,status,name,hostname,dist,ip
+T  STATUS       NAME                             HOSTNAME                         DIST            IP_ADDR
+CT running      second                           second.virtuozzo.localhost       debian          192.168.0.162 FE80:0:0:0:20C:29FF:FE01:FB09  
+CT running      first                            first.virtuozzo.localhost        debian          192.168.0.161 FE80:0:0:0:20C:29FF:FE01:FB08  
+</code></pre>
+
+<p>Список всех доступных полей:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list -L
+uuid                 UUID
+envid                ENVID
+status               STATUS
+name                 NAME
+dist                 DIST
+owner                OWNER
+system-flags         SYSTEM_FLAGS
+description          DESCRIPTION
+numproc              NPROC
+ip                   IP_ADDR
+ip_configured        IP_ADDR
+hostname             HOSTNAME
+netif                NETIF
+mac                  MAC
+features             FEATURES
+location             LOCATION
+iolimit              IOLIMIT
+netdev               NETDEV
+type                 T
+ha_enable            HA_ENABLE
+ha_prio              HA_PRIO
+-                    -
+</code></pre>
+
+<h2>
+<a id="Управление-ресурсами" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление ресурсами</h2>
+
+<p>TODO</p>
+
+<p>COMING SOON...</p>
 
 <h2>
 <a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
