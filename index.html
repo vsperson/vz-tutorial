@@ -62,7 +62,14 @@
 <li><a href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Управление состоянием контейнера</a></li>
 <li><a href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Клонирование контейнера</a></li>
 <li><a href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5-%D1%81-%D1%85%D0%BE%D1%81%D1%82-%D0%BD%D0%BE%D0%B4%D1%8B">Запуск команд в контейнере с хост-ноды</a></li>
-<li><a href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5">Расширенная информация о контейнере</a></li>
+<li><a href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85">Расширенная информация о контейнерах</a></li>
+</ul>
+</li>
+<li>
+<a href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8">Управление ресурсами</a>
+
+<ul>
+<li><a href="#Disk-quotas">Disk Quotas</a></li>
 </ul>
 </li>
 <li><a href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Ссылки</a></li>
@@ -780,9 +787,78 @@ ha_prio              HA_PRIO
 <h2>
 <a id="Управление-ресурсами" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление ресурсами</h2>
 
-<p>TODO</p>
+<p>Доступные контейнеру ресурсы контролируются с помощью набора параметров управления ресурсами.
+Все эти параметры можно редактировать в файлах шаблонов, в каталоге <code>/etc/vz/conf/</code>.
+Их можно установить вручную, редактируя соответствующие конфиги или используя утилиты Virtuozzo.</p>
 
-<p>COMING SOON...</p>
+<p>Параметры контроля ресурсов условно разделяют на группы:</p>
+
+<ul>
+<li>Disk Quotas</li>
+<li>CPU</li>
+<li>Network</li>
+<li>Disk I/O</li>
+<li>Memory</li>
+</ul>
+
+<h3>
+<a id="disk-quotas" class="anchor" href="#disk-quotas" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disk Quotas</h3>
+
+<p>Администратор сервера Virtuozzo может устанавливать дисковые квоты, в терминах дискового пространства и количества inodes, число которых примерно равно количеству файлов.
+Это первый уровень дисковой квоты.
+В дополнение к этому, администратор может использовать обычные утилиты внутри окружения, для настроек стандартных дисковых квот UNIX для пользователей и групп.</p>
+
+<p>Для использования дисковых квот, соответствующая директива должна присутствовать в конфигурационном файле Virtuozzo:</p>
+
+<pre><code>[root@virtuozzo ~]# grep DISK_QUOTA /etc/vz/vz.conf
+DISK_QUOTA=yes
+</code></pre>
+
+<p>Основные параметры:</p>
+
+<ul>
+<li>
+<code>DISKSPACE</code> — общий размер дискового пространства (задается в Kb)</li>
+<li>
+<code>DISKINODES</code> — общее число дисковых inodes</li>
+<li>
+<code>QUOTATIME</code> — время (в секундах) на которое контейнер может превысить значение soft предела</li>
+</ul>
+
+<p>Параметры записываются в конфигурационный файл в виде:</p>
+
+<pre><code>COMMAND="softlimit:hardlimit"
+</code></pre>
+
+<p>где:</p>
+
+<ul>
+<li>
+<code>COMMAND</code> — команда (<code>DISKSPACE</code> или <code>DISKINODES</code>)</li>
+<li>
+<code>softlimit</code> — значение которое превышать нежелательно, после пересечения этого предела наступает grace период, по истечении которого, дисковое пространство или inodes прекратят свое существование</li>
+<li>
+<code>hardlimit</code> — значение которое превысить нельзя</li>
+</ul>
+
+<p>Например, запись:</p>
+
+<pre><code>DISKSPACE="19922944:20971520"
+DISKINODES="1300000:1310720"
+QUOTATIME="600"
+</code></pre>
+
+<p>означает, что задается <code>softlimit</code> для дискового пространства равным ~19G и <code>hardlimit</code> равный 20G, то же самое с inodes 1300000 и 1310720 соответственно.</p>
+
+<p>Если размер занятого дискового пространства или inodes будет выше <code>softlimit</code>, то в течении 600 сек (10 мин), в случае не освобождения дискового пространства или inodes, они прекратят свое существование.</p>
+
+<p>Аналогично, можно установить эти параметры с помощью <code>vzctl</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# vzctl set third --diskspace 5G:6G --save
+Resize the image /vz/private/4730cba8-deed-4168-9f9e-34373e618026/root.hdd to 6291456K
+dumpe2fs 1.42.9 (28-Dec-2013)
+[root@virtuozzo ~]# vzctl set third --diskinodes 10000:110000 --save
+</code></pre>
 
 <h2>
 <a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
