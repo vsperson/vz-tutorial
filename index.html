@@ -71,6 +71,9 @@
 <ul>
 <li><a href="#%D0%94%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BA%D0%B2%D0%BE%D1%82%D1%8B">Дисковые квоты</a></li>
 <li><a href="#%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D1%80">Процессор</a></li>
+<li><a href="#%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0">Операции ввода/вывода</a></li>
+<li><a href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C">Память</a></li>
+<li><a href="#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2">Мониторинг ресурсов</a></li>
 </ul>
 </li>
 <li><a href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Ссылки</a></li>
@@ -485,6 +488,12 @@ DISKINODES="1310720:1310720"
 
 <p>Таким образом, при использовании этого конфигурационного файла, будет создаваться контейнер, которому будет доступно 20GB выделенного дискового пространства, 1GB оперативной памяти и 1GB swap.</p>
 
+<p>Установка конфигурационного файла шаблона на примере <code>vswap.1GB</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --applyconfig vswap.1GB
+The CT has been successfully configured.
+</code></pre>
+
 <h3>
 <a id="Создание-контейнера" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Создание контейнера</h3>
 
@@ -640,7 +649,7 @@ The CT has been successfully restarted.
 <pre><code>[root@virtuozzo ~]# prlctl stop
 Stopping the CT...
 The CT has been successfully stopped.
-[root@virtuozzo ~]# prlctl delete second
+[root@virtuozzo ~]# prlctl delete first
 Removing the CT...
 The CT has been successfully removed.
 </code></pre>
@@ -797,9 +806,9 @@ ha_prio              HA_PRIO
 <ul>
 <li>дисковые квоты</li>
 <li>процессор</li>
-<li>сеть</li>
 <li>операции ввода/вывода</li>
 <li>память</li>
+<li>сеть</li>
 </ul>
 
 <h3>
@@ -855,10 +864,10 @@ QUOTATIME="600"
 
 <p>Аналогично, можно установить эти параметры с помощью <code>vzctl</code>:</p>
 
-<pre><code>[root@virtuozzo ~]# vzctl set third --diskspace 5G:6G --save
-Resize the image /vz/private/4730cba8-deed-4168-9f9e-34373e618026/root.hdd to 6291456K
+<pre><code>[root@virtuozzo ~]# vzctl set first --diskspace 5G:6G --save
+Resize the image /vz/private/3d32522a-80af-4773-b9fa-ea4915dee4b3/root.hdd to 6291456K
 dumpe2fs 1.42.9 (28-Dec-2013)
-[root@virtuozzo ~]# vzctl set third --diskinodes 10000:110000 --save
+[root@virtuozzo ~]# vzctl set first --diskinodes 10000:110000 --save
 </code></pre>
 
 <h3>
@@ -948,7 +957,227 @@ NODEMASK="0"
 <p>Утилиты контроля ресурсов процессора, гарантируют любому контейнеру количество времени центрального процессора, которое собственно и получает этот контейнер.
 При этом контейнер может потреблять больше времени, чем определено этой величиной, если нет другого конкурирующего с ним за время CPU сервера.</p>
 
+<h3>
+<a id="Операции-вводавывода" class="anchor" href="#%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Операции ввода/вывода</h3>
 
+<p>В Virtuozzo существует возможность управления дисковыми операциями ввода/вывода.
+Можно устанавливать значения таких параметров как:</p>
+
+<ul>
+<li><code>IOPRIO</code></li>
+<li><code>IOLIMIT</code></li>
+<li><code>IOPSLIMIT</code></li>
+</ul>
+
+<p>Параметр <code>IOPRIO</code> указывает приоритет операция ввода вывода для контейнера.
+По умолчанию для всех контейнеров установлен равный приоритет (значение 4).</p>
+
+<p>Изменение значения параметра можно регулировать от 0 (максимальный приоритет) до 7:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --ioprio 6
+set ioprio 7
+</code></pre>
+
+<p>Параметр <code>IOLIMIT</code> позволяет ограничивать пропускную способность операций ввода/вывода.
+По умолчанию параметр имеет значение 0, то есть отсутствие лимитов.</p>
+
+<p>Установка значения в MB/s:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --iolimit 20
+Set up iolimit: 20971520
+</code></pre>
+
+<p>Существует возможность указания префиксов метрических значений:</p>
+
+<ul>
+<li>
+<code>G</code> — гигабайт</li>
+<li>
+<code>M</code> — мегабайт</li>
+<li>
+<code>K</code> — килобайт</li>
+<li>
+<code>B</code> — байт</li>
+</ul>
+
+<p>Максимальная пропускная способность дисковых операций ввода/вывода составляет 2GB/s.</p>
+
+<p>Помимо ограничения пропускной способности операций ввода/вывода, существует возможность ограничения количества операций ввода/вывода в секунду.</p>
+
+<p>Параметр <code>IOPSLIMT</code> позволяет установить численное значение операций ввода/вывода в секунду, например 300:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --iopslimit 300
+set IOPS limit 300
+</code></pre>
+
+<p>По умолчанию значение этого параметра равно 0, что означает отсутствие лимитов.</p>
+
+<p>Параметры можно указать вручную в конфигурационном файле контейнера:</p>
+
+<pre><code>IOPRIO="7"
+IOLIMIT="20971520"
+IOPSLIMIT="300"
+</code></pre>
+
+<p>Проверка ограничения пропускной способностей операций ввода/вывода на примере <code>IOLIMIT</code>.</p>
+
+<p>Значение <code>IOLIMIT</code> равно 0:</p>
+
+<pre><code>root@first:/# dd if=/dev/zero of=test bs=1048576 count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB) copied, 0.210523 s, 49.8 MB/s
+</code></pre>
+
+<p>Значение <code>IOLIMIT</code> равно 500K:</p>
+
+<pre><code>root@first:/# dd if=/dev/zero of=test bs=1048576 count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB) copied, 17.4388 s, 601 kB/s
+</code></pre>
+
+<h3>
+<a id="Память" class="anchor" href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Память</h3>
+
+<p>Ограничение физической памяти и swap задаются в конфигурационном файле контейнера параметрами <code>PHYSPAGES</code> и <code>SWAPPAGES</code>.
+Значения устанавливаются в блоках, например:</p>
+
+<pre><code>PHYSPAGES="262144:262144"
+SWAPPAGES="262144:262144"
+</code></pre>
+
+<p>равняются значениям в 1024MB (262144 блок / 256 = 1024MB).</p>
+
+<p>С помощью <code>prlctl</code> значения параметров можно указывать в метрической системе:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set first --memsize 1G --swappages 1G
+Set the memsize parameter to 1024Mb.
+Set swappages 262144
+</code></pre>
+
+<h3>
+<a id="Мониторинг-ресурсов" class="anchor" href="#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Мониторинг ресурсов</h3>
+
+<p>С помощью утилиты <code>vznetstat</code> можно увидеть входящий и исходящий трафик (в байтах и пакетах) для всех контейнеров:</p>
+
+<pre><code>[root@virtuozzo ~]# vznetstat
+UUID                                 Net.Class     Input(bytes) Input(pkts)        Output(bytes) Output(pkts)
+0                                    0                244486        3024              1567749        2491
+54bc2ba6-b040-469e-9fda-b0eabda822d4 0                     0           0                    0           0
+4730cba8-deed-4168-9f9e-34373e618026 0                     0           0                    0           0
+3d32522a-80af-4773-b9fa-ea4915dee4b3 0               2925512       49396             49398885       49254
+</code></pre>
+
+<p>Для конкретного контейнера можно воспользоваться ключом <code>-v</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# vznetstat -v 3d32522a-80af-4773-b9fa-ea4915dee4b3
+UUID                                 Net.Class     Input(bytes) Input(pkts)        Output(bytes) Output(pkts)
+3d32522a-80af-4773-b9fa-ea4915dee4b3 0               2925512       49396             49398885       49254
+</code></pre>
+
+<p>Утилита <code>vzstat</code> позволяет узнать информацию по нагрузке на контейнер, занятым ресурсам и состоянии сети:</p>
+
+<pre><code>[root@virtuozzo ~]# vzstat -p 3d32522a-80af-4773-b9fa-ea4915dee4b3 -t
+loadavg     0 0 0
+CTNum       3
+procs       289 1 288 0 0 0 0
+CPU     16 0 2 3 95
+sched latency   372 9
+Mem     989 360 0
+Mem latency 1 0
+  ZONE0 (DMA): size 15MB, act 4MB, inact 4MB, free 4MB (0/0/1)
+  ZONE1 (DMA32): size 1007MB, act 243MB, inact 274MB, free 355MB (43/54/64)
+  Mem lat (ms): A0 1, K0 0, U0 1, K1 0, U1 0
+  Slab pages: 62MB/62MB (ino 22MB, de 0MB, bh 1MB, pb 0MB)
+Swap        952 952 0.000 0.000
+Net stats   0.382 5949 5.542 5820
+if br0 stats    0.171 2975 2.771 2910
+if lo stats 0.000 0 0.000 0
+if virbr1-nic stats 0.000 0 0.000 0
+if enp0s3 stats 0.211 2975 2.771 2910
+if virbr1 stats 0.000 0 0.000 0
+Disks stats 0.000 0.000
+
+    CTID ST   %VM    %KM        PROC     CPU     SOCK FCNT MLAT IP
+</code></pre>
+
+<p><code>vzpid</code> позволяет узнать к какому контейнеру принадлежит процесс, это может быть полезно при просмотре списка процессов с хост-ноды и поиска "процесса-грузчика":</p>
+
+<pre><code>[root@virtuozzo ~]# top
+top - 20:43:26 up 33 min,  1 user,  load average: 0.00, 0.01, 0.05
+Tasks: 178 total,   1 running, 176 sleeping,   1 stopped,   0 zombie
+%Cpu(s):  1.7 us,  3.6 sy,  0.0 ni, 88.5 id,  0.0 wa,  0.0 hi,  6.2 si,  0.0 st
+KiB Mem :  1013704 total,   382912 free,   138656 used,   492136 buff/cache
+KiB Swap:   975868 total,   975868 free,        0 used.   688028 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+   5625 33        20   0  364432   6232   1284 S  26.2  0.6   0:03.20 apache2
+...
+[root@virtuozzo ~]# vzpid 5625
+Pid VEID    Name
+5625    3d32522a-80af-4773-b9fa-ea4915dee4b3    apache2
+</code></pre>
+
+<p>Утилита <code>vzps</code> аналогична утилите <code>ps</code>, она позволяет вывести список процессов и их состояние для конкретного контейнера:</p>
+
+<pre><code>[root@virtuozzo ~]# vzps aufx -E 3d32522a-80af-4773-b9fa-ea4915dee4b3
+    USER     PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+       0    2432  0.0  0.0      0     0 ?        S    20:10   0:00 [kthreadd/3d3252]
+       0    2433  0.0  0.0      0     0 ?        S    20:10   0:00  \_ [khelper]
+       0    2420  0.0  0.3  28168  3136 ?        Ss   20:10   0:00 init -z
+     101    3088  0.0  0.1  26168  1448 ?        Ss   20:10   0:00  \_ /lib/systemd/systemd-networkd
+       0    3117  0.0  0.1  28856  1620 ?        Ss   20:10   0:00  \_ /lib/systemd/systemd-journald
+       0    3135  0.0  0.1  38916  1624 ?        Ss   20:10   0:00  \_ /lib/systemd/systemd-udevd
+       0    3376  0.0  0.3  55156  3128 ?        Ss   20:10   0:00  \_ /usr/sbin/sshd -D
+     102    3380  0.0  0.1  25732  1092 ?        Ss   20:10   0:00  \_ /lib/systemd/systemd-resolved
+       0    3382  0.0  0.1  25884  1120 ?        Ss   20:10   0:00  \_ /usr/sbin/cron -f
+       0    3388  0.0  0.1 182848  1884 ?        Ssl  20:10   0:00  \_ /usr/sbin/rsyslogd -n
+       0    3433  0.0  0.0  12648   840 ?        Ss+  20:10   0:00  \_ /sbin/agetty --noclear tty2 linux
+       0    3434  0.0  0.0  12648   840 ?        Ss+  20:10   0:00  \_ /sbin/agetty --noclear --keep-baud console 115200 38400 9600 linux
+       0    3508  0.0  0.0  20200   956 ?        Ss   20:10   0:00  \_ /usr/sbin/xinetd -pidfile /run/xinetd.pid -stayalive -inetd_compat -inetd_ipv6
+       0    3617  0.0  0.1  65452  1164 ?        Ss   20:10   0:00  \_ /usr/sbin/saslauthd -a pam -c -m /var/run/saslauthd -n 2
+       0    3625  0.0  0.0  65452   836 ?        S    20:10   0:00  |   \_ /usr/sbin/saslauthd -a pam -c -m /var/run/saslauthd -n 2
+       0    3755  0.0  0.2  73496  2724 ?        Ss   20:10   0:00  \_ /usr/sbin/apache2 -k start
+      33    5747  0.2  0.5 363364  5300 ?        Sl   20:46   0:00  |   \_ /usr/sbin/apache2 -k start
+       0    4074  0.0  0.2  36144  2388 ?        Ss   20:10   0:00  \_ /usr/lib/postfix/master
+     105    4081  0.0  0.2  38208  2316 ?        S    20:10   0:00      \_ pickup -l -t unix -u -c
+     105    4082  0.0  0.2  38256  2336 ?        S    20:10   0:00      \_ qmgr -l -t unix -u
+
+</code></pre>
+
+<p>Для утилиты <code>top</code> также существует аналог <code>vztop</code>.
+Пример просмотра списка процессов отсортированных по нагрузке на процессор для контейнера <code>first</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# vztop -E 3d32522a-80af-4773-b9fa-ea4915dee4b3 -o %CPU -b
+vztop - 21:13:45 up  1:03,  1 user,  load average: 0.01, 0.04, 0.32
+Tasks:  20 total,   0 running,  20 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.3 us,  0.7 sy,  0.0 ni, 98.5 id,  0.1 wa,  0.0 hi,  0.5 si,  0.0 st
+KiB Mem :  1013704 total,   378752 free,   136600 used,   498352 buff/cache
+KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
+
+                                    CTID     PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    5747 33        20   0  364424   6304   1280 S  40.0  0.6   0:03.37 apache2
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    2420 root      20   0   28168   3136   1908 S   0.0  0.3   0:00.32 systemd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    2432 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kthreadd/3d3252
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    2433 root      20   0       0      0      0 S   0.0  0.0   0:00.00 khelper
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3088 101       20   0   26168   1448   1204 S   0.0  0.1   0:00.06 systemd-network
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3117 root      20   0   28856   1620   1356 S   0.0  0.2   0:00.12 systemd-journal
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3135 root      20   0   38916   1624   1132 S   0.0  0.2   0:00.04 systemd-udevd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3376 root      20   0   55156   3128   2460 S   0.0  0.3   0:00.01 sshd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3380 102       20   0   25732   1092    896 S   0.0  0.1   0:00.00 systemd-resolve
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3382 root      20   0   25884   1120    900 S   0.0  0.1   0:00.01 cron
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3388 root      20   0  182848   1884   1412 S   0.0  0.2   0:00.02 rsyslogd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3433 root      20   0   12648    840    692 S   0.0  0.1   0:00.00 agetty
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3434 root      20   0   12648    840    692 S   0.0  0.1   0:00.00 agetty
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3508 root      20   0   20200    956    756 S   0.0  0.1   0:00.00 xinetd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3617 root      20   0   65452   1164    328 S   0.0  0.1   0:00.00 saslauthd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3625 root      20   0   65452    836      0 S   0.0  0.1   0:00.00 saslauthd
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    3755 root      20   0   73496   2724   1512 S   0.0  0.3   0:00.58 apache2
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    4074 root      20   0   36144   2388   1848 S   0.0  0.2   0:00.06 master
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    4081 105       20   0   38208   2316   1776 S   0.0  0.2   0:00.04 pickup
+    3d32522a-80af-4773-b9fa-ea4915dee4b3    4082 105       20   0   38256   2336   1792 S   0.0  0.2   0:00.02 qmgr
+</code></pre>
 
 <h2>
 <a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
