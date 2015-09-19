@@ -332,16 +332,17 @@ Password: пароль_пользователя_root
 <li>прочие дистрибутивы, основанные на RHEL7</li>
 </ul>
 
-<p>Установка пакетов на примере дистрибутива CentOS 7.</p>
+<p>Установка пакетов на примере дистрибутива CentOS 7.
+Virtuozzo 7 beta 2.</p>
 
 <p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0/x86_64/os/Packages/v/virtuozzo-release-7.0.0-10.vz7.x86_64.rpm
+<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/os/Packages/v/virtuozzo-release-7.0.0-13.vz7.x86_64.rpm
 </code></pre>
 
 <p>Установка необходимых RPM-пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel ploop
+<pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel
 </code></pre>
 
 <p>В качестве зависимостей также установятся такие пакеты как <code>criu</code>, <code>libvirt</code>, <code>lvm2</code>, <code>nfs-utils</code>, <code>quota</code>, <code>vcmmd</code>, <code>vzctl</code>, <code>vztt</code> и другие.</p>
@@ -399,10 +400,14 @@ server 91.198.10.20, stratum 2, offset 0.003745, delay 0.05481
 <p>На данный момент Virtuozzo поддерживает такие гостевые ОС:</p>
 
 <ul>
-<li>CentOS 7 (x86_64)</li>
+<li>CentOS 5 (x86)</li>
 <li>CentOS 6 (x86_64)</li>
-<li>Ubuntu 14.04 LTS (x86_64)</li>
+<li>CentOS 7 (x86_64)</li>
 <li>Debian 8 (x86_64)</li>
+<li>Fedora 22 (x86_64)</li>
+<li>Ubuntu 14.04 (x86_64)</li>
+<li>Ubuntu 14.10 (x86_64)</li>
+<li>Ubuntu 15.04 (x86_64)</li>
 </ul>
 
 <p>Просмотр списка уже имеющихся локальных шаблонов:</p>
@@ -427,9 +432,20 @@ ubuntu-14.04-x86_64                :Ubuntu 14.04 (for AMD64/Intel EM64T) Virtuoz
 debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
-<p>Обновление кэша шаблонов:</p>
+<p>Установка и обновление кэша шаблонов:</p>
 
-<pre><code>[root@virtuozzo ~]# vzpkg update cache
+<pre><code>[root@virtuozzo ~]# vzpkg create cache
+[root@virtuozzo ~]# vzpkg update cache
+</code></pre>
+
+<p>Просмотр даты последнего обновления кэша:</p>
+
+<pre><code>[root@virtuozzo ~]# vzpkg list -O
+centos-5-x86                       2015-09-19 16:26:20
+centos-7-x86_64                    2015-09-19 16:11:10
+centos-6-x86_64                    2015-09-19 16:41:16
+debian-8.0-x86_64                  2015-09-19 17:21:14
+ubuntu-14.04-x86_64                2015-09-19 15:59:39
 </code></pre>
 
 <h2>
