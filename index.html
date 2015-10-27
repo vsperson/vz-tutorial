@@ -240,7 +240,7 @@ memory cgroups присутстсвует в ванильном ядре, поэ
 <h2>
 <a id="Краткая-история-проекта-virtuozzo" class="anchor" href="#%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Краткая история проекта Virtuozzo</h2>
 
-<p>В 1999 году возникла идея создания Linux контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
+<p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
 
 <p>В 2004 году выпуск Virtuozzo для Windows.
 В 2005 году было принято решение о разделении Virtuozzo на два отдельных проекта, свободный OpenVZ (под лицензией GNU GPL) и проприетарный Virtuozzo.</p>
@@ -273,7 +273,7 @@ memory cgroups присутстсвует в ванильном ядре, поэ
 
 <p>Текущая последняя версия ISO-образа (beta2) доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/iso/</a></p>
 
-<p>После записи дистрибутива на носитель, можно приступать к настройке Virtuozzo.
+<p>После записи дистрибутива на носитель, можно приступать к установке Virtuozzo.
 Для этого необходимо загрузиться с носителя.</p>
 
 <p><em>Экран установки Virtuozzo после загрузки с носителя</em>
@@ -333,7 +333,7 @@ Password: пароль_пользователя_root
 </ul>
 
 <p>Установка пакетов на примере дистрибутива CentOS 7.
-Virtuozzo 7 beta 2.</p>
+Virtuozzo 7 beta2.</p>
 
 <p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
@@ -1256,13 +1256,10 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 
 <p>Пример оффлайн миграции контейнера с хост-ноды <code>vz-source</code> на <code>vz-dest</code>.</p>
 
-<p>Устанавливаем на <code>vz-source</code> последние версии <code>vzmigrate</code>, <code>rsync</code> и <code>screen</code>:</p>
+<p>Устанавливаем на <code>vz-source</code> и <code>vzdest</code> последние версии <code>vzmigrate</code> и <code>rsync</code>:</p>
 
-<pre><code>[root@vz-source ~]# yum localinstall http://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/os/Packages/r/rsync-3.0.9-15.vz7.7.x86_64.rpm
-[root@vz-source ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/os/Packages/v/vzmigrate-7.0.10-1.vz7.x86_64.rpm
+<pre><code>[root@vz-source ~]# yum install vzmigrate rsync
 </code></pre>
-
-<p>Аналогично устанавливаем на <code>vz-dest</code> последние версии <code>vzmigrate</code> и <code>rsync</code>.</p>
 
 <p>Создаем и копируем SSH-ключ с <code>vz-source</code> на <code>vz-dest</code> для беспарольной аутентификации:</p>
 
@@ -1279,7 +1276,7 @@ The CT has been successfully stopped.
 
 <p>Запускаем миграцию в <code>screen</code>:</p>
 
-<pre><code>[root@vz-source ~]# screen
+<pre><code>[root@vz-source ~]# screen -S migrate-dest
 [root@vz-source ~]# vzmigrate 192.168.0.180 third
 Connection to destination node (192.168.0.180) is successfully established
 Moving/copying CT 4730cba8-deed-4168-9f9e-34373e618026 -&gt; CT 4730cba8-deed-4168-9f9e-34373e618026, [], [] ...
