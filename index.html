@@ -60,6 +60,7 @@
 
 <ul>
 <li><a href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Управление состоянием контейнера</a></li>
+<li><a href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Переустановка контейнера</a></li>
 <li><a href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Клонирование контейнера</a></li>
 <li><a href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5-%D1%81-%D1%85%D0%BE%D1%81%D1%82-%D0%BD%D0%BE%D0%B4%D1%8B">Запуск команд в контейнере с хост-ноды</a></li>
 <li><a href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85">Расширенная информация о контейнерах</a></li>
@@ -682,6 +683,20 @@ Restarting the CT...
 The CT has been successfully restarted.
 </code></pre>
 
+<p>Приостановка контейнера сохраняет текущее состояние контейнера в файл, позволяя восстановить контейнер в то же состояние, в котором он был приостановлен, это может быть полезно, к примеру если перезагружается хост-нода и нужно сохранить состояние процессов в контейнере.</p>
+
+<p>Команда <code>suspend</code> приостанавливает контейнера, а <code>resume</code> — восстанавливает:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl suspend first
+Suspending the CT...
+The CT has been successfully suspended.
+[root@virtuozzo ~]# prlctl status first
+CT first exist suspended
+[root@virtuozzo ~]# prlctl resume first
+Resuming the CT...
+The CT has been successfully resumed.
+</code></pre>
+
 <p>Для удаления контейнера его нужно сначала остановить:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl stop
@@ -693,6 +708,46 @@ The CT has been successfully removed.
 </code></pre>
 
 <p>Команда выполняет удаление частной области сервера и переименовывает файл конфигурации, дописывая к нему <code>.destroyed</code>.</p>
+
+<h3>
+<a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Переустановка контейнера</h3>
+
+<p>Для переустановки ОС в контейнере, существует команда <code>vzctl reinstall</code>.</p>
+
+<p>Прежде чем переустанавливать контейнер его нужно сначала остановить:</p>
+
+<pre><code>[root@localhost ~]# prlctl stop first
+Stopping the CT...
+The CT has been successfully stopped.
+</code></pre>
+
+<p>Переустановка и старт контейнера:</p>
+
+<pre><code>[root@localhost ~]# vzctl reinstall first
+...
+Container was successfully reinstalled
+[root@localhost ~]# prlctl start first
+Starting the CT...
+The CT has been successfully started.
+</code></pre>
+
+<p>По умолчанию, <code>vzctl reinstall</code> без дополнительных параметров, сохраняет все файлы (частную область) прошлого контейнера  в каталог <code>/old</code> нового контейнера:</p>
+
+<pre><code>[root@localhost ~]# prlctl exec first stat /old
+  File: '/old'
+  Size: 4096        Blocks: 8          IO Block: 4096   directory
+Device: 8610b651h/2249242193d   Inode: 262145      Links: 22
+Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2015-10-30 14:52:46.953006412 +0300
+Modify: 2015-10-30 14:43:31.537615772 +0300
+Change: 2015-10-30 14:50:46.284194584 +0300
+ Birth: -
+</code></pre>
+
+<p>Для того, чтобы не копировать частную область предыдущего контейнера, необходимо использовать ключ <code>--skipbackup</code>:</p>
+
+<pre><code>[root@localhost ~]# vzctl reinstall first --skipbackup
+</code></pre>
 
 <h3>
 <a id="Клонирование-контейнера" class="anchor" href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Клонирование контейнера</h3>
@@ -925,7 +980,7 @@ dumpe2fs 1.42.9 (28-Dec-2013)
 <li>
 <code>CPULIMIT</code> — верхний лимит процессорного времени в процентах</li>
 <li>
-<code>CPUS</code> — количество используемых процессорных (ядер) контейнером</li>
+<code>CPUS</code> — количество используемых процессорных ядер контейнером</li>
 <li>
 <code>NODEMASK</code> — привязка ядер NUMA-систем к контейнеру</li>
 </ul>
