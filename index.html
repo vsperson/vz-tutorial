@@ -266,6 +266,8 @@ root и любые другие пользователи и группы</li>
 <li>с помощью установки пакетов и ядра на заранее установленный дистрибутив</li>
 </ul>
 
+<p>Установка Virtuozzo с помощью PXE (Preboot Execution Environment) подробно описана в <a href="https://docs.openvz.org/virtuozzo_7_installation_using_pxe_guide.webhelp/">документации</a>.</p>
+
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
@@ -307,7 +309,7 @@ root и любые другие пользователи и группы</li>
 
 <p>На этом установка Virtuozzo с помощью ISO-образа завершена.</p>
 
-<p><em>Меню загрузчика Grub</em>
+<p><em>Меню загрузчика Grub после установки Virtuozzo</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub.png" alt="Grub"></p>
 
 <p>Первый вход в систему осуществляется от пользователя <code>vzuser</code>, по SSH.</p>
@@ -1297,9 +1299,9 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 
 <p>В текущей версии Virtuozzo пока недоступна возможность онлайн-миграции контейнеров без их отключения.</p>
 
-<p>Пример оффлайн миграции контейнера с хост-ноды <code>vz-source</code> на <code>vz-dest</code>.</p>
+<p>Пример оффлайн миграции контейнера с хост-ноды <code>vz-source</code> на <code>vz-dest</code> (192.168.0.180).</p>
 
-<p>Устанавливаем на <code>vz-source</code> и <code>vzdest</code> последние версии <code>vzmigrate</code> и <code>rsync</code>:</p>
+<p>Устанавливаем на <code>vz-source</code> и <code>vz-dest</code> последние версии <code>vzmigrate</code> и <code>rsync</code>:</p>
 
 <pre><code>[root@vz-source ~]# yum install vzmigrate rsync
 </code></pre>
@@ -1352,7 +1354,7 @@ The CT has been successfully started.
 
 <ul>
 <li>2015 — Virtuozzo 7 Technical Preview — Virtual machines.
-Цель: интеграция виртуальных машина на основе KVM в Virtuozzo</li>
+Цель: интеграция виртуальных машин на основе KVM в Virtuozzo</li>
 <li>2016 — Virtuozzo 7 Technical Preview 2 — Containers.
 Цель: живая миграция контейнеров с использованием CRIU</li>
 <li>2016 — Virtuozzo 7 Technical Preview 2 — Virtual machines</li>
@@ -1364,13 +1366,13 @@ The CT has been successfully started.
 <a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
 
 <ul>
+<li><a href="http://docs.openvz.org">http://docs.openvz.org</a></li>
+<li><a href="https://openvz.org/Books">https://openvz.org/Books</a></li>
 <li><a href="https://openvz.org/History">https://openvz.org/History</a></li>
 <li><a href="https://openvz.org/OpenVZ_with_upstream_kernel">https://openvz.org/OpenVZ_with_upstream_kernel</a></li>
 <li><a href="https://openvz.org/Packages">https://openvz.org/Packages</a></li>
 <li><a href="https://openvz.org/Roadmap">https://openvz.org/Roadmap</a></li>
 <li><a href="https://openvz.org/Category:HOWTO">https://openvz.org/Category:HOWTO</a></li>
-<li><a href="http://docs.openvz.org">http://docs.openvz.org</a></li>
-<li><a href="https://openvz.org/Books">https://openvz.org/Books</a></li>
 </ul>
 
 <h2>
