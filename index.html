@@ -84,7 +84,7 @@
 </ol>
 
 <h2>
-<a id="Введение-в-виртуализацию" class="anchor" href="#%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a>Введение в виртуализацию</h2>
+<a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Введение в виртуализацию</h2>
 
 <p>Виртуализация — предоставление наборов вычислительных ресурсов или их логического объединения, абстрагированное от аппаратной реализации, и обеспечивающее изоляцию вычислительных процессов.</p>
 
@@ -186,6 +186,9 @@
 Помимо этого разрабатываются возможности по созданию виртуальных машин на базе QEMU/KVM.
 Управление контейнерами и виртуальными машинами происходит с помощью специализированных утилит.</p>
 
+<p><em>Архитектура Virtuozzo 7</em>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png" alt="Архитектура Virtuozzo 7"></p>
+
 <p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP адреса, правила маршрутизации).
 В отличие от KVM или Xen, Virtuozzo использует одно ядро, которое является общим для всех виртуальных сред.</p>
 
@@ -221,7 +224,7 @@ root и любые другие пользователи и группы</li>
 Уже поддерживаются такие объекты как процессы, память приложений, открытые файлы, конвейеры, IPC сокеты, TCP/IP и UDP сокеты, таймеры, сигналы, терминалы, файловые дескрипторы.
 В разработке также находится миграция TCP соединений.</p>
 
-<p>vcmmd (Virtuozzo containers memory management daemon) — сервис управления механизмом memory cgroups в пространстве пользователя.
+<p>VCMM (Virtuozzo containers memory management) — сервис управления механизмом memory cgroups в пространстве пользователя.
 Менеджер памяти 4 поколения управляет memory cgroups, который присутствует в ванильном ядре, поэтому не требует сторонних патчей со стороны Virtuozzo.</p>
 
 <p>Проведенные тестирования показывают, что OpenVZ (ныне Virtuozzo) является одним из наиболее актуальных решений на рынке виртуализации, так как показывает внушительные результаты в различных тестированиях.</p>
@@ -239,25 +242,25 @@ root и любые другие пользователи и группы</li>
 На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gb отправка и 9.87Gb прием).</p>
 
 <h2>
-<a id="Краткая-история-проекта-virtuozzo" class="anchor" href="#%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Краткая история проекта Virtuozzo</h2>
+<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Краткая история проекта Virtuozzo</h2>
 
 <p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
 
 <p>В 2004 году выпуск Virtuozzo для Windows.
 В 2005 году было принято решение о разделении Virtuozzo на два отдельных проекта, свободный OpenVZ (под лицензией GNU GPL) и проприетарный Virtuozzo.</p>
 
-<p>В 2006 году OpenVZ стал доступен для Debian Linux, переход к ядру RHEL4.
-В 2007 году портирован на RHEL5.</p>
+<p>В 2006 году OpenVZ стал доступен для Debian Linux, переход к ядру RHEL 4.
+В 2007 году портирован на RHEL 5.</p>
 
-<p>В 2011 году появилась идея создания проекта CRIU, OpenVZ портирован на RHEL6.
+<p>В 2011 году появилась идея создания проекта CRIU, OpenVZ портирован на RHEL 6.
 В 2012 году стала доступна CRIU v0.1.</p>
 
 <p>В конце 2014 года компания Odin анонсировала открытие кодовой базы Parallels Cloud Server и объединение ее с открытой OpenVZ.</p>
 
-<p>В апреле 2015 года был открыт репозиторий с ядром RHEL7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
+<p>В апреле 2015 года был открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
 <h2>
-<a id="Установка-и-подготовительные-действия" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка и подготовительные действия</h2>
+<a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Установка и подготовительные действия</h2>
 
 <p>Существует два способа установки Virtuozzo:</p>
 
@@ -271,10 +274,10 @@ root и любые другие пользователи и группы</li>
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
-<p>Дистрибутив Virtuozzo основан на операционной системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL7, утилитами управления и модифицированным установщиком.
+<p>Дистрибутив Virtuozzo основан на операционной системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком.
 Рекомендуется именно этот способ установки Virtuozzo.</p>
 
-<p>Текущая последняя версия ISO-образа (beta2) доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/iso/</a></p>
+<p>Текущая последняя версия ISO-образа (beta3) доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/iso/</a></p>
 
 <p>После записи дистрибутива на носитель, можно приступать к установке Virtuozzo.
 Для этого необходимо загрузиться с носителя.</p>
@@ -332,15 +335,15 @@ Password: пароль_пользователя_root
 <li>CloudLinux 7</li>
 <li>CentOS 7</li>
 <li>Scientific Linux 7</li>
-<li>прочие дистрибутивы, основанные на RHEL7</li>
+<li>прочие дистрибутивы, основанные на RHEL 7</li>
 </ul>
 
 <p>Установка пакетов на примере дистрибутива CentOS 7.
-Virtuozzo 7 beta2.</p>
+Virtuozzo 7 beta3.</p>
 
 <p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-beta2/x86_64/os/Packages/v/virtuozzo-release-7.0.0-13.vz7.x86_64.rpm
+<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/os/Packages/v/virtuozzo-release-7.0.0-20.vz7.x86_64.rpm
 </code></pre>
 
 <p>Установка необходимых RPM-пакетов:</p>
@@ -370,14 +373,12 @@ Virtuozzo 7 beta2.</p>
 <pre><code>[root@virtuozzo ~]# yum update
 </code></pre>
 
-<p>Для сервера очень важно, чтобы было установлено правильное время.
+<p>Для сервера важно, чтобы было установлено правильное время.
 Чтобы синхронизировать время с интернетом необходимо установить пакет <code>ntp</code>.</p>
 
 <p>Установка корректной временной зоны:</p>
 
 <pre><code>[root@virtuozzo ~]# timedatectl set-timezone Europe/Moscow
-[root@virtuozzo ~]# date
-Tue Aug  4 14:52:54 MSK 2015
 </code></pre>
 
 <p>Установка <code>ntp</code> и синхронизация времени с удаленными серверами:</p>
@@ -385,39 +386,24 @@ Tue Aug  4 14:52:54 MSK 2015
 <pre><code>[root@virtuozzo ~]# yum install ntp
 [root@virtuozzo ~]# systemctl start ntpd
 [root@virtuozzo ~]# systemctl enable ntpd
-[root@virtuozzo ~]# ntpdate -q  0.ru.pool.ntp.org  1.ru.pool.ntp.org
+[root@virtuozzo ~]# ntpdate -q 0.ru.pool.ntp.org 1.ru.pool.ntp.org
 </code></pre>
 
 <h2>
-<a id="Управление-шаблонами-гостевых-ОС" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление шаблонами гостевых ОС</h2>
+<a id="-Управление-шаблонами-гостевых-ОС" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Управление шаблонами гостевых ОС</h2>
 
-<p>На данный момент Virtuozzo поддерживает такие гостевые ОС:</p>
-
-<ul>
-<li>CentOS 5 (x86)</li>
-<li>CentOS 6 (x86_64)</li>
-<li>CentOS 7 (x86_64)</li>
-<li>Debian 8 (x86_64)</li>
-<li>Debian 8 minimal (x86_64)</li>
-<li>Fedora 22 (x86_64)</li>
-<li>Ubuntu 14.04 (x86_64)</li>
-<li>Ubuntu 14.10 (x86_64)</li>
-<li>Ubuntu 15.04 (x86_64)</li>
-</ul>
-
-<p>Просмотр списка уже имеющихся локальных шаблонов:</p>
+<p>Просмотр списка уже имеющихся локальных шаблонов гостевых ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
 centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
 centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
 <p>Доступные удаленно шаблоны:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list --available --with-summary
-centos-7-x86_64
 debian-8.0-x86_64
-debian-8.0-x86_64-minimal
 fedora-22-x86_64
 ubuntu-14.04-x86_64
 ubuntu-14.10-x86_64
@@ -429,18 +415,23 @@ ubuntu-15.04-x86_64
 <pre><code>[root@virtuozzo ~]# vzpkg list --available --with-summary | xargs vzpkg install template
 </code></pre>
 
+<p>Альтернативный вариант установки шаблонов:</p>
+
+<pre><code>[root@virtuozzo ~]# yum install debian-8.0-x86_64-ez fedora-22-x86_64-ez ubuntu-14.04-x86_64-ez ubuntu-14.10-x86_64-ez ubuntu-15.04-x86_64-ez
+</code></pre>
+
 <p>После этого можно увидеть список доступных локально шаблонов гостевых ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
-centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
-centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
-centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
-debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo Template
-debian-8.0-x86_64-minimal          :Debian 8.0 minimal (for AMD64/Intel EM64T) Virtuozzo Template
+fedora-22-x86_64                   :Fedora 22 (for AMD64/Intel EM64T) Virtuozzo Template
 ubuntu-14.10-x86_64                :Ubuntu 14.10 (for AMD64/Intel EM64T) Virtuozzo Template
 ubuntu-14.04-x86_64                :Ubuntu 14.04 (for AMD64/Intel EM64T) Virtuozzo Template
 ubuntu-15.04-x86_64                :Ubuntu 15.04 (for AMD64/Intel EM64T) Virtuozzo Template
-fedora-22-x86_64                   :Fedora 22 (for AMD64/Intel EM64T) Virtuozzo Template
+debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo Template
+debian-8.0-x86_64-minimal          :Debian 8.0 minimal (for AMD64/Intel EM64T) Virtuozzo Template
+centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
+centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
+centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
 <p>Установка и обновление кэша шаблона:</p>
@@ -449,24 +440,24 @@ fedora-22-x86_64                   :Fedora 22 (for AMD64/Intel EM64T) Virtuozzo 
 [root@virtuozzo ~]# vzpkg update cache ubuntu-14.04-x86_64
 </code></pre>
 
-<p>Если не указывать имя шаблона, то установка и обновление кэша произойдет для всех имеющихся шаблонов.</p>
+<p>Если не указывать имя шаблона, то установка или обновление кэша произойдет для всех имеющихся шаблонов.</p>
 
 <p>Просмотр даты последнего обновления кэша:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O
-centos-5-x86                       2015-10-19 00:37:27
-centos-6-x86_64                    2015-10-19 00:43:44
-centos-7-x86_64                    2015-10-19 00:48:16
-debian-8.0-x86_64                  2015-10-19 01:00:28
-debian-8.0-x86_64-minimal          2015-10-19 01:20:22
+fedora-22-x86_64                   2015-10-19 01:24:25
 ubuntu-14.10-x86_64                2015-10-19 01:34:18
 ubuntu-14.04-x86_64                2015-10-19 01:50:54
 ubuntu-15.04-x86_64                2015-10-19 02:10:18
-fedora-22-x86_64                   2015-10-19 01:24:25
+debian-8.0-x86_64                  2015-10-19 01:00:28
+debian-8.0-x86_64-minimal          2015-10-19 01:20:22
+centos-5-x86                       2015-10-19 00:37:27
+centos-7-x86_64                    2015-10-19 00:48:16
+centos-6-x86_64                    2015-10-19 00:43:44
 </code></pre>
 
 <h2>
-<a id="Создание-и-настройка-контейнеров" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Создание и настройка контейнеров</h2>
+<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Создание и настройка контейнеров</h2>
 
 <h3>
 <a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Конфигурационные файлы</h3>
@@ -648,7 +639,7 @@ logout
 </code></pre>
 
 <h2>
-<a id="Управление-контейнерами" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление контейнерами</h2>
+<a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Управление контейнерами</h2>
 
 <h3>
 <a id="Управление-состоянием-контейнера" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление состоянием контейнера</h3>
@@ -878,7 +869,7 @@ ha_prio              HA_PRIO
 </code></pre>
 
 <h2>
-<a id="Управление-ресурсами" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление ресурсами</h2>
+<a id="-Управление-ресурсами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Управление ресурсами</h2>
 
 <p>Доступные контейнеру ресурсы контролируются с помощью набора параметров управления ресурсами.
 Все эти параметры можно редактировать в файлах шаблонов, в каталоге <code>/etc/vz/conf/</code>.
@@ -1125,7 +1116,7 @@ IOPSLIMIT="300"
 <h3>
 <a id="Память" class="anchor" href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Память</h3>
 
-<p>В Virtuozzo используется управление памятью четвертого поколения с помощью vcmmd.
+<p>В Virtuozzo используется управление памятью четвертого поколения с помощью VCMM.
 В прошлом же использовалось управление памятью с помощью:</p>
 
 <ul>
@@ -1134,7 +1125,7 @@ IOPSLIMIT="300"
 <li>User Beancounters (первое поколение)</li>
 </ul>
 
-<p>С пользовательской стороны управление памятью с помощью VSwap и vcmmd ничем не отличаются, однако с точки зрения реализации, vcmmd уже находится в ванильном ядре и не требует патчей со стороны разработчиков Virtuozzo.</p>
+<p>С пользовательской стороны управление памятью с помощью VSwap и VCMM ничем не отличаются, однако с точки зрения реализации, VCMM уже находится в ванильном ядре и не требует патчей со стороны разработчиков Virtuozzo.</p>
 
 <p>Ограничение физической памяти и swap задаются в конфигурационном файле контейнера параметрами <code>PHYSPAGES</code> и <code>SWAPPAGES</code>.
 Значения устанавливаются в блоках, например:</p>
@@ -1295,7 +1286,7 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 </code></pre>
 
 <h2>
-<a id="Миграция-контейнеров" class="anchor" href="#%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Миграция контейнеров</h2>
+<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Миграция контейнеров</h2>
 
 <p>В текущей версии Virtuozzo пока недоступна возможность онлайн-миграции контейнеров без их отключения.</p>
 
@@ -1350,7 +1341,7 @@ The CT has been successfully started.
 </code></pre>
 
 <h2>
-<a id="Планы" class="anchor" href="#%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Планы</h2>
+<a id="-Планы" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Планы</h2>
 
 <ul>
 <li>2015 — Virtuozzo 7 Technical Preview — Virtual machines.
@@ -1363,7 +1354,7 @@ The CT has been successfully started.
 </ul>
 
 <h2>
-<a id="Ссылки" class="anchor" href="#%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ссылки</h2>
+<a id="-Ссылки" class="anchor" href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Ссылки</h2>
 
 <ul>
 <li><a href="http://docs.openvz.org">http://docs.openvz.org</a></li>
@@ -1376,7 +1367,7 @@ The CT has been successfully started.
 </ul>
 
 <h2>
-<a id="Лицензия" class="anchor" href="#%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Лицензия</h2>
+<a id="-Лицензия" class="anchor" href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5">⬆</a> Лицензия</h2>
 
 <p><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0"></p>
 
