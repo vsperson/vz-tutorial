@@ -25,67 +25,68 @@
 
 <ol>
 <li>
-<a href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E">Введение в виртуализацию</a>
+<a href="#intro">Введение в виртуализацию</a>
 
 <ul>
-<li><a href="#%D0%AD%D0%BC%D1%83%D0%BB%D1%8F%D1%86%D0%B8%D1%8F-%D0%BE%D0%B1%D0%BE%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">Эмуляция оборудования</a></li>
-<li><a href="#%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">Полная виртуализация</a></li>
-<li><a href="#%D0%9F%D0%B0%D1%80%D0%B0%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">Паравиртуализация</a></li>
-<li><a href="#%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1">Контейнерная виртуализация (виртуализация уровня ОС)</a></li>
-<li><a href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8">Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</a></li>
+<li><a href="#emulation">Эмуляция оборудования</a></li>
+<li><a href="#full-virt">Полная виртуализация</a></li>
+<li><a href="#paravirt">Паравиртуализация</a></li>
+<li><a href="#cont-virt">Контейнерная виртуализация (виртуализация уровня ОС)</a></li>
+<li><a href="#vz7">Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</a></li>
 </ul>
 </li>
-<li><a href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo">Краткая история проекта Virtuozzo</a></li>
+<li><a href="#history">Краткая история проекта Virtuozzo</a></li>
 <li>
-<a href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F">Установка и подготовительные действия</a>
+<a href="#install">Установка и подготовительные действия</a>
 
 <ul>
-<li><a href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation">Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</a></li>
-<li><a href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2">Установка Virtuozzo на заранее установленный дистрибутив</a></li>
-<li><a href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F">Подготовительные действия</a></li>
+<li><a href="#bare-metal">Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</a></li>
+<li><a href="#exists-distro">Установка Virtuozzo на заранее установленный дистрибутив</a></li>
+<li><a href="#prepare">Подготовительные действия</a></li>
 </ul>
 </li>
-<li><a href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1">Управление шаблонами гостевых ОС</a></li>
+<li><a href="#templates">Управление шаблонами гостевых ОС</a></li>
 <li>
-<a href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2">Создание и настройка контейнеров</a>
+<a href="#containers">Создание и настройка контейнеров</a>
 
 <ul>
-<li><a href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B">Конфигурационные файлы</a></li>
-<li><a href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Создание контейнера</a></li>
-<li><a href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Настройка контейнера</a></li>
-<li><a href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4">Запуск и вход</a></li>
-</ul>
-</li>
-<li>
-<a href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8">Управление контейнерами</a>
-
-<ul>
-<li><a href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Управление состоянием контейнера</a></li>
-<li><a href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Переустановка контейнера</a></li>
-<li><a href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0">Клонирование контейнера</a></li>
-<li><a href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5-%D1%81-%D1%85%D0%BE%D1%81%D1%82-%D0%BD%D0%BE%D0%B4%D1%8B">Запуск команд в контейнере с хост-ноды</a></li>
-<li><a href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85">Расширенная информация о контейнерах</a></li>
+<li><a href="#configs">Конфигурационные файлы</a></li>
+<li><a href="#create-ct">Создание контейнера</a></li>
+<li><a href="#setup-ct">Настройка контейнера</a></li>
+<li><a href="#run-enter">Запуск и вход</a></li>
 </ul>
 </li>
 <li>
-<a href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8">Управление ресурсами</a>
+<a href="#management">Управление контейнерами</a>
 
 <ul>
-<li><a href="#%D0%94%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BA%D0%B2%D0%BE%D1%82%D1%8B">Дисковые квоты</a></li>
-<li><a href="#%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D1%80">Процессор</a></li>
-<li><a href="#%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0">Операции ввода/вывода</a></li>
-<li><a href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C">Память</a></li>
-<li><a href="#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2">Мониторинг ресурсов</a></li>
+<li><a href="#status-ct">Управление состоянием контейнера</a></li>
+<li><a href="#reinstall-ct">Переустановка контейнера</a></li>
+<li><a href="#clone-ct">Клонирование контейнера</a></li>
+<li><a href="#run-commands">Запуск команд в контейнере с хост-ноды</a></li>
+<li><a href="#extra-info">Расширенная информация о контейнерах</a></li>
 </ul>
 </li>
-<li><a href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2">Миграция контейнеров</a></li>
-<li><a href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B">Планы</a></li>
-<li><a href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8">Ссылки</a></li>
-<li><a href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F">Лицензия</a></li>
+<li>
+<a href="#resources">Управление ресурсами</a>
+
+<ul>
+<li><a href="#quota">Дисковые квоты</a></li>
+<li><a href="#cpu">Процессор</a></li>
+<li><a href="#io">Операции ввода/вывода</a></li>
+<li><a href="#memory">Память</a></li>
+<li><a href="#monitoring">Мониторинг ресурсов</a></li>
+</ul>
+</li>
+<li><a href="#migration">Миграция контейнеров</a></li>
+<li><a href="#roadmap">Планы</a></li>
+<li><a href="#links">Ссылки</a></li>
+<li><a href="#license">Лицензия</a></li>
 </ol>
 
 <h2>
-<a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Введение в виртуализацию</h2>
+<a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="intro">Введение в виртуализацию</a>
+</h2>
 
 <p>Виртуализация — предоставление наборов вычислительных ресурсов или их логического объединения, абстрагированное от аппаратной реализации, и обеспечивающее изоляцию вычислительных процессов.</p>
 
@@ -120,7 +121,8 @@
 </ul>
 
 <h3>
-<a id="Эмуляция-оборудования" class="anchor" href="#%D0%AD%D0%BC%D1%83%D0%BB%D1%8F%D1%86%D0%B8%D1%8F-%D0%BE%D0%B1%D0%BE%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Эмуляция оборудования</h3>
+<a id="Эмуляция-оборудования" class="anchor" href="#%D0%AD%D0%BC%D1%83%D0%BB%D1%8F%D1%86%D0%B8%D1%8F-%D0%BE%D0%B1%D0%BE%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="emulation">Эмуляция оборудования</a>
+</h3>
 
 <p>Эмуляция аппаратных средств является одним из самых сложных методов виртуализации.
 Главной проблемой при эмуляции аппаратных средств является низкая скорость работы, в связи с тем, что каждая команда моделируется на основных аппаратных средствах.</p>
@@ -134,7 +136,8 @@
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/emulation.png" alt="Схема эмуляции оборудования"></p>
 
 <h3>
-<a id="Полная-виртуализация" class="anchor" href="#%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Полная виртуализация</h3>
+<a id="Полная-виртуализация" class="anchor" href="#%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="full-virt">Полная виртуализация</a>
+</h3>
 
 <p>Полная виртуализация использует гипервизор, который осуществляет связь между гостевой ОС и аппаратными средствами физического сервера.
 В связи с тем, что вся работа с гостевой операционной системой проходит через гипервизор, скорость работы данного типа виртуализации ниже чем в случае прямого взаимодействия с аппаратурой.
@@ -146,7 +149,8 @@
 <p>Полная виртуализация возможна исключительно при условии правильной комбинации оборудования и программного обеспечения.</p>
 
 <h3>
-<a id="Паравиртуализация" class="anchor" href="#%D0%9F%D0%B0%D1%80%D0%B0%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Паравиртуализация</h3>
+<a id="Паравиртуализация" class="anchor" href="#%D0%9F%D0%B0%D1%80%D0%B0%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="paravirt">Паравиртуализация</a>
+</h3>
 
 <p>Паравиртуализация имеет некоторые сходства с полной виртуализацией.
 Этот метод использует гипервизор для разделения доступа к основным аппаратным средствам, но объединяет код, касающийся виртуализации, в непосредственно операционную систему, поэтому недостатком метода является то, что гостевая ОС должна быть изменена для гипервизора.
@@ -165,7 +169,8 @@
 Однако со временем поддержка аппаратной виртуализации в оборудовании получила настолько широкое распространение, что используется даже в современных процессорах лэптопов.</p>
 
 <h3>
-<a id="Контейнерная-виртуализация-виртуализация-уровня-ОС" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Контейнерная виртуализация (виртуализация уровня ОС)</h3>
+<a id="Контейнерная-виртуализация-виртуализация-уровня-ОС" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="cont-virt">Контейнерная виртуализация (виртуализация уровня ОС)</a>
+</h3>
 
 <p>Виртуализация уровня операционной системы отличается от других.
 Она использует технику, при которой сервера виртуализируются непосредственно над ОС.
@@ -181,7 +186,8 @@
 Ядро обеспечивает полную изолированность контейнеров, поэтому программы из разных контейнеров не могут воздействовать друг на друга.</p>
 
 <h3>
-<a id="virtuozzo--объединение-технологий-виртуализации-уровня-ОС-и-полной-виртуализации" class="anchor" href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</h3>
+<a id="virtuozzo--объединение-технологий-виртуализации-уровня-ОС-и-полной-виртуализации" class="anchor" href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="vz7">Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</a>
+</h3>
 
 <p>Virtuozzo позволяет создавать множество защищенных, изолированных друг от друга контейнеров на одном узле.
 Помимо этого разрабатываются возможности по созданию виртуальных машин на базе QEMU/KVM.
@@ -243,7 +249,8 @@ root и любые другие пользователи и группы</li>
 На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gb отправка и 9.87Gb прием).</p>
 
 <h2>
-<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Краткая история проекта Virtuozzo</h2>
+<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="history">Краткая история проекта Virtuozzo</a>
+</h2>
 
 <p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
 
@@ -261,7 +268,8 @@ root и любые другие пользователи и группы</li>
 <p>В апреле 2015 года был открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
 <h2>
-<a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Установка и подготовительные действия</h2>
+<a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="install">Установка и подготовительные действия</a>
+</h2>
 
 <p>Существует два способа установки Virtuozzo:</p>
 
@@ -273,7 +281,8 @@ root и любые другие пользователи и группы</li>
 <p>Установка Virtuozzo с помощью PXE (Preboot Execution Environment) подробно описана в <a href="https://docs.openvz.org/virtuozzo_7_installation_using_pxe_guide.webhelp/">документации</a>.</p>
 
 <h3>
-<a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
+<a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="bare-metal">Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</a>
+</h3>
 
 <p>Дистрибутив Virtuozzo основан на операционной системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком.
 Рекомендуется именно этот способ установки Virtuozzo.</p>
@@ -328,7 +337,8 @@ Password: пароль_пользователя_root
 </code></pre>
 
 <h3>
-<a id="Установка-virtuozzo-на-заранее-установленный-дистрибутив" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка Virtuozzo на заранее установленный дистрибутив</h3>
+<a id="Установка-virtuozzo-на-заранее-установленный-дистрибутив" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="exists-distro">Установка Virtuozzo на заранее установленный дистрибутив</a>
+</h3>
 
 <p>Поддерживаемые дистрибутивы:</p>
 
@@ -366,7 +376,8 @@ Virtuozzo 7 beta3.</p>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub-vz.png" alt="Grub"></p>
 
 <h3>
-<a id="Подготовительные-действия" class="anchor" href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Подготовительные действия</h3>
+<a id="Подготовительные-действия" class="anchor" href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="prepare">Подготовительные действия</a>
+</h3>
 
 <p>На сервере важно всегда обновлять программное обеспечение, так как в новых версиях не только могут добавлять новые возможности, но и исправлять уязвимости.
 Указанная ниже команда обновляет все существующие в системе пакеты:</p>
@@ -391,7 +402,8 @@ Virtuozzo 7 beta3.</p>
 </code></pre>
 
 <h2>
-<a id="-Управление-шаблонами-гостевых-ОС" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Управление шаблонами гостевых ОС</h2>
+<a id="-Управление-шаблонами-гостевых-ОС" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="templates">Управление шаблонами гостевых ОС</a>
+</h2>
 
 <p>Просмотр списка уже имеющихся локальных шаблонов гостевых ОС:</p>
 
@@ -458,10 +470,12 @@ centos-6-x86_64                    2015-10-19 00:43:44
 </code></pre>
 
 <h2>
-<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Создание и настройка контейнеров</h2>
+<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="containers">Создание и настройка контейнеров</a>
+</h2>
 
 <h3>
-<a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Конфигурационные файлы</h3>
+<a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="configs">Конфигурационные файлы</a>
+</h3>
 
 <p>В старых версиях OpenVZ основным идентификатором контейнера является CTID, который вручную указывался при создании контейнера.
 Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.
@@ -516,7 +530,8 @@ The CT has been successfully configured.
 </code></pre>
 
 <h3>
-<a id="Создание-контейнера" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Создание контейнера</h3>
+<a id="Создание-контейнера" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="create-ct">Создание контейнера</a>
+</h3>
 
 <p>В качестве параметра к идентификатору контейнера может использоваться любое имя:</p>
 
@@ -547,7 +562,8 @@ DEF_OSTEMPLATE=".centos-6"
 <p>Если планируется создание большого количества однотипных контейнеров, основываясь на одном и том же конфиге, то значения можно исправить на нужные.</p>
 
 <h3>
-<a id="Настройка-контейнера" class="anchor" href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Настройка контейнера</h3>
+<a id="Настройка-контейнера" class="anchor" href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="setup-ct">Настройка контейнера</a>
+</h3>
 
 <p>Контейнер создан, его можно запускать.
 Но перед первым запуском необходимо установить его IP адреса, hostname, указать DNS сервера и задать пароль суперпользователя.</p>
@@ -590,7 +606,8 @@ eVjfsDkTE63s5Nw
 </code></pre>
 
 <h3>
-<a id="Запуск-и-вход" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Запуск и вход</h3>
+<a id="Запуск-и-вход" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="run-enter">Запуск и вход</a>
+</h3>
 
 <p>После настроек нового контейнера. его можно запустить:</p>
 
@@ -640,10 +657,12 @@ logout
 </code></pre>
 
 <h2>
-<a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Управление контейнерами</h2>
+<a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="management">Управление контейнерами</a>
+</h2>
 
 <h3>
-<a id="Управление-состоянием-контейнера" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Управление состоянием контейнера</h3>
+<a id="Управление-состоянием-контейнера" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="status-ct">Управление состоянием контейнера</a>
+</h3>
 
 <p>Статус контейнера:</p>
 
@@ -704,7 +723,8 @@ The CT has been successfully removed.
 <p>Команда выполняет удаление частной области сервера и переименовывает файл конфигурации, дописывая к нему <code>.destroyed</code>.</p>
 
 <h3>
-<a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Переустановка контейнера</h3>
+<a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="reinstall-ct">Переустановка контейнера</a>
+</h3>
 
 <p>Для переустановки ОС в контейнере, существует команда <code>vzctl reinstall</code>.</p>
 
@@ -732,7 +752,8 @@ The CT has been successfully started.
 </code></pre>
 
 <h3>
-<a id="Клонирование-контейнера" class="anchor" href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Клонирование контейнера</h3>
+<a id="Клонирование-контейнера" class="anchor" href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="clone-ct">Клонирование контейнера</a>
+</h3>
 
 <p>Virtuozzo позволяет клонировать контейнеры:</p>
 
@@ -778,7 +799,8 @@ The CT has been successfully started.
 </code></pre>
 
 <h3>
-<a id="Запуск-команд-в-контейнере-с-хост-ноды" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5-%D1%81-%D1%85%D0%BE%D1%81%D1%82-%D0%BD%D0%BE%D0%B4%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Запуск команд в контейнере с хост-ноды</h3>
+<a id="Запуск-команд-в-контейнере-с-хост-ноды" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B5-%D1%81-%D1%85%D0%BE%D1%81%D1%82-%D0%BD%D0%BE%D0%B4%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="run-commands">Запуск команд в контейнере с хост-ноды</a>
+</h3>
 
 <p>Пример запуска команды в контейнере:</p>
 
@@ -799,7 +821,8 @@ Debian GNU/Linux 8 \n \l
 </code></pre>
 
 <h3>
-<a id="Расширенная-информация-о-контейнерах" class="anchor" href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>Расширенная информация о контейнерах</h3>
+<a id="Расширенная-информация-о-контейнерах" class="anchor" href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="extra-info">Расширенная информация о контейнерах</a>
+</h3>
 
 <p>Подробная информация о контейнере:</p>
 
@@ -870,7 +893,8 @@ ha_prio              HA_PRIO
 </code></pre>
 
 <h2>
-<a id="-Управление-ресурсами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Управление ресурсами</h2>
+<a id="-Управление-ресурсами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="resources">Управление ресурсами</a>
+</h2>
 
 <p>Доступные контейнеру ресурсы контролируются с помощью набора параметров управления ресурсами.
 Все эти параметры можно редактировать в файлах шаблонов, в каталоге <code>/etc/vz/conf/</code>.
@@ -887,7 +911,8 @@ ha_prio              HA_PRIO
 </ul>
 
 <h3>
-<a id="Дисковые-квоты" class="anchor" href="#%D0%94%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BA%D0%B2%D0%BE%D1%82%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>Дисковые квоты</h3>
+<a id="Дисковые-квоты" class="anchor" href="#%D0%94%D0%B8%D1%81%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BA%D0%B2%D0%BE%D1%82%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="quota">Дисковые квоты</a>
+</h3>
 
 <p>Администратор сервера Virtuozzo может устанавливать дисковые квоты, в терминах дискового пространства и количества inodes, число которых примерно равно количеству файлов.
 Это первый уровень дисковой квоты.
@@ -946,7 +971,8 @@ dumpe2fs 1.42.9 (28-Dec-2013)
 </code></pre>
 
 <h3>
-<a id="Процессор" class="anchor" href="#%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D1%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>Процессор</h3>
+<a id="Процессор" class="anchor" href="#%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D1%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="cpu">Процессор</a>
+</h3>
 
 <p>Планировщик процессора в Virtuozzo также двухуровневый.
 На первом уровне планировщик решает, какому контейнеру дать квант процессорного времени, базируясь на значении параметра <code>CPUUNITS</code> для контейнера.
@@ -1035,7 +1061,8 @@ NODEMASK="0"
 При этом контейнер может потреблять больше времени, чем определено этой величиной, если нет другого конкурирующего с ним за время CPU сервера.</p>
 
 <h3>
-<a id="Операции-вводавывода" class="anchor" href="#%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>Операции ввода/вывода</h3>
+<a id="Операции-вводавывода" class="anchor" href="#%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%D0%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="io">Операции ввода/вывода</a>
+</h3>
 
 <p>В Virtuozzo существует возможность управления дисковыми операциями ввода/вывода.
 Можно устанавливать значения таких параметров как:</p>
@@ -1115,7 +1142,8 @@ IOPSLIMIT="300"
 </code></pre>
 
 <h3>
-<a id="Память" class="anchor" href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a>Память</h3>
+<a id="Память" class="anchor" href="#%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D1%8C" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="memory">Память</a>
+</h3>
 
 <p>В Virtuozzo используется управление памятью четвертого поколения с помощью VCMM.
 В прошлом же использовалось управление памятью с помощью:</p>
@@ -1164,7 +1192,8 @@ Set swappages 262144
 Естественно, если если эти ресурсы доступны на хост-ноде.</p>
 
 <h3>
-<a id="Мониторинг-ресурсов" class="anchor" href="#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Мониторинг ресурсов</h3>
+<a id="Мониторинг-ресурсов" class="anchor" href="#%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="monitoring">Мониторинг ресурсов</a>
+</h3>
 
 <p>С помощью утилиты <code>vznetstat</code> можно увидеть входящий и исходящий трафик (в байтах и пакетах) для всех контейнеров:</p>
 
@@ -1287,7 +1316,8 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 </code></pre>
 
 <h2>
-<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Миграция контейнеров</h2>
+<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="migration">Миграция контейнеров</a>
+</h2>
 
 <p>В текущей версии Virtuozzo пока недоступна возможность онлайн-миграции контейнеров без их отключения.</p>
 
@@ -1342,7 +1372,8 @@ The CT has been successfully started.
 </code></pre>
 
 <h2>
-<a id="-Планы" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Планы</h2>
+<a id="-Планы" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="roadmap">Планы</a>
+</h2>
 
 <ul>
 <li>2016 — Virtuozzo 7 Technical Preview 2 — Containers.
@@ -1353,7 +1384,8 @@ The CT has been successfully started.
 </ul>
 
 <h2>
-<a id="-Ссылки" class="anchor" href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Ссылки</h2>
+<a id="-Ссылки" class="anchor" href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="links">Ссылки</a>
+</h2>
 
 <ul>
 <li><a href="http://docs.openvz.org">http://docs.openvz.org</a></li>
@@ -1366,7 +1398,8 @@ The CT has been successfully started.
 </ul>
 
 <h2>
-<a id="-Лицензия" class="anchor" href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> Лицензия</h2>
+<a id="-Лицензия" class="anchor" href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="license">Лицензия</a>
+</h2>
 
 <p><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0"></p>
 
