@@ -98,9 +98,13 @@
 
 <ul>
 <li><a href="#create-vm">Создание и запуск ВМ</a></li>
+<li><a href="#vnc">VNC</a></li>
 <li><a href="#guest-tools">Дополнения гостевой ОС</a></li>
+<li><a href="#pause-vm">Приостановка виртуальных машин</a></li>
+<li><a href="#templates-vm">Шаблоны конфигураций</a></li>
 </ul>
 </li>
+<li><a href="#recommendations">Рекомендации системному администратору</a></li>
 <li><a href="#roadmap">Планы Virtuozzo</a></li>
 <li><a href="#links">Ссылки</a></li>
 <li><a href="#todo">TODO</a></li>
@@ -1492,8 +1496,6 @@ crw------- 1 root root 10, 200 Feb 10 13:12 /dev/net/tun
 <li><a href="http://vtun.sourceforge.net">VTun</a></li>
 </ul>
 
-<p>Пример установки OpenVPN-сервера в CentOS 7: <a href="http://blog.amet13.name/2015/11/openvpn-centos-7.html">http://blog.amet13.name/2015/11/openvpn-centos-7.html</a></p>
-
 <h3>
 <a id="fuse" class="anchor" href="#fuse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="fuse"></a>FUSE</h3>
 
@@ -1536,14 +1538,15 @@ https://webdav.yandex.ru or hit enter for none.
 <h2>
 <a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="vmachines"></a>Работа с виртуальными машинами</h2>
 
-<p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.</p>
+<p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
+Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью libvirt.</p>
 
 <h3>
 <a id="Создание-и-запуск-ВМ" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="create-vm"></a>Создание и запуск ВМ</h3>
 
 <p>Создание виртуальной машины практически ничем не отличается от создания контейнера:</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl create vm1 --distribution rhel --vmtype vm
+<pre><code>[root@virtuozzo ~]# prlctl create vm1 --distribution rhel7 --vmtype vm
 Creating the virtual machine...
 Generate the VM configuration for rhel.
 The VM has been successfully created.
@@ -1552,7 +1555,7 @@ The VM has been successfully created.
 <p>Параметр <code>--distribution</code> указывает на семейство ОС или дистрибутив для оптимизации виртуального окружения.
 Список всех официально поддерживаемых ОС:</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl create ve_name -d list
+<pre><code>[root@virtuozzo ~]# prlctl create vm1 -d list
 The following values are allowed:
 win-2000            win-xp              win-2003            win-vista       
 win-2008            win-7               win-8               win-2012        
@@ -1597,6 +1600,8 @@ config.pvs  config.pvs.backup  harddisk.hdd
 
 <pre><code>[root@virtuozzo ~]# prlctl list -a
 UUID                                    STATUS       IP_ADDR         T  NAME
+{6fe60288-fe50-49fe-a68d-7a8330837358}  stopped      -               CT ct1
+{2cdb07fd-a68a-4279-81c1-3d269460c2f7}  stopped      -               CT ct2
 {485372f0-2ae3-4bfe-aa55-e556c37fea9f}  stopped      -               VM vm1
 </code></pre>
 
@@ -1626,14 +1631,14 @@ CentOS-7-x86_64-Minimal-1503-01.iso
 9200.16384.WIN8_RTM.120725-1247_X64FRE_SERVER_EVAL_RU-RU-HRM_SSS_X64FREE_RU-RU_DV5.ISO
 </code></pre>
 
-<p>Ознакомительные образы Windows Server можно найти по ссылке: <a href="https://www.microsoft.com/ru-ru/evalcenter/evaluate-windows-server-2012">https://www.microsoft.com/ru-ru/evalcenter/evaluate-windows-server-2012</a></p>
+<p>Ознакомительные образы Windows Server можно найти по адресу: <a href="https://www.microsoft.com/ru-ru/evalcenter/evaluate-windows-server-2012">https://www.microsoft.com/ru-ru/evalcenter/evaluate-windows-server-2012</a></p>
 
-<p>Установим для виртуальной машины ОС с образа <code>CentOS-7-x86_64-Minimal-1503-01.iso</code>:</p>
+<p>Установка ВМ с образа <code>CentOS-7-x86_64-Minimal-1503-01.iso</code>:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-set cdrom1 --image "/vz/vmprivate/images/CentOS-7-x86_64-Minimal-1503-01.iso" --iface scsi --position 1
 </code></pre>
 
-<p>Изменим размер диска по умолчанию до 8G:</p>
+<p>Изменение размера диска до 8G:</p>
 
 <pre><code>[root@virtuozzo ~]# prl_disk_tool resize --hdd /vz/vmprivate/vm1.pvm/harddisk.hdd --size 8G
 </code></pre>
@@ -1653,13 +1658,17 @@ Hardware:
   net0 (+) dev='vme4292dc5f' network='Bridged' mac=001C4292DC5F card=virtio ips='192.168.0.180/255.255.255.0 FE80:0:0:0:20C:29FF:FE01:FB07/64 '
 </code></pre>
 
-<p>Для установки ОС подключим для виртуальной машины VNC:</p>
+<h3>
+<a id="vnc" class="anchor" href="#vnc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="vnc"></a>VNC</h3>
+
+<p>Подключение VNC для ВМ:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set vm1 --vnc-mode manual --vnc-port 5901 --vnc-passwd Oiwaiqud
 Configure VNC: Remote display: mode=manual port=5901
 </code></pre>
 
-<p>Для каждой виртуальной машины должен быть установлен уникальный порт для VNC.</p>
+<p>Для каждой виртуальной машины должен быть установлен уникальный порт для VNC.
+По аналогии с виртуальными машинами, VNC доступен и для контейнеров.</p>
 
 <p>Запуск виртуальной машины:</p>
 
@@ -1668,7 +1677,7 @@ Starting the VM...
 The VM has been successfully started.
 </code></pre>
 
-<p>Теперь к ней можно подключиться по VNC:</p>
+<p>Теперь к ВМ можно подключиться по VNC:</p>
 
 <pre><code>user@localhost ~ $ sudo apt-get install xvnc4viewer
 user@localhost ~ $ xvnc4viewer 192.168.0.150:5901
@@ -1682,19 +1691,19 @@ Password: Oiwaiqud
 По окончании установки необходимо перезагрузиться.</p>
 
 <p><em>Установленная гостевая ОС</em>
-<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/installed-os.png" alt="Свежеустановленная ОС"></p>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/installed-os.png" alt="Установленная гостевая ОС"></p>
 
 <p>После установки ОС, можно соединиться к ней по SSH:</p>
 
-<pre><code>user@localhost ~ $ ssh root@192.168.122.180
-root@192.168.122.180's password: eihaixahghath7A
+<pre><code>user@localhost ~ $ ssh root@192.168.0.180
+root@192.168.0.180's password: eihaixahghath7A
 [root@vm1 ~]#
 </code></pre>
 
 <h3>
 <a id="Дополнения-гостевой-ОС" class="anchor" href="#%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D0%BE%D0%B9-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-tools"></a>Дополнения гостевой ОС</h3>
 
-<p>Virtuozzo поддеживает Virtuozzo Guest Tools (дополнения гостевой ОС). Дополнения гостевой ОС позволяют выполнять некоторые операции в ВМ такие как:</p>
+<p>Virtuozzo поддеживает Virtuozzo Guest Tools (дополнения гостевой ОС), которые позволяют выполнять некоторые операции в ВМ такие как:</p>
 
 <ul>
 <li>запуск команд в ВМ с помощью <code>prlctl exec</code>
@@ -1713,7 +1722,9 @@ The Parallels tools have been successfully installed.
 
 <p>Далее необходимо войти в ВМ, например по SSH и запустить скрипт установки дополнений:</p>
 
-<pre><code>[root@vm1 ~]# mount /dev/cdrom /mnt/
+<pre><code>[root@virtuozzo ~]# ssh root@192.168.0.180
+root@192.168.0.180's password: eihaixahghath7A
+[root@vm1 ~]# mount /dev/cdrom /mnt/
 mount: /dev/sr0 is write-protected, mounting read-only
 [root@vm1 ~]# bash /mnt/install
 Preparing...                          ################################# [100%]
@@ -1728,22 +1739,128 @@ Updating / installing...
 Done!
 </code></pre>
 
-<p>Проверяем корректность установки дополнений с хост-ноды:</p>
+<p>Проверка корректности установки дополнений с хост-ноды:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl exec vm1 uname -a
 Linux vm1.tld 3.10.0-229.el7.x86_64 #1 SMP Fri Mar 6 11:36:42 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
 [root@virtuozzo ~]# prlctl set vm1 --userpasswd testuser:iel9cophoo2Aisa
 Authentication tokens updated successfully.
+[root@virtuozzo ~]# prlctl exec vm1 id testuser
+uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 </code></pre>
 
-<p>В гостевой Windows установка дополнений еще проще.</p>
+<p>В гостевой Windows установка дополнений сводится к трем пунктам:</p>
 
 <ul>
-<li>устанавливаем в Windows драйвер, который находится в <code>&lt;CD_root&gt;/vioserial/&lt;Win_version&gt;/amd64/vioser.inf</code>
+<li>установка драйвера, который находится в <code>&lt;CD_root&gt;/vioserial/&lt;Win_version&gt;/amd64/vioser.inf</code>
 </li>
-<li>запускаем <code>prl_nettool_&lt;Win_arch&gt;.msi</code> и <code>qemu-ga-&lt;Win_arch&gt;.msi</code>
+<li>запуск <code>prl_nettool_&lt;Win_arch&gt;.msi</code> и <code>qemu-ga-&lt;Win_arch&gt;.msi</code>
 </li>
-<li>проверяем, что сервис <code>qemu-ga.exe</code> работает</li>
+<li>проверка работоспособности сервиса <code>qemu-ga.exe</code>
+</li>
+</ul>
+
+<h3>
+<a id="Приостановка-виртуальных-машин" class="anchor" href="#%D0%9F%D1%80%D0%B8%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="pause-vm"></a>Приостановка виртуальных машин</h3>
+
+<p>Команды управления контейнерами с помощью <code>prlctl</code> аналогично используются и для ВМ:</p>
+
+<ul>
+<li>start</li>
+<li>exec</li>
+<li>enter</li>
+<li>status</li>
+<li>stop</li>
+<li>restart</li>
+<li>suspend</li>
+<li>resume</li>
+<li>delete</li>
+<li>clone</li>
+</ul>
+
+<p>Вдобавок к этим командам существует возможность приостанавливать ВМ:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl pause vm1
+Pause the VM...
+The VM has been successfully paused.
+[root@virtuozzo ~]# prlctl status vm1
+VM vm1 exist paused
+[root@virtuozzo ~]# prlctl start vm1
+Starting the VM...
+The VM has been successfully started.
+</code></pre>
+
+<h3>
+<a id="Шаблоны-конфигураций" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="templates-vm"></a>Шаблоны конфигураций</h3>
+
+<p>На основе уже имеющихся виртуальных машин можно создавать типовые конфигурации.</p>
+
+<p>Пример создания шаблона <code>config-1024MB-centos7</code>, основанный на ранее настроенной <code>vm1</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# mkdir /etc/parallels/samples
+[root@virtuozzo ~]# cp /vz/vmprivate/vm1.pvm/config.pvs /etc/parallels/samples/config-1024MB-centos7.pvs
+[root@virtuozzo ~]# prlctl create vm3
+Creating the virtual machine...
+Generate the VM configuration for win-2008.
+The VM has been successfully created.
+[root@virtuozzo ~]# prlctl list vm3 -i | grep Hardware -A9
+Hardware:
+  cpu cpus=1 VT-x accl=high mode=32 ioprio=4 iolimit='0'
+  memory 512Mb
+  video 32Mb 3d acceleration=highest vertical sync=yes
+  memory_guarantee auto
+  fdd0 (+) image='/usr/share/virtuozzo/floppy_win2008.vfd'
+  hdd0 (+) scsi:0 image='/vz/vmprivate/vm3.pvm/harddisk.hdd' type='expanded' 65536Mb subtype=virtio-scsi
+  cdrom0 (+) ide:0 image=''
+  usb (+)
+  net0 (+) dev='vme427f38a5' network='Bridged' mac=001C427F38A5 card=virtio
+[root@virtuozzo ~]# prlctl set vm3 --applyconfig config-1024MB-centos7
+[root@virtuozzo ~]# prlctl list vm3 -i | grep Hardware -A9
+Hardware:
+  cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=4 iolimit='0' mask=0-1
+  memory 1024Mb
+  video 64Mb 3d acceleration=highest vertical sync=yes
+  memory_guarantee auto
+  fdd0 (+) image='/usr/share/virtuozzo/floppy_win2008.vfd'
+  hdd0 (+) scsi:0 image='/vz/vmprivate/vm3.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
+  cdrom0 (+) ide:0 image=''
+  usb (+)
+  net0 (+) dev='vme427f38a5' network='Bridged' mac=001C427F38A5 card=virtio
+</code></pre>
+
+<h2>
+<a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
+
+<ul>
+<li>если работа хост-ноды замедлилась, для анализа проблемы можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code> <code>dmesg</code>, <code>atop</code>
+</li>
+<li>для обнаружения сетевых проблем можно воспользоваться утилитами <code>ping</code>, <code>traceroute</code>, <code>nmap</code>, <code>mtr</code>, <code>tcpdump</code>, <code>nc</code>, <code>iftop</code>
+</li>
+<li>используйте RAID, LVM, IPMI</li>
+<li>не перезагружайте хост-ноду без выяснения обстоятельств неполадок, делайте это только в самых крайних случаях</li>
+<li>следите за временем на сервере, используйте для синхронизации NTP на хост-ноде</li>
+<li>в контейнерах нет смысла устанавливать второй экземпляр NTP, достаточно только указать нужный часовой пояс</li>
+<li>не запускайте блобы или скрипты, которые принадлежат VPS, непосредственно с хост-ноды</li>
+<li>для поиска руткитов можно воспользоваться утилитами <code>chrootkit</code> и <code>rkhunter</code>
+</li>
+<li>следите за нагрузкой сервера, обезопастесь от DoS/DDoS</li>
+<li>используйте системы конфигураций, такие как Puppet, Ansible, Chef, SaltStack, если используется большое количество однотипных конфигураций на хост-нодах</li>
+<li>делайте резервные копии важных данных</li>
+<li>следите за свободным местом на жестких дисках, используйте ротацию логов</li>
+<li>следите за пулом IP-адресов, они могут закончиться в самый неподходящий момент</li>
+<li>проверяйте каталог <code>/var/log/</code>, который содержит логи системы</li>
+<li>используйте <code>iptables</code>, <code>ssh</code>, <code>ssl</code>, <code>fail2ban</code>, <code>ipset</code>
+</li>
+<li>подбирайте сложные для перебора пароли (например с помощью <code>pwgen</code>), периодически меняйте их, уведомляйте пользователей об этом</li>
+<li>внимательно работайте на сервере под учетной записью <code>root</code>
+</li>
+<li>следите за рассылками новостей по безопасности</li>
+<li>обновляйте ПО, систему и ее компоненты</li>
+<li>если используете Virtuozzo для хостинга, то стоит позаботиться об автоматизации процессов создания окружений для пользователей, уведомления об окончании дискового пространства и блокировки услуг, например спам, вредоносная активность, повышенное потребление выделенных ресурсов</li>
+<li>cледите за правами пользователей, файлов и каталогов на сервере</li>
+<li>используйте системы мониторинга ресурсов (например Cacti, Munin, MRTG, Zabbix, Nagios)</li>
+<li>ведите внутреннюю документацию по серверам и их настройке</li>
+<li>в случае обнаружения проблем, можно обратиться к документации проектов OpenVZ и Virtuozzo, а также на задать вопрос на тематичесих форумах</li>
 </ul>
 
 <h2>
