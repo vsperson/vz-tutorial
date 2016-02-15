@@ -19,8 +19,8 @@
     </section>
 
     <section class="main-content">
-      <h2>
-<a id="Содержание" class="anchor" href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="toc"></a>Содержание</h2>
+      <h1>
+<a id="Содержание" class="anchor" href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="toc"></a>Содержание</h1>
 
 <ol>
 <li>
@@ -102,6 +102,7 @@
 <li><a href="#guest-tools">Дополнения гостевой ОС</a></li>
 <li><a href="#pause-vm">Приостановка виртуальных машин</a></li>
 <li><a href="#templates-vm">Шаблоны конфигураций</a></li>
+<li><a href="#devices-vm">Добавление и удаление устройств в ВМ</a></li>
 </ul>
 </li>
 <li><a href="#recommendations">Рекомендации системному администратору</a></li>
@@ -112,7 +113,7 @@
 </ol>
 
 <h2>
-<a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="intro"></a>Введение в виртуализацию</h2>
+<a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="intro"></a>Введение в виртуализацию</h2>
 
 <p>Виртуализация — предоставление наборов вычислительных ресурсов или их логического объединения, абстрагированное от аппаратной реализации, и обеспечивающее изоляцию вычислительных процессов.</p>
 
@@ -270,7 +271,7 @@ root и любые другие пользователи и группы</li>
 На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gbit/sec отправка и 9.87Gbit/sec прием).</p>
 
 <h2>
-<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="history"></a>Краткая история проекта Virtuozzo</h2>
+<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="history"></a>Краткая история проекта Virtuozzo</h2>
 
 <p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
 
@@ -288,7 +289,7 @@ root и любые другие пользователи и группы</li>
 <p>В апреле 2015 года был открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
 <h2>
-<a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="install"></a>Установка и подготовительные действия</h2>
+<a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="install"></a>Установка и подготовительные действия</h2>
 
 <p>Существует два способа установки Virtuozzo:</p>
 
@@ -416,7 +417,7 @@ Virtuozzo 7 beta3.</p>
 </code></pre>
 
 <h2>
-<a id="-Управление-шаблонами-гостевых-ОС-и-приложений-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="templates-ct"></a>Управление шаблонами гостевых ОС и приложений контейнеров</h2>
+<a id="-Управление-шаблонами-гостевых-ОС-и-приложений-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="templates-ct"></a>Управление шаблонами гостевых ОС и приложений контейнеров</h2>
 
 <h3>
 <a id="Шаблоны-гостевых-ОС" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-os"></a>Шаблоны гостевых ОС</h3>
@@ -546,7 +547,7 @@ centos-7-x86_64      jre           2016-02-09 20:03:50
 </code></pre>
 
 <h2>
-<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="containers"></a>Создание и настройка контейнеров</h2>
+<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="containers"></a>Создание и настройка контейнеров</h2>
 
 <h3>
 <a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="configs"></a>Конфигурационные файлы</h3>
@@ -735,7 +736,7 @@ logout
 </code></pre>
 
 <h2>
-<a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="management-ct"></a>Управление контейнерами</h2>
+<a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="management-ct"></a>Управление контейнерами</h2>
 
 <h3>
 <a id="Управление-состоянием-контейнера" class="anchor" href="#%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%D0%BC-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="status-ct"></a>Управление состоянием контейнера</h3>
@@ -983,7 +984,7 @@ ha_prio              HA_PRIO
 </code></pre>
 
 <h2>
-<a id="-Управление-ресурсами-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="resources-ct"></a>Управление ресурсами контейнеров</h2>
+<a id="-Управление-ресурсами-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%B0%D0%BC%D0%B8-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="resources-ct"></a>Управление ресурсами контейнеров</h2>
 
 <p>Доступные контейнеру ресурсы контролируются с помощью набора параметров управления ресурсами.
 Все эти параметры можно редактировать в файлах шаблонов, в каталоге <code>/etc/vz/conf/</code>.
@@ -1400,7 +1401,7 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 </code></pre>
 
 <h2>
-<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="migration-ct"></a>Миграция контейнеров</h2>
+<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="migration-ct"></a>Миграция контейнеров</h2>
 
 <p>В текущей версии Virtuozzo пока недоступна возможность онлайн-миграции контейнеров без их отключения.</p>
 
@@ -1455,7 +1456,7 @@ The CT has been successfully started.
 </code></pre>
 
 <h2>
-<a id="-Проброс-устройств-в-контейнеры" class="anchor" href="#-%D0%9F%D1%80%D0%BE%D0%B1%D1%80%D0%BE%D1%81-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="forward-dev-ct"></a>Проброс устройств в контейнеры</h2>
+<a id="-Проброс-устройств-в-контейнеры" class="anchor" href="#-%D0%9F%D1%80%D0%BE%D0%B1%D1%80%D0%BE%D1%81-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="forward-dev-ct"></a>Проброс устройств в контейнеры</h2>
 
 <h3>
 <a id="tuntap" class="anchor" href="#tuntap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="tun-tap"></a>TUN/TAP</h3>
@@ -1536,7 +1537,7 @@ https://webdav.yandex.ru or hit enter for none.
 </code></pre>
 
 <h2>
-<a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="vmachines"></a>Работа с виртуальными машинами</h2>
+<a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vmachines"></a>Работа с виртуальными машинами</h2>
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
 Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью libvirt.</p>
@@ -1610,7 +1611,7 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 <pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd 192.168.0.180/24
 [root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd FE80:0:0:0:20C:29FF:FE01:FB07
 [root@virtuozzo ~]# prlctl set vm1 --nameserver 192.168.0.1,192.168.0.2
-[root@virtuozzo ~]# prlctl set vm1 --onboot yes
+[root@virtuozzo ~]# prlctl set vm1 --autostart on
 [root@virtuozzo ~]# prlctl set vm1 --memsize 1024
 [root@virtuozzo ~]# prlctl set vm1 --videosize 64
 [root@virtuozzo ~]# prlctl set vm1 --cpus 2
@@ -1666,6 +1667,8 @@ Hardware:
 <pre><code>[root@virtuozzo ~]# prlctl set vm1 --vnc-mode manual --vnc-port 5901 --vnc-passwd Oiwaiqud
 Configure VNC: Remote display: mode=manual port=5901
 </code></pre>
+
+<p>Также можно предоставить беспарольный доступ к VNC с помощью параметра <code>--vnc-nopasswd</code> вместо <code>--vnc-passwd</code>.</p>
 
 <p>Для каждой виртуальной машины должен быть установлен уникальный порт для VNC.
 По аналогии с виртуальными машинами, VNC доступен и для контейнеров.</p>
@@ -1760,22 +1763,27 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 </li>
 </ul>
 
+<p>Автоматическое обновление дополнений гостевой ОС в ВМ:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --tools-autoupdate on
+</code></pre>
+
 <h3>
 <a id="Приостановка-виртуальных-машин" class="anchor" href="#%D0%9F%D1%80%D0%B8%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="pause-vm"></a>Приостановка виртуальных машин</h3>
 
 <p>Команды управления контейнерами с помощью <code>prlctl</code> аналогично используются и для ВМ:</p>
 
 <ul>
-<li>start</li>
-<li>exec</li>
-<li>enter</li>
-<li>status</li>
-<li>stop</li>
-<li>restart</li>
-<li>suspend</li>
-<li>resume</li>
-<li>delete</li>
-<li>clone</li>
+<li><code>start</code></li>
+<li><code>exec</code></li>
+<li><code>enter</code></li>
+<li><code>status</code></li>
+<li><code>stop</code></li>
+<li><code>restart</code></li>
+<li><code>suspend</code></li>
+<li><code>resume</code></li>
+<li><code>delete</code></li>
+<li><code>clone</code></li>
 </ul>
 
 <p>Вдобавок к этим командам существует возможность приостанавливать ВМ:</p>
@@ -1828,8 +1836,102 @@ Hardware:
   net0 (+) dev='vme427f38a5' network='Bridged' mac=001C427F38A5 card=virtio
 </code></pre>
 
+<h3>
+<a id="Добавление-и-удаление-устройств-в-ВМ" class="anchor" href="#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B2-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="devices-vm"></a>Добавление и удаление устройств в ВМ</h3>
+
+<p>Для каждой виртуальной машины доступно максимум 4 IDE или 8 SCSI (HDD, CD/DVD-ROM) устройств, 16 сетевых адаптеров, 4 последовательных порта и по одному USB-контроллеру и FDD.</p>
+
+<p>Добавление дополнительного HDD для виртуальной машины с Linux:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep Hardware -A9
+Hardware:
+  cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=6 iolimit='0' mask=0-1
+  memory 1024Mb
+  video 64Mb 3d acceleration=highest vertical sync=yes
+  memory_guarantee auto
+  hdd0 (+) scsi:0 image='/vz/vmprivate/vm1.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
+  cdrom0 (+) ide:0 image='/vz/vmprivate/vm1.pvm/cloud-config.iso'
+  cdrom1 (+) scsi:1 image='/vz/vmprivate/images/CentOS-7-x86_64-Minimal-1503-01.iso' subtype=virtio-scsi
+  usb (+)
+  net0 (+) dev='vme4292dc5f' network='Bridged' mac=001C4292DC5F card=virtio ips='192.168.0.180/255.255.255.0 FE80:0:0:0:20C:29FF:FE01:FB07/64 '
+[root@virtuozzo ~]# prlctl set vm1 --device-add hdd --size 2048 --iface scsi
+Creating hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
+Created hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
+[root@virtuozzo ~]# prlctl list vm1 -i | grep hdd
+Boot order: hdd0 cdrom1 hdd1
+  hdd0 (+) scsi:0 image='/vz/vmprivate/vm1.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
+  hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
+[root@virtuozzo ~]# prlctl enter vm1
+[root@vm1 /]# lsblk | grep sd
+sda               8:0    0    8G  0 disk
+├─sda1            8:1    0  500M  0 part /boot
+└─sda2            8:2    0  7.5G  0 part
+sdb               8:16   0    2G  0 disk
+[root@vm1 /]# fdisk /dev/sdb
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 1): &lt;Enter&gt;
+First sector (2048-4194303, default 2048): &lt;Enter&gt;
+Last sector, +sectors or +size{K,M,G} (2048-4194303, default 4194303): &lt;Enter&gt;
+Command (m for help): w
+[root@vm1 /]# mkfs -t ext4 /dev/sdb1
+...
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
+[root@vm1 /]# mount /dev/sdb1 /mnt/
+[root@vm1 /]# tail -1 /etc/mtab &gt;&gt; /etc/fstab
+</code></pre>
+
+<p>С помощью параметра <code>--device-disconnect</code> можно отключить устройство от ВМ:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-disconnect cdrom1
+Disconnect device: cdrom1
+The device successfully disconnected
+[root@virtuozzo ~]# prlctl list vm1 -i | grep cdrom1
+Boot order: hdd0 cdrom1 hdd1
+  cdrom1 (+) scsi:1 image='/vz/vmprivate/images/CentOS-7-x86_64-Minimal-1503-01.iso' state=disconnected subtype=virtio-scsi
+</code></pre>
+
+<p>Включить устройство можно воспользовавшись параметром <code>--device-connect</code>.</p>
+
+<p>Чтобы полностью удалить устройство, нужно использовать параметр <code>--device-del</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-del usb
+Remove the usb device.
+[root@virtuozzo ~]# prlctl set vm1 --device-del cdrom1
+Remove the cdrom1 device.
+[root@virtuozzo ~]# prlctl list vm1 -i | grep -E "cdrom1|usb"
+</code></pre>
+
+<p>При удалении HDD из контейнера можно сохранить сам виртуальный диск, для этого используется параметр <code>--detach-only</code>, по умолчанию диск удаляется, что является умолчанием параметра <code>--destroy-image</code>.</p>
+
+<p>Изменение приоритета загрузки устройств:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep 'Boot order'
+Boot order: hdd0 hdd1
+[root@virtuozzo ~]# prlctl set vm1 --device-bootorder "hdd1 hdd0"
+[root@virtuozzo ~]# prlctl list vm1 -i | grep 'Boot order'
+Boot order: hdd1 hdd0
+</code></pre>
+
+<p>Пример добавления дополнительного сетевого устройства:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-add net --network Bridged  --mac auto --ipadd 192.168.0.181 --gw 192.168.122.1 --nameserver 192.168.0.1 --adapter-type virtio
+Enable automatic reconfiguration for this network adapter.
+Creating net1 (+) dev='' ifname='eth1' network='Bridged' mac=001C42AFDC9B card=virtio ips='192.168.0.181/255.255.255.0 ' gw='192.168.0.1'
+Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virtio ips='192.168.0.181/255.255.255.0 ' gw='192.168.0.1'
+[root@virtuozzo ~]# prlctl list vm1 -i | grep -i net
+  net0 (+) dev='vme4292dc5f' network='Bridged' mac=001C4292DC5F card=virtio ips='192.168.0.180/255.255.255.0 FE80:0:0:0:20C:29FF:FE01:FB07/64 '
+  net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virtio ips='192.168.0.181/255.255.255.0 ' gw='192.168.0.1'
+</code></pre>
+
 <h2>
-<a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
+<a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
 
 <ul>
 <li>если работа хост-ноды замедлилась, для анализа проблемы можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code> <code>dmesg</code>, <code>atop</code>
@@ -1864,7 +1966,7 @@ Hardware:
 </ul>
 
 <h2>
-<a id="-Планы-virtuozzo" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="roadmap"></a>Планы Virtuozzo</h2>
+<a id="-Планы-virtuozzo" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="roadmap"></a>Планы Virtuozzo</h2>
 
 <ul>
 <li>2016 — Virtuozzo 7 Technical Preview 2 — Containers.
@@ -1875,7 +1977,7 @@ Hardware:
 </ul>
 
 <h2>
-<a id="-Ссылки" class="anchor" href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="links"></a>Ссылки</h2>
+<a id="-Ссылки" class="anchor" href="#-%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="links"></a>Ссылки</h2>
 
 <ul>
 <li><a href="https://docs.openvz.org">https://docs.openvz.org</a></li>
@@ -1886,21 +1988,21 @@ Hardware:
 </ul>
 
 <h2>
-<a id="-todo" class="anchor" href="#-todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="todo"></a>TODO</h2>
+<a id="-todo" class="anchor" href="#-todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="todo"></a>TODO</h2>
 
 <ul>
 <li>Создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
 <li>Создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
-<li>Шаблоны для виртуальных машин, добавление устройств, команды управления, CPU hotplug, оптимизация памяти с KSM</li>
+<li>CPU/Memory hotplug, оптимизация памяти с KSM</li>
 <li>Проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
 <li>Онлайн-миграции (все еще недоступно в текущей версии)</li>
 <li>Управление сетью в Virtuozzo (veth/vlan/шейпинг)</li>
 <li>Снапшоты и клонирование шаблонов</li>
-<li>Бекапы</li>
+<li>Бэкапы</li>
 </ul>
 
 <h2>
-<a id="-Лицензия" class="anchor" href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">⬆</a> <a name="license"></a>Лицензия</h2>
+<a id="-Лицензия" class="anchor" href="#-%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="license"></a>Лицензия</h2>
 
 <p><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0"></p>
 
