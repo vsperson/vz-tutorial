@@ -19,8 +19,8 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="Содержание" class="anchor" href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="toc"></a>Содержание</h1>
+      <h2>
+<a id="Содержание" class="anchor" href="#%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="toc"></a>Содержание</h2>
 
 <ol>
 <li>
@@ -49,11 +49,11 @@
 
 <ul>
 <li><a href="#guest-os">Шаблоны гостевых ОС</a></li>
-<li><a href="#app-templ">Шаблоны приложений</a></li>
+<li><a href="#app-templates">Шаблоны приложений</a></li>
 </ul>
 </li>
 <li>
-<a href="#containers">Создание и настройка контейнеров</a>
+<a href="#ct">Создание и настройка контейнеров</a>
 
 <ul>
 <li><a href="#configs">Конфигурационные файлы</a></li>
@@ -94,7 +94,7 @@
 </ul>
 </li>
 <li>
-<a href="#vmachines">Работа с виртуальными машинами</a>
+<a href="#vm">Работа с виртуальными машинами</a>
 
 <ul>
 <li><a href="#create-vm">Создание и запуск ВМ</a></li>
@@ -268,7 +268,7 @@ root и любые другие пользователи и группы</li>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/network.png" alt="Пропускная способность сети"></p>
 
 <p>На втором графике — результаты тестирования пропускной способности сети.
-На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gbit/sec отправка и 9.87Gbit/sec прием).</p>
+На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gbit/s отправка и 9.87Gbit/s прием).</p>
 
 <h2>
 <a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="history"></a>Краткая история проекта Virtuozzo</h2>
@@ -348,7 +348,7 @@ root и любые другие пользователи и группы</li>
 
 <p>Пример получения прав суперпользователя на сервере:</p>
 
-<pre><code>amet13@mint-17 ~ $ ssh vzuser@192.168.0.150
+<pre><code>user@localhost ~ $ ssh vzuser@192.168.0.150
 vzuser@192.168.0.150's password: пароль_пользователя_vzuser
 [vzuser@virtuozzo ~]$ su -
 Password: пароль_пользователя_root
@@ -489,7 +489,7 @@ centos-6-x86_64                    2015-10-19 00:43:44
 </code></pre>
 
 <h3>
-<a id="Шаблоны-приложений" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="app-templ"></a>Шаблоны приложений</h3>
+<a id="Шаблоны-приложений" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="app-templates"></a>Шаблоны приложений</h3>
 
 <p>Существует возможность установки шаблонов приложений для контейнеров.
 Основное отличие между шаблонами гостевых ОС и шаблонами приложений в том, что шаблоны гостевых ОС используются для создания контейнеров, а шаблоны приложений, обеспечивают дополнительное ПО для уже имеющихся контейнеров.</p>
@@ -547,7 +547,7 @@ centos-7-x86_64      jre           2016-02-09 20:03:50
 </code></pre>
 
 <h2>
-<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="containers"></a>Создание и настройка контейнеров</h2>
+<a id="-Создание-и-настройка-контейнеров" class="anchor" href="#-%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="ct"></a>Создание и настройка контейнеров</h2>
 
 <h3>
 <a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="configs"></a>Конфигурационные файлы</h3>
@@ -1500,7 +1500,7 @@ crw------- 1 root root 10, 200 Feb 10 13:12 /dev/net/tun
 <h3>
 <a id="fuse" class="anchor" href="#fuse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="fuse"></a>FUSE</h3>
 
-<p>FUSE (Filesystem in Userspace) — модуль Linux-ядра, позволяющий создавать виртуальные файловые системы.
+<p>FUSE (Filesystem in Userspace) — модуль ядра Linux, позволяющий создавать виртуальные файловые системы.
 FUSE может пригодиться, например при монтировании Яндекс.Диска или других виртуальных файловых систем.</p>
 
 <p>Для того, чтобы для контейнеров был доступен FUSE, его необходимо включить на хост-ноде:</p>
@@ -1537,7 +1537,7 @@ https://webdav.yandex.ru or hit enter for none.
 </code></pre>
 
 <h2>
-<a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vmachines"></a>Работа с виртуальными машинами</h2>
+<a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vm"></a>Работа с виртуальными машинами</h2>
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
 Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью libvirt.</p>
@@ -1549,7 +1549,7 @@ https://webdav.yandex.ru or hit enter for none.
 
 <pre><code>[root@virtuozzo ~]# prlctl create vm1 --distribution rhel7 --vmtype vm
 Creating the virtual machine...
-Generate the VM configuration for rhel.
+Generate the VM configuration for rhel7.
 The VM has been successfully created.
 </code></pre>
 
@@ -1622,6 +1622,10 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 [root@virtuozzo ~]# prlctl set vm1 --iolimit 0
 [root@virtuozzo ~]# prlctl set vm1 --iopslimit 0
 </code></pre>
+
+<p>Параметр <code>--autostart</code> аналогичен <code>--onboot</code> для контейнеров, который указывает возможность автостарта контейнера при старте хост-ноды.</p>
+
+<p>Параметр <code>--videosize</code> указывает размер выделяемой видеопамяти в MB для виртуальной машины.</p>
 
 <p>Параметры виртуальной машины установлены, ее можно запускать, однако для установки гостевой ОС необходим образ ОС.
 Для хранения образов ОС можно создать каталог и централизованно хранить все там:</p>
@@ -1811,29 +1815,21 @@ The VM has been successfully started.
 Creating the virtual machine...
 Generate the VM configuration for win-2008.
 The VM has been successfully created.
-[root@virtuozzo ~]# prlctl list vm3 -i | grep Hardware -A9
-Hardware:
+[root@virtuozzo ~]# prlctl list vm3 -i | grep "cpu\|memory\|video\|hdd0"
+Boot order: hdd0 cdrom0
   cpu cpus=1 VT-x accl=high mode=32 ioprio=4 iolimit='0'
   memory 512Mb
   video 32Mb 3d acceleration=highest vertical sync=yes
   memory_guarantee auto
-  fdd0 (+) image='/usr/share/virtuozzo/floppy_win2008.vfd'
   hdd0 (+) scsi:0 image='/vz/vmprivate/vm3.pvm/harddisk.hdd' type='expanded' 65536Mb subtype=virtio-scsi
-  cdrom0 (+) ide:0 image=''
-  usb (+)
-  net0 (+) dev='vme427f38a5' network='Bridged' mac=001C427F38A5 card=virtio
 [root@virtuozzo ~]# prlctl set vm3 --applyconfig config-1024MB-centos7
 [root@virtuozzo ~]# prlctl list vm3 -i | grep Hardware -A9
-Hardware:
+Boot order: hdd0 cdrom0
   cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=4 iolimit='0' mask=0-1
   memory 1024Mb
   video 64Mb 3d acceleration=highest vertical sync=yes
   memory_guarantee auto
-  fdd0 (+) image='/usr/share/virtuozzo/floppy_win2008.vfd'
   hdd0 (+) scsi:0 image='/vz/vmprivate/vm3.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
-  cdrom0 (+) ide:0 image=''
-  usb (+)
-  net0 (+) dev='vme427f38a5' network='Bridged' mac=001C427F38A5 card=virtio
 </code></pre>
 
 <h3>
@@ -1843,17 +1839,9 @@ Hardware:
 
 <p>Добавление дополнительного HDD для виртуальной машины с Linux:</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep Hardware -A9
-Hardware:
-  cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=6 iolimit='0' mask=0-1
-  memory 1024Mb
-  video 64Mb 3d acceleration=highest vertical sync=yes
-  memory_guarantee auto
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep hdd
+Boot order: hdd0 cdrom1
   hdd0 (+) scsi:0 image='/vz/vmprivate/vm1.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
-  cdrom0 (+) ide:0 image='/vz/vmprivate/vm1.pvm/cloud-config.iso'
-  cdrom1 (+) scsi:1 image='/vz/vmprivate/images/CentOS-7-x86_64-Minimal-1503-01.iso' subtype=virtio-scsi
-  usb (+)
-  net0 (+) dev='vme4292dc5f' network='Bridged' mac=001C4292DC5F card=virtio ips='192.168.0.180/255.255.255.0 FE80:0:0:0:20C:29FF:FE01:FB07/64 '
 [root@virtuozzo ~]# prlctl set vm1 --device-add hdd --size 2048 --iface scsi
 Creating hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
 Created hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
@@ -1861,7 +1849,11 @@ Created hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expand
 Boot order: hdd0 cdrom1 hdd1
   hdd0 (+) scsi:0 image='/vz/vmprivate/vm1.pvm/harddisk.hdd' type='expanded' 8192Mb subtype=virtio-scsi
   hdd1 (+) scsi:2 image='/vz/vmprivate/vm1.pvm/harddisk1.hdd' type='expanded' 2048Mb subtype=virtio-scsi
-[root@virtuozzo ~]# prlctl enter vm1
+</code></pre>
+
+<p>После того как диск добавлен, нужно создать на нем раздел и отформатировать его:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl enter vm1
 [root@vm1 /]# lsblk | grep sd
 sda               8:0    0    8G  0 disk
 ├─sda1            8:1    0  500M  0 part /boot
@@ -1905,10 +1897,10 @@ Boot order: hdd0 cdrom1 hdd1
 Remove the usb device.
 [root@virtuozzo ~]# prlctl set vm1 --device-del cdrom1
 Remove the cdrom1 device.
-[root@virtuozzo ~]# prlctl list vm1 -i | grep -E "cdrom1|usb"
+[root@virtuozzo ~]# prlctl list vm1 -i | grep "cdrom1\|usb"
 </code></pre>
 
-<p>При удалении HDD из контейнера можно сохранить сам виртуальный диск, для этого используется параметр <code>--detach-only</code>, по умолчанию диск удаляется, что является умолчанием параметра <code>--destroy-image</code>.</p>
+<p>При удалении HDD из виртуальной машины можно сохранить сам виртуальный диск, для этого используется параметр <code>--detach-only</code>, по умолчанию диск удаляется, что является умолчанием параметра <code>--destroy-image</code>.</p>
 
 <p>Изменение приоритета загрузки устройств:</p>
 
@@ -1934,11 +1926,12 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
 
 <ul>
-<li>если работа хост-ноды замедлилась, для анализа проблемы можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code> <code>dmesg</code>, <code>atop</code>
+<li>если работа хост-ноды замедлилась, для анализа нагрузки можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code> <code>dmesg</code>, <code>atop</code>
 </li>
 <li>для обнаружения сетевых проблем можно воспользоваться утилитами <code>ping</code>, <code>traceroute</code>, <code>nmap</code>, <code>mtr</code>, <code>tcpdump</code>, <code>nc</code>, <code>iftop</code>
 </li>
-<li>используйте RAID, LVM, IPMI</li>
+<li>используйте RAID, LVM</li>
+<li>для экстренных ситуаций, когда могут быть проблемы с сетью необходимо всегда иметь под рукой IPMI или KVM-доступ</li>
 <li>не перезагружайте хост-ноду без выяснения обстоятельств неполадок, делайте это только в самых крайних случаях</li>
 <li>следите за временем на сервере, используйте для синхронизации NTP на хост-ноде</li>
 <li>в контейнерах нет смысла устанавливать второй экземпляр NTP, достаточно только указать нужный часовой пояс</li>
@@ -1953,7 +1946,7 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <li>проверяйте каталог <code>/var/log/</code>, который содержит логи системы</li>
 <li>используйте <code>iptables</code>, <code>ssh</code>, <code>ssl</code>, <code>fail2ban</code>, <code>ipset</code>
 </li>
-<li>подбирайте сложные для перебора пароли (например с помощью <code>pwgen</code>), периодически меняйте их, уведомляйте пользователей об этом</li>
+<li>генерируйте сложные для перебора пароли (например с помощью <code>pwgen</code>), периодически меняйте их, уведомляйте пользователей об этом</li>
 <li>внимательно работайте на сервере под учетной записью <code>root</code>
 </li>
 <li>следите за рассылками новостей по безопасности</li>
@@ -1962,7 +1955,7 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <li>cледите за правами пользователей, файлов и каталогов на сервере</li>
 <li>используйте системы мониторинга ресурсов (например Cacti, Munin, MRTG, Zabbix, Nagios)</li>
 <li>ведите внутреннюю документацию по серверам и их настройке</li>
-<li>в случае обнаружения проблем, можно обратиться к документации проектов OpenVZ и Virtuozzo, а также на задать вопрос на тематичесих форумах</li>
+<li>в случае обнаружения проблем, можно обратиться к документации проектов OpenVZ и Virtuozzo, а также задать вопросы на тематических форумах</li>
 </ul>
 
 <h2>
