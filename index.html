@@ -215,8 +215,7 @@
 Помимо этого разрабатываются возможности по созданию виртуальных машин на базе QEMU/KVM.
 Управление контейнерами и виртуальными машинами происходит с помощью специализированных утилит.</p>
 
-<p><em>Архитектура Virtuozzo 7</em>
-<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png" alt="Архитектура Virtuozzo 7"></p>
+
 
 <p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP адреса, правила маршрутизации).
 В отличие от KVM или Xen, Virtuozzo использует одно ядро, которое является общим для всех виртуальных сред.</p>
@@ -286,10 +285,10 @@ root и любые другие пользователи и группы</li>
 
 <p>В конце 2014 года компания Odin анонсировала открытие кодовой базы Parallels Cloud Server и объединение ее с открытой OpenVZ.</p>
 
-<p>В апреле 2015 года был открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
+<p>В апреле 2015 года открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
-<p>В марте 2016 года анонсирован выход Virtuozzo 7.0 Beta, с измененной архитектурой, а также с такими нововведениями в продукте, как реализация дополнений гостевых ОС для Linux и Windows.
-Также предсталена "живая" миграция для контейнеров, реализованная с помощью инструментарий CRIU и P.Haul.</p>
+<p>В марте 2016 года анонсирован выход Virtuozzo 7.0 Beta, с измененной архитектурой, а также с такими нововведениями, как дополнения гостевых ОС для Linux и Windows.
+Также предсталена "живая" миграция для контейнеров, реализованная с помощью инструментария CRIU и P.Haul.</p>
 
 <h2>
 <a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="install"></a>Установка и подготовительные действия</h2>
@@ -306,10 +305,9 @@ root и любые другие пользователи и группы</li>
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="bare-metal"></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
-<p>Дистрибутив Virtuozzo основан на операционной системе <a href="https://www.cloudlinux.com/">CloudLinux</a> с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком.
-Рекомендуется именно этот способ установки Virtuozzo.</p>
+<p>Дистрибутив Virtuozzo Linux с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком является самым простым способом установки Virtuozzo на сервер.</p>
 
-<p>Текущая последняя версия ISO-образа доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/iso/</a></p>
+<p>Текущая последняя версия ISO-образа доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/</a></p>
 
 <p>После записи дистрибутива на носитель, можно приступать к установке Virtuozzo.
 Для этого необходимо загрузиться с носителя.</p>
@@ -370,12 +368,11 @@ Password: пароль_пользователя_root
 <li>прочие дистрибутивы, основанные на RHEL 7</li>
 </ul>
 
-<p>Установка пакетов на примере дистрибутива CentOS 7.
-Virtuozzo 7 beta3.</p>
+<p>Установка пакетов на примере дистрибутива CentOS 7.</p>
 
 <p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
 
-<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-beta3/x86_64/os/Packages/v/virtuozzo-release-7.0.0-20.vz7.x86_64.rpm
+<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/os/Packages/v/virtuozzo-release-7.0.0-20.vz7.x86_64.rpm
 </code></pre>
 
 <p>Установка необходимых RPM-пакетов:</p>
@@ -1966,8 +1963,6 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <a id="-Планы-virtuozzo" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="roadmap"></a>Планы Virtuozzo</h2>
 
 <ul>
-<li>2016 — Virtuozzo 7 Technical Preview 2 — Containers.
-Цель: живая миграция контейнеров с использованием CRIU</li>
 <li>2016 — Virtuozzo 7 Technical Preview 2 — Virtual machines</li>
 <li>2016 — Virtuozzo RC</li>
 <li>2016 — Virtuozzo RTM</li>
