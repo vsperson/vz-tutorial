@@ -45,7 +45,7 @@
 </ul>
 </li>
 <li>
-<a href="#templates-ct">Управление шаблонами гостевых ОС и приложений контейнеров</a>
+<a href="#templates-ct">Управление шаблонами контейнеров</a>
 
 <ul>
 <li><a href="#guest-os">Шаблоны гостевых ОС</a></li>
@@ -115,34 +115,34 @@
 <h2>
 <a id="-Введение-в-виртуализацию" class="anchor" href="#-%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="intro"></a>Введение в виртуализацию</h2>
 
-<p>Виртуализация — предоставление наборов вычислительных ресурсов или их логического объединения, абстрагированное от аппаратной реализации, и обеспечивающее изоляцию вычислительных процессов.</p>
+<p>Виртуализация — предоставление наборов вычислительных ресурсов или их логического объединения, абстрагированных от аппаратной реализации, и обеспечивающих изоляцию вычислительных процессов.</p>
 
 <p>Виртуализацию можно использовать в:</p>
 
 <ul>
-<li>консолидации серверов (позволяет мигрировать с физических серверов на виртуальные, тем самым увеличивается коэффициент использования аппаратуры, что позволяет существенно сэкономить на аппаратуре, электроэнергии и обслуживании)</li>
-<li>разработке и тестировании приложений (возможность одновременно запускать несколько различных ОС, это удобно при разработке кроссплатформенного ПО, таким образом значительно повышается качество, скорость разработки и тестирования приложений)</li>
+<li>консолидации серверов (возможность мигрировать с физических серверов на виртуальные, тем самым увеличивая коэффициент использования аппаратуры, что позволяет существенно сэкономить на аппаратуре, электроэнергии и обслуживании)</li>
+<li>разработке и тестировании приложений (возможность одновременно запускать несколько различных операционных систем (ОС), это удобно при разработке кроссплатформенного программного обеспечения (ПО), таким образом значительно повышается качество, скорость разработки и тестирования приложений)</li>
 <li>бизнесе (использование виртуализации в бизнесе растет с каждым днем и постоянно находятся новые способы применения этой технологии, например, возможность безболезненно сделать снапшот)</li>
 <li>организации виртуальных рабочих станций (так называемых "тонких клиентов")</li>
 </ul>
 
-<p><em>Общая схема взаимодействия виртуализации с аппаратурой и программным обеспечением</em>
-<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/virt-scheme.png" alt="Общая схема взаимодействия виртуализации с аппаратурой и программным обеспечением"></p>
+<p><em>Общая схема взаимодействия виртуализации с аппаратным и программным обеспечением</em>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/virt-scheme.png" alt="Общая схема взаимодействия виртуализации с аппаратным и программным обеспечением"></p>
 
 <p>Понятие виртуализации можно условно разделить на две категории:</p>
 
 <ul>
-<li>виртуализация платформ, продуктом этого вида виртуализации являются виртуальные машины</li>
-<li>виртуализация ресурсов преследует целью комбинирование или упрощение представления аппаратных ресурсов для пользователя и получение неких пользовательских абстракций оборудования, пространств имен, сетей</li>
+<li>виртуализация платформ (продуктом этого вида виртуализации являются виртуальные машины)</li>
+<li>виртуализация ресурсов (преследует целью комбинирование или упрощение представления аппаратных ресурсов для пользователя и получение неких пользовательских абстракций оборудования, пространств имен, сетей)</li>
 </ul>
 
-<p>Взаимодействие приложений и операционной системы (ОС) с аппаратным обеспечением осуществляется через абстрагированный слой виртуализации.</p>
+<p>Взаимодействие приложений и операционной системы с аппаратным обеспечением осуществляется через абстрагированный слой виртуализации.</p>
 
 <p>Существует несколько подходов организации виртуализации:</p>
 
 <ul>
 <li>эмуляция оборудования (QEMU, Bochs, Dynamips)</li>
-<li>полная виртуализация (KVM, HyperV, VirtualBox)</li>
+<li>полная виртуализация (KVM, HyperV, VirtualBox, ESXi)</li>
 <li>паравиртуализация (Xen, L4, Trango)</li>
 <li>виртуализация уровня ОС (LXC, Virtuozzo, Jails, Solaris Zones)</li>
 </ul>
@@ -151,27 +151,31 @@
 <a id="Эмуляция-оборудования" class="anchor" href="#%D0%AD%D0%BC%D1%83%D0%BB%D1%8F%D1%86%D0%B8%D1%8F-%D0%BE%D0%B1%D0%BE%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="emulation"></a>Эмуляция оборудования</h3>
 
 <p>Эмуляция аппаратных средств является одним из самых сложных методов виртуализации.
-Главной проблемой при эмуляции аппаратных средств является низкая скорость работы, в связи с тем, что каждая команда моделируется на основных аппаратных средствах.</p>
+В то же время главной проблемой при эмуляции аппаратных средств является низкая скорость работы, в связи с тем, что каждая команда моделируется на основных аппаратных средствах.</p>
 
 <p>В процессе эмуляции оборудования используется механизм динамической трансляции, то есть каждая из инструкций эмулируемой платформы заменяется на заранее подготовленный фрагмент инструкций физического процессора.</p>
 
-<p>Эмуляция позволяет использовать виртуализированные аппаратные средства еще до выхода реальных.
-Например, управление неизмененной ОС, предназначенной для PowerPC на системе с ARM процессором.</p>
-
 <p><em>Эмуляция оборудования моделирует аппаратные средства</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/emulation.png" alt="Схема эмуляции оборудования"></p>
+
+<p>Динамический транслятор позволяет во время исполнения переводить инструкции целевого (гостевого) процессора в инструкции центрального процессора хоста для обеспечения эмуляции.
+QEMU обеспечивает динамическую трансляцию преобразованием целевой инструкции в микрооперации, эти микрооперации представляют собой элементы C-кода, которые компилируются в объекты.
+Затем запускается основной транслятор, который отображает целевые инструкции на микрооперации для динамической трансляции.
+Такой подход не только эффективен, но и обеспечивает переносимость.</p>
 
 <h3>
 <a id="Полная-виртуализация" class="anchor" href="#%D0%9F%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="full-virt"></a>Полная виртуализация</h3>
 
 <p>Полная виртуализация использует гипервизор, который осуществляет связь между гостевой ОС и аппаратными средствами физического сервера.
 В связи с тем, что вся работа с гостевой операционной системой проходит через гипервизор, скорость работы данного типа виртуализации ниже чем в случае прямого взаимодействия с аппаратурой.
-Основным преимуществом является то, что в ОС не вносятся никакие изменения, единственное ограничение — операционная система должна поддерживать основные аппаратные средства.</p>
+Основным преимуществом полной виртуализации является то, что в ОС не вносятся никакие изменения, единственное ограничение — операционная система должна поддерживать основные аппаратные средства (AMD SVM или Intel VT).</p>
 
 <p><em>Полная виртуализация использует гипервизор</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/full-virt.png" alt="Схема полной виртуализации"></p>
 
-<p>Полная виртуализация возможна исключительно при условии правильной комбинации оборудования и программного обеспечения.</p>
+<p>В архитектуре KVM виртуальная машина выполняется как обычный Linux-процесс, запланированный стандартным планировщиком Linux.
+На самом деле, виртуальный процессор представляется как обычный Linux-процесс, это позволяет KVM пользоваться всеми возможностями ядра Linux.
+Эмуляцией устройств управляет модифицированная версия QEMU, которая обеспечивает эмуляцию BIOS, шины PCI, шины USB, а также стандартный набор устройств, таких как дисковые контроллеры IDE и SCSI, сетевые карты и другие.</p>
 
 <h3>
 <a id="Паравиртуализация" class="anchor" href="#%D0%9F%D0%B0%D1%80%D0%B0%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="paravirt"></a>Паравиртуализация</h3>
@@ -272,7 +276,8 @@ root и любые другие пользователи и группы</li>
 <h2>
 <a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="history"></a>Краткая история проекта Virtuozzo</h2>
 
-<p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo. В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
+<p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo.
+В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
 
 <p>В 2004 году выпуск Virtuozzo для Windows.
 В 2005 году было принято решение о разделении Virtuozzo на два отдельных проекта, свободный OpenVZ (под лицензией GNU GPL) и проприетарный Virtuozzo.</p>
@@ -283,7 +288,7 @@ root и любые другие пользователи и группы</li>
 <p>В 2011 году появилась идея создания проекта CRIU, OpenVZ портирован на RHEL 6.
 В 2012 году стала доступна CRIU v0.1.</p>
 
-<p>В конце 2014 года компания Odin анонсировала открытие кодовой базы Parallels Cloud Server и объединение ее с открытой OpenVZ.</p>
+<p>В конце 2014 года компания Odin анонсировала открытие кодовой базы Parallels Cloud Server и объединение ее с открытым кодом OpenVZ.</p>
 
 <p>В апреле 2015 года открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
@@ -305,7 +310,7 @@ root и любые другие пользователи и группы</li>
 <h3>
 <a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="bare-metal"></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
 
-<p>Дистрибутив Virtuozzo Linux с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком является самым простым способом установки Virtuozzo на сервер.</p>
+<p>Дистрибутив Virtuozzo Linux с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком, является самым простым способом установки Virtuozzo на сервер.</p>
 
 <p>Текущая последняя версия ISO-образа доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/</a></p>
 
@@ -417,7 +422,7 @@ Password: пароль_пользователя_root
 </code></pre>
 
 <h2>
-<a id="-Управление-шаблонами-гостевых-ОС-и-приложений-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="templates-ct"></a>Управление шаблонами гостевых ОС и приложений контейнеров</h2>
+<a id="-Управление-шаблонами-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="templates-ct"></a>Управление шаблонами контейнеров</h2>
 
 <h3>
 <a id="Шаблоны-гостевых-ОС" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-os"></a>Шаблоны гостевых ОС</h3>
@@ -497,7 +502,7 @@ centos-6-x86_64                    2015-10-19 00:43:44
 <p>Просмотр списка шаблонов приложений для <code>centos-7-x86_64</code>:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list centos-7-x86_64
-centos-7-x86_64                    2016-02-09 17:01:05
+centos-7-x86_64                     2016-02-09 17:01:05
 centos-7-x86_64      mod_ssl       
 centos-7-x86_64      jsdk          
 centos-7-x86_64      cyrus-imap    
@@ -553,8 +558,7 @@ centos-7-x86_64      jre           2016-02-09 20:03:50
 <a id="Конфигурационные-файлы" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="configs"></a>Конфигурационные файлы</h3>
 
 <p>В старых версиях OpenVZ основным идентификатором контейнера является CTID, который вручную указывался при создании контейнера.
-Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.
-Однако существует возможность указания UUID вручную.</p>
+Сейчас в этом нет необходимости, на смену CTID пришел UUID, который создается автоматически.</p>
 
 <p>Каждый контейнер имеет свой конфигурационный файл, который хранится в каталоге <code>/etc/vz/conf/</code>.
 Именуются конфиги по UUID контейнера.
@@ -652,7 +656,7 @@ DEF_OSTEMPLATE=".centos-7"
 [root@virtuozzo ~]# prlctl set ct1 --hostname ct1.virtuozzo.localhost
 </code></pre>
 
-<p>Установка поискового домена (если требуется):</p>
+<p>Установка поискового домена:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set ct1 --searchdomain 192.168.0.1
 </code></pre>
@@ -687,14 +691,14 @@ esxrcH7dyoA46LY
 <h3>
 <a id="Запуск-и-вход" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="run-enter"></a>Запуск и вход</h3>
 
-<p>После настроек нового контейнера. его можно запустить:</p>
+<p>Запуск контейнера:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl start ct1
 Starting the CT...
 The CT has been successfully started.
 </code></pre>
 
-<p>Проверяем сетевые интерфейсы внутри гостевой ОС:</p>
+<p>Проверка сетевых интерфейсов внутри гостевой ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl exec ct1 ip addr show venet0
 2: venet0: &lt;BROADCAST,POINTOPOINT,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN group default
@@ -709,13 +713,13 @@ The CT has been successfully started.
        valid_lft forever preferred_lft forever
 </code></pre>
 
-<p>Также проверим корректность hostname:</p>
+<p>Проверка корректности hostname:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl exec ct1 hostname
 ct1.virtuozzo.localhost
 </code></pre>
 
-<p>Проверяем доступность контейнера в сети и корректность пароля суперпользователя:</p>
+<p>Проверка доступности контейнера в сети и корректность пароля суперпользователя:</p>
 
 <pre><code>[root@virtuozzo ~]# ssh root@192.168.0.161
 root@192.168.0.161's password: eVjfsDkTE63s5Nw
@@ -726,12 +730,7 @@ root@ct1:~#
 
 <pre><code>[root@virtuozzo ~]# prlctl enter ct1
 entered into CT
-root@ct1:/#
-</code></pre>
-
-<p>Выход из контейнера:</p>
-
-<pre><code>root@ct1:/# exit
+root@ct1:/# exit
 logout
 [root@virtuozzo ~]#
 </code></pre>
@@ -750,7 +749,7 @@ CT ct1 exist running
 CT ct2 exist stopped
 </code></pre>
 
-<p>По выводу команды можно наблюдать, что контейнер <code>ct1</code> существует и запущен, а контейнер <code>ct2</code> существует и остановлен.</p>
+<p>По выводу команды можно увидеть, что контейнер <code>ct1</code> запущен, а контейнер <code>ct2</code> остановлен.</p>
 
 <p>Остановка контейнера:</p>
 
@@ -759,8 +758,8 @@ Stopping the CT...
 The CT has been successfully stopped.
 </code></pre>
 
-<p>Иногда нужно выключить контейнер как можно быстрее, например если контейнер был подвержен взлому.
-Для того чтобы срочно выключить контейнер, нужно использовать ключ <code>--kill</code>:</p>
+<p>Иногда нужно выключить контейнер как можно быстрее, например если он был подвержен взлому или создает критическую нагрузку на хост-ноду.
+Для того чтобы срочно выключить контейнер, нужно использовать параметр <code>--kill</code>:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl stop ct1 --kill
 Stopping the CT...
@@ -788,9 +787,9 @@ Resuming the CT...
 The CT has been successfully resumed.
 </code></pre>
 
-<p>Для удаления контейнера существует команда <code>delete</code>, перед удалением, контейнер нужно сначала остановить:</p>
+<p>Для удаления контейнера существует команда <code>delete</code> (перед удалением, контейнер нужно сначала остановить):</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl stop
+<pre><code>[root@virtuozzo ~]# prlctl stop ct1
 Stopping the CT...
 The CT has been successfully stopped.
 [root@virtuozzo ~]# prlctl delete ct1
@@ -798,23 +797,19 @@ Removing the CT...
 The CT has been successfully removed.
 </code></pre>
 
-<p>Команда выполняет удаление частной области сервера (<code>/vz/private/$UUID</code>) и переименовывает файл конфигурации (<code>/etc/vz/conf/$UUID.conf</code>), дописывая к нему <code>.destroyed</code>.</p>
+<p>Команда выполняет удаление частной области сервера (<code>/vz/private/$UUID</code>) и переименовывает файл конфигурации (<code>/etc/vz/conf/$UUID.conf</code>), дописывая к его имени окончание <code>.destroyed</code>.</p>
 
 <h3>
 <a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="reinstall-ct"></a>Переустановка контейнера</h3>
 
 <p>Для переустановки ОС в контейнере, существует команда <code>vzctl reinstall</code>.</p>
 
-<p>Прежде чем переустанавливать контейнер его нужно сначала остановить:</p>
+<p>Переустановка и старт контейнера (для переустановки нужно сначала остановить контейнер):</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl stop ct1
 Stopping the CT...
 The CT has been successfully stopped.
-</code></pre>
-
-<p>Переустановка и старт контейнера:</p>
-
-<pre><code>[root@virtuozzo ~]# vzctl reinstall ct1
+[root@virtuozzo ~]# vzctl reinstall ct1 --skipbackup
 ...
 Container was successfully reinstalled
 [root@virtuozzo ~]# prlctl start ct1
@@ -823,10 +818,7 @@ The CT has been successfully started.
 </code></pre>
 
 <p>По умолчанию, <code>vzctl reinstall</code> без дополнительных параметров, сохраняет все файлы (частную область) прошлого контейнера  в каталог <code>/old</code> нового контейнера.
-Для того, чтобы не копировать частную область предыдущего контейнера, необходимо использовать ключ <code>--skipbackup</code>:</p>
-
-<pre><code>[root@virtuozzo ~]# vzctl reinstall ct1 --skipbackup
-</code></pre>
+Для того, чтобы не копировать частную область предыдущего контейнера, необходимо использовать параметр <code>--skipbackup</code>:</p>
 
 <h3>
 <a id="Клонирование-контейнера" class="anchor" href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="clone-ct"></a>Клонирование контейнера</h3>
@@ -900,7 +892,7 @@ Debian GNU/Linux 8 \n \l
 <h3>
 <a id="Расширенная-информация-о-контейнерах" class="anchor" href="#%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F-%D0%BE-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D1%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="extra-info"></a>Расширенная информация о контейнерах</h3>
 
-<p>Подробная информация о контейнере:</p>
+<p>Подробную информацию о контейнере можно получить командой <code>list</code> с параметром <code>-i</code>:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl list -i ct4
 INFO
@@ -991,7 +983,7 @@ ha_prio              HA_PRIO
 Все эти параметры можно редактировать в файлах шаблонов, в каталоге <code>/etc/vz/conf/</code>.
 Их можно установить вручную, редактируя соответствующие конфиги или используя утилиты Virtuozzo.</p>
 
-<p>Параметры контроля ресурсов условно разделяют на группы:</p>
+<p>Параметры контроля ресурсов контейнеров условно разделяют на группы:</p>
 
 <ul>
 <li>дисковые квоты</li>
@@ -1327,12 +1319,7 @@ Disks stats     0.000 0.000
 <p><code>vzpid</code> позволяет узнать к какому контейнеру принадлежит процесс, это может быть полезно при просмотре списка процессов с хост-ноды и поиска "процесса-грузчика":</p>
 
 <pre><code>[root@virtuozzo ~]# top
-top - 20:43:26 up 33 min,  1 user,  load average: 0.00, 0.01, 0.05
-Tasks: 178 total,   1 running, 176 sleeping,   1 stopped,   0 zombie
-%Cpu(s):  1.7 us,  3.6 sy,  0.0 ni, 88.5 id,  0.0 wa,  0.0 hi,  6.2 si,  0.0 st
-KiB Mem :  1013704 total,   382912 free,   138656 used,   492136 buff/cache
-KiB Swap:   975868 total,   975868 free,        0 used.   688028 avail Mem
-
+...
      PID     USER    PR  NI    VIRT    RES   SHR   S  %CPU  %MEM    TIME+   COMMAND
     5625       33    20   0  364432   6232  1284   S  26.2   0.6  0:03.20   apache2
 ...
@@ -1531,7 +1518,7 @@ crw------- 1 root root 10, 229 Feb 10 13:42 /dev/fuse
 [root@virtuozzo ~]# prlctl exec ct3 mount -t davfs https://webdav.yandex.ru /mnt/
 Please enter the username to authenticate with server
 https://webdav.yandex.ru or hit enter for none.
-  Username: username
+  Username: user
 Please enter the password to authenticate user username with server
 https://webdav.yandex.ru or hit enter for none.
   Password:  pass
@@ -1541,7 +1528,7 @@ https://webdav.yandex.ru or hit enter for none.
 <a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vm"></a>Работа с виртуальными машинами</h2>
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
-Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью libvirt.</p>
+Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью <code>libvirt</code>.</p>
 
 <h3>
 <a id="Создание-и-запуск-ВМ" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="create-vm"></a>Создание и запуск ВМ</h3>
@@ -1559,18 +1546,18 @@ The VM has been successfully created.
 
 <pre><code>[root@virtuozzo ~]# prlctl create vm1 -d list
 The following values are allowed:
-win-2000            win-xp              win-2003            win-vista       
-win-2008            win-7               win-8               win-2012        
-win-8.1             win                 rhel                rhel7           
-suse                debian              fedora-core         fc              
-xandros             ubuntu              mandriva            mandrake        
-centos              centos7             psbm                redhat          
-opensuse            linux-2.4           linux-2.6           linux           
-mageia              mint                freebsd-4           freebsd-5       
-freebsd-6           freebsd-7           freebsd-8           freebsd         
+win-2000        win-xp          win-2003        win-vista       
+win-2008        win-7           win-8           win-2012        
+win-8.1         win             rhel            rhel7           
+suse            debian          fedora-core     fc              
+xandros         ubuntu          mandriva        mandrake        
+centos          centos7         psbm            redhat          
+opensuse        linux-2.4       linux-2.6       linux           
+mageia          mint            freebsd-4       freebsd-5       
+freebsd-6       freebsd-7       freebsd-8       freebsd         
 </code></pre>
 
-<p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с именем <code>ВМ.pvm</code>:</p>
+<p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с именем <code>$NAME.pvm</code>:</p>
 
 <pre><code>[root@virtuozzo ~]# ls /vz/vmprivate/vm1.pvm/
 config.pvs  config.pvs.backup  harddisk.hdd
@@ -1824,7 +1811,7 @@ Boot order: hdd0 cdrom0
   memory_guarantee auto
   hdd0 (+) scsi:0 image='/vz/vmprivate/vm3.pvm/harddisk.hdd' type='expanded' 65536Mb subtype=virtio-scsi
 [root@virtuozzo ~]# prlctl set vm3 --applyconfig config-1024MB-centos7
-[root@virtuozzo ~]# prlctl list vm3 -i | grep Hardware -A9
+[root@virtuozzo ~]# prlctl list vm3 -i | grep "cpu\|memory\|video\|hdd0"
 Boot order: hdd0 cdrom0
   cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=4 iolimit='0' mask=0-1
   memory 1024Mb
@@ -1836,7 +1823,15 @@ Boot order: hdd0 cdrom0
 <h3>
 <a id="Добавление-и-удаление-устройств-в-ВМ" class="anchor" href="#%D0%94%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B2-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="devices-vm"></a>Добавление и удаление устройств в ВМ</h3>
 
-<p>Для каждой виртуальной машины доступно максимум 4 IDE или 8 SCSI (HDD, CD/DVD-ROM) устройств, 16 сетевых адаптеров, 4 последовательных порта и по одному USB-контроллеру и FDD.</p>
+<p>Для каждой виртуальной машины доступно максимальное количество устройств:</p>
+
+<ul>
+<li>4 IDE или 8 SCSI (HDD, CD/DVD-ROM) устройств</li>
+<li>16 сетевых адаптеров</li>
+<li>4 последовательных (COM) порта</li>
+<li>один USB-контроллер</li>
+<li>одно FDD устройство</li>
+</ul>
 
 <p>Добавление дополнительного HDD для виртуальной машины с Linux:</p>
 
@@ -1871,11 +1866,6 @@ First sector (2048-4194303, default 2048): &lt;Enter&gt;
 Last sector, +sectors or +size{K,M,G} (2048-4194303, default 4194303): &lt;Enter&gt;
 Command (m for help): w
 [root@vm1 /]# mkfs -t ext4 /dev/sdb1
-...
-Allocating group tables: done
-Writing inode tables: done
-Creating journal (8192 blocks): done
-Writing superblocks and filesystem accounting information: done
 [root@vm1 /]# mount /dev/sdb1 /mnt/
 [root@vm1 /]# tail -1 /etc/mtab &gt;&gt; /etc/fstab
 </code></pre>
@@ -1905,10 +1895,10 @@ Remove the cdrom1 device.
 
 <p>Изменение приоритета загрузки устройств:</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep 'Boot order'
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep "Boot order"
 Boot order: hdd0 hdd1
 [root@virtuozzo ~]# prlctl set vm1 --device-bootorder "hdd1 hdd0"
-[root@virtuozzo ~]# prlctl list vm1 -i | grep 'Boot order'
+[root@virtuozzo ~]# prlctl list vm1 -i | grep "Boot order"
 Boot order: hdd1 hdd0
 </code></pre>
 
