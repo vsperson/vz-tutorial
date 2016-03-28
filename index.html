@@ -1391,14 +1391,7 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 <h2>
 <a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="migration-ct"></a>Миграция контейнеров</h2>
 
-<p>В текущей версии Virtuozzo пока недоступна возможность онлайн-миграции контейнеров без их отключения.</p>
-
-<p>Пример оффлайн миграции контейнера с хост-ноды <code>vz-source</code> на <code>vz-dest</code> (192.168.0.180).</p>
-
-<p>Устанавливаем на <code>vz-source</code> и <code>vz-dest</code> последние версии <code>vzmigrate</code> и <code>rsync</code>:</p>
-
-<pre><code>[root@vz-source ~]# yum install vzmigrate rsync
-</code></pre>
+<p>Пример онлайн миграции контейнера <code>ct3</code> с хост-ноды <code>vz-source</code> на <code>vz-dest</code> (192.168.0.180).</p>
 
 <p>Создаем и копируем SSH-ключ с <code>vz-source</code> на <code>vz-dest</code> для беспарольной аутентификации:</p>
 
@@ -1406,41 +1399,17 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 [root@vz-source ~]# ssh-copy-id root@192.168.0.180
 </code></pre>
 
-<p>Останавливаем контейнер перед миграцией:</p>
-
-<pre><code>[root@vz-source ~]# prlctl stop ct3
-Stopping the CT...
-The CT has been successfully stopped.
-</code></pre>
-
 <p>Запускаем миграцию в <code>screen</code>:</p>
 
 <pre><code>[root@vz-source ~]# screen -S migrate-dest
-[root@vz-source ~]# vzmigrate 192.168.0.180 ct3
-Connection to destination node (192.168.0.180) is successfully established
-Moving/copying CT 4730cba8-deed-4168-9f9e-34373e618026 -&gt; CT 4730cba8-deed-4168-9f9e-34373e618026, [], [] ...
-locking 4730cba8-deed-4168-9f9e-34373e618026
-Checking bindmounts
-Check cluster ID
-Checking keep dir for private area copy
-Checking technologies
-Checking templates for CT
-Checking IP addresses on destination node
-Check target CT name: ct3
-Checking RATE parameters in config
-Checking ploop format 2
-copy CT private /vz/private/4730cba8-deed-4168-9f9e-34373e618026
-Successfully completed
+[root@vz-source ~]# prlctl migrate ct3 192.168.0.180
 </code></pre>
 
-<p>Проверяем на <code>vz-dest</code> наличие только что смигрированного контейнера, если он смигрирован, то запускаем его:</p>
+<p>Проверяем на <code>vz-dest</code> наличие смигрированного контейнера:</p>
 
 <pre><code>[root@vz-dest ~]# prlctl list ct3
 UUID                                    STATUS       IP_ADDR         T  NAME
-{4730cba8-deed-4168-9f9e-34373e618026}  stopped      192.168.0.163   CT ct3
-[root@vz-dest ~]# prlctl start ct3
-Starting the CT...
-The CT has been successfully started.
+{4730cba8-deed-4168-9f9e-34373e618026}  running      192.168.0.163   CT ct3
 </code></pre>
 
 <h2>
@@ -1529,6 +1498,8 @@ https://webdav.yandex.ru or hit enter for none.
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
 Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью <code>libvirt</code>.</p>
+
+<p>Для виртуальных машин доступна онлайн-миграция, по аналогии с контейнерами.</p>
 
 <h3>
 <a id="Создание-и-запуск-ВМ" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="create-vm"></a>Создание и запуск ВМ</h3>
@@ -1977,7 +1948,6 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <li>Создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
 <li>CPU/Memory hotplug, оптимизация памяти с KSM</li>
 <li>Проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
-<li>Онлайн-миграции (все еще недоступно в текущей версии)</li>
 <li>Управление сетью в Virtuozzo (veth/vlan/шейпинг)</li>
 <li>Снапшоты и клонирование шаблонов</li>
 <li>Бэкапы</li>
