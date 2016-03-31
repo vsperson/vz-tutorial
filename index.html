@@ -84,7 +84,6 @@
 <li><a href="#monitoring">Мониторинг ресурсов</a></li>
 </ul>
 </li>
-<li><a href="#migration-ct">Миграция контейнеров</a></li>
 <li>
 <a href="#forward-dev-ct">Проброс устройств в контейнеры</a>
 
@@ -105,6 +104,7 @@
 <li><a href="#devices-vm">Добавление и удаление устройств в ВМ</a></li>
 </ul>
 </li>
+<li><a href="#migration">Миграция контейнеров и виртуальных машин</a></li>
 <li><a href="#recommendations">Рекомендации системному администратору</a></li>
 <li><a href="#roadmap">Планы Virtuozzo</a></li>
 <li><a href="#links">Ссылки</a></li>
@@ -735,6 +735,21 @@ logout
 [root@virtuozzo ~]#
 </code></pre>
 
+<p>Переход в консоль контейнера:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl console ct2
+Attached to CT 9d921e42-1087-45e6-bea0-3d706b2d1862 tty2 (type ESC . to detach)
+
+CentOS Linux 7 (Core)
+Kernel 3.10.0-327.3.1.vz7.10.11 on an x86_64
+
+ct2 login: root
+Password:
+[root@ct2 ~]#
+</code></pre>
+
+<p>Для выхода из консоли необходимо использовать комбинацию клавиш <code>ESC</code> + <code>.</code></p>
+
 <h2>
 <a id="-Управление-контейнерами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="management-ct"></a>Управление контейнерами</h2>
 
@@ -798,6 +813,37 @@ The CT has been successfully removed.
 </code></pre>
 
 <p>Команда выполняет удаление частной области сервера (<code>/vz/private/$UUID</code>) и переименовывает файл конфигурации (<code>/etc/vz/conf/$UUID.conf</code>), дописывая к его имени окончание <code>.destroyed</code>.</p>
+
+<p>Для того чтобы смонтировать содержимое контейнера без его запуска существует опция <code>mount</code>, для размонтирования — <code>umount</code>.
+Это может пригодиться например для того, чтобы поправить конфигурационные файлы контейнера с хост-ноды, если контейнер не стартует:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list ct6
+UUID                                    STATUS       IP_ADDR         T  NAME
+{8de0101f-c166-42ce-ad53-a7900b223d46}  stopped      192.168.0.166   CT ct6
+[root@virtuozzo ~]# ls /vz/root/8de0101f-c166-42ce-ad53-a7900b223d46/
+[root@virtuozzo ~]# prlctl mount ct6
+Mounting the CT...
+The CT has been successfully mounted.
+[root@virtuozzo ~]# ls /vz/root/8de0101f-c166-42ce-ad53-a7900b223d46/
+bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[root@virtuozzo ~]# prlctl status ct6
+CT wordpress-162 exist mounted
+[root@virtuozzo ~]# prlctl umount ct6
+Unmounting the CT...
+The CT has been successfully unmounted.
+[root@virtuozzo ~]# ls /vz/root/8de0101f-c166-42ce-ad53-a7900b223d46/
+[root@virtuozzo ~]#
+</code></pre>
+
+<p>Переместить частную область контейнера в другую область можно командой <code>move</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# mkdir /home/private
+[root@virtuozzo ~]# prlctl move ct6 --dst /home/private
+Move the ct6 CT to /home/private...
+The CT has been successfully moved.
+[root@virtuozzo ~]# ls /home/private/8de0101f-c166-42ce-ad53-a7900b223d46/
+dump/       fs/         .lck        .owner      root.hdd/   scripts/    templates/  .uptime     ve.conf     .ve.layout  .ve.xml
+</code></pre>
 
 <h3>
 <a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="reinstall-ct"></a>Переустановка контейнера</h3>
@@ -1389,30 +1435,6 @@ KiB Swap:   975868 total,   975868 free,        0 used.   691636 avail Mem
 </code></pre>
 
 <h2>
-<a id="-Миграция-контейнеров" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="migration-ct"></a>Миграция контейнеров</h2>
-
-<p>Пример онлайн миграции контейнера <code>ct3</code> с хост-ноды <code>vz-source</code> на <code>vz-dest</code> (192.168.0.180).</p>
-
-<p>Создаем и копируем SSH-ключ с <code>vz-source</code> на <code>vz-dest</code> для беспарольной аутентификации:</p>
-
-<pre><code>[root@vz-source ~]# cd /root &amp;&amp; ssh-keygen
-[root@vz-source ~]# ssh-copy-id root@192.168.0.180
-</code></pre>
-
-<p>Запускаем миграцию в <code>screen</code>:</p>
-
-<pre><code>[root@vz-source ~]# screen -S migrate-dest
-[root@vz-source ~]# prlctl migrate ct3 192.168.0.180
-</code></pre>
-
-<p>Проверяем на <code>vz-dest</code> наличие смигрированного контейнера:</p>
-
-<pre><code>[root@vz-dest ~]# prlctl list ct3
-UUID                                    STATUS       IP_ADDR         T  NAME
-{4730cba8-deed-4168-9f9e-34373e618026}  running      192.168.0.163   CT ct3
-</code></pre>
-
-<h2>
 <a id="-Проброс-устройств-в-контейнеры" class="anchor" href="#-%D0%9F%D1%80%D0%BE%D0%B1%D1%80%D0%BE%D1%81-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="forward-dev-ct"></a>Проброс устройств в контейнеры</h2>
 
 <h3>
@@ -1498,8 +1520,6 @@ https://webdav.yandex.ru or hit enter for none.
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
 Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью <code>libvirt</code>.</p>
-
-<p>Для виртуальных машин доступна онлайн-миграция, по аналогии с контейнерами.</p>
 
 <h3>
 <a id="Создание-и-запуск-ВМ" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="create-vm"></a>Создание и запуск ВМ</h3>
@@ -1740,6 +1760,7 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 <li><code>start</code></li>
 <li><code>exec</code></li>
 <li><code>enter</code></li>
+<li><code>console</code></li>
 <li><code>status</code></li>
 <li><code>stop</code></li>
 <li><code>restart</code></li>
@@ -1747,6 +1768,9 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 <li><code>resume</code></li>
 <li><code>delete</code></li>
 <li><code>clone</code></li>
+<li><code>mount</code></li>
+<li><code>umount</code></li>
+<li><code>move</code></li>
 </ul>
 
 <p>Вдобавок к этим командам существует возможность приостанавливать ВМ:</p>
@@ -1885,6 +1909,32 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 </code></pre>
 
 <h2>
+<a id="-Миграция-контейнеров-и-виртуальных-машин" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2-%D0%B8-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="migration"></a>Миграция контейнеров и виртуальных машин</h2>
+
+<p>В Virtuozzo поддерживается "живая" миграция контейнеров и виртуальных машин с использованием CRIU и P.Haul.</p>
+
+<p>Пример миграции контейнера <code>ct3</code> с хост-ноды <code>vz-source</code> на <code>vz-dest</code> (192.168.0.180).</p>
+
+<p>Создаем и копируем SSH-ключ с <code>vz-source</code> на <code>vz-dest</code> для беспарольной аутентификации:</p>
+
+<pre><code>[root@vz-source ~]# ssh-keygen
+[root@vz-source ~]# ssh-copy-id root@192.168.0.180
+</code></pre>
+
+<p>Запускаем миграцию в <code>screen</code>:</p>
+
+<pre><code>[root@vz-source ~]# screen -S migrate-dest
+[root@vz-source ~]# prlctl migrate ct3 192.168.0.180
+</code></pre>
+
+<p>Проверка на <code>vz-dest</code> смигрированного контейнера:</p>
+
+<pre><code>[root@vz-dest ~]# prlctl list ct3
+UUID                                    STATUS       IP_ADDR         T  NAME
+{4730cba8-deed-4168-9f9e-34373e618026}  running      192.168.0.163   CT ct3
+</code></pre>
+
+<h2>
 <a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
 
 <ul>
@@ -1924,7 +1974,6 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
 <a id="-Планы-virtuozzo" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="roadmap"></a>Планы Virtuozzo</h2>
 
 <ul>
-<li>2016 — Virtuozzo 7 Technical Preview 2 — Virtual machines</li>
 <li>2016 — Virtuozzo RC</li>
 <li>2016 — Virtuozzo RTM</li>
 </ul>
