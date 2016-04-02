@@ -102,6 +102,8 @@
 <li><a href="#pause-vm">Приостановка виртуальных машин</a></li>
 <li><a href="#templates-vm">Шаблоны конфигураций</a></li>
 <li><a href="#devices-vm">Добавление и удаление устройств в ВМ</a></li>
+<li><a href="#hotplug-vm">Горячее подключение CPU и RAM</a></li>
+<li><a href="#ksm">Оптимизация виртуальных машин с помощью KSM</a></li>
 </ul>
 </li>
 <li><a href="#migration">Миграция контейнеров и виртуальных машин</a></li>
@@ -1908,6 +1910,87 @@ Created net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virti
   net1 (+) dev='vme42afdc9b' network='Bridged' mac=001C42AFDC9B card=virtio ips='192.168.0.181/255.255.255.0 ' gw='192.168.0.1'
 </code></pre>
 
+<h3>
+<a id="Горячее-подключение-cpu-и-ram" class="anchor" href="#%D0%93%D0%BE%D1%80%D1%8F%D1%87%D0%B5%D0%B5-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-cpu-%D0%B8-ram" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="hotplug-vm"></a>Горячее подключение CPU и RAM</h3>
+
+<p>Для виртуальных машин доступно горячее подключение (hotplug) ресурсов без перезагрузки самих виртуальных машин, к таким ресурсом относятся оперативная память и процессор.
+По умолчанию для виртуальных машин горячее подключение отключено.</p>
+
+<p>Для добавления оперативной памяти "налету" необходимо установить параметр <code>--mem-hotplug on</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep "memory "
+  memory 1024Mb
+[root@virtuozzo ~]# prlctl set vm1 --mem-hotplug on
+set mem hotplug: 1
+</code></pre>
+
+<p>После установки параметра нужно единожды перезагрузить виртуальную машину и затем изменять память "налету":</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl restart vm1
+Restarting the VM...
+The VM has been successfully restarted.
+[root@virtuozzo ~]# prlctl set vm1 --memsize 1536M
+Set the memsize parameter to 1536Mb.
+[root@virtuozzo ~]# prlctl list vm1 -i | grep "memory "
+  memory 1536Mb hotplug
+</code></pre>
+
+<p>Для включения CPU hotplug, необходимо чтобы операционная система гостевой ВМ поддерживала данную функцию.
+На данный момент поддерживаются:</p>
+
+<ul>
+<li>Дистрибутивы основанные на RHEL 5 и выше</li>
+<li>Windows Server 2008 x64 и выше</li>
+</ul>
+
+<p>Включение CPU hotplug происходит по аналогии с MEM hotplug:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl list vm1 -i | grep cpu
+  cpu cpus=2 VT-x accl=high mode=32 cpuunits=1000 cpulimit=1024Mhz ioprio=6 iolimit='0' mask=0-1
+[root@virtuozzo ~]# prlctl set vm1 --cpu-hotplug on
+  set cpu hotplug: 1
+</code></pre>
+
+<p>Перезагрузка виртуальной машины и проверка ресурсов:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl restart vm1
+Restarting the VM...
+The VM has been successfully restarted.
+[root@virtuozzo ~]# prlctl set vm1 --cpuunits 2000 --cpus 3 --cpumask 0-2
+set cpus(4): 3
+set cpuunits 2000
+set cpu mask 0-2
+[root@virtuozzo ~]# prlctl list vm1 -i | grep cpu
+  cpu cpus=3 VT-x hotplug accl=high mode=32 cpuunits=2000 cpulimit=1024Mhz ioprio=6 iolimit='0' mask=0-2
+</code></pre>
+
+<p>Для отключения hotplug используется параметр <code>--mem-hotplug off</code> и <code>--cpu-hotplug off</code> соответственно.</p>
+
+<h3>
+<a id="Оптимизация-виртуальных-машин-с-помощью-ksm" class="anchor" href="#%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-ksm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="ksm"></a>Оптимизация виртуальных машин с помощью KSM</h3>
+
+<p>KSM (Kernel Same-Page Merging) — технология ядра Linux, которая позволяет ядру объединять одинаковые страницы памяти между различными процессами или виртуальными гостевыми системами в одну для совместного использования.</p>
+
+<p>Технология предусматривает сканирование памяти в целях поиска дубликатов страниц, каждая пара дубликатов объединяется в одну страницу, помечаемую как подлежащую копированию при записи, таким образом ядро будет автоматически разделять страницы памяти, как только один процесс изменит данные.</p>
+
+<p>Поиск дубликатов накладывает дополнительную нагрузку на процессорные ресурсы, поэтому в технологии была предусмотрена оценка — насколько часто будут те или иные страницы памяти изменяться, чтобы в тех случаях, когда ресурсные издержки сравнительно высоки не прибегать к слиянию страниц.
+KSM обеспечивает системам виртуализации возможность перезакладки ресурсов оперативной памяти (memory overcommitment).
+В условиях достаточно однородных экземпляров гостевых операционных систем возможен значительный эффект, в частности, экспериментальная реализация KSM от Red Hat показала, что 52 виртуальных экземпляра Windows XP с выделенными 1 ГБ памяти, могут работать на компьютере с 16 ГБ оперативной памяти.</p>
+
+<p>Для включения KSM в Virtuozzo необходимо запустить сервисы <code>ksm</code> и <code>ksmtuned</code>:</p>
+
+<pre><code>[root@virtuozzo ~]# systemctl start ksm
+[root@virtuozzo ~]# systemctl start ksmtuned
+[root@virtuozzo ~]# systemctl enable ksm
+[root@virtuozzo ~]# systemctl enable ksmtuned
+</code></pre>
+
+<p>Работоспособность KSM можно проверить на примере общих страниц в памяти (shared memory pages):</p>
+
+<pre><code>[root@virtuozzo ~]# cat /sys/kernel/mm/ksm/pages_sharing
+120990
+</code></pre>
+
 <h2>
 <a id="-Миграция-контейнеров-и-виртуальных-машин" class="anchor" href="#-%D0%9C%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2-%D0%B8-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="migration"></a>Миграция контейнеров и виртуальных машин</h2>
 
@@ -1995,7 +2078,6 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 <ul>
 <li>Создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
 <li>Создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
-<li>CPU/Memory hotplug, оптимизация памяти с KSM</li>
 <li>Проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
 <li>Управление сетью в Virtuozzo (veth/vlan/шейпинг)</li>
 <li>Снапшоты и клонирование шаблонов</li>
