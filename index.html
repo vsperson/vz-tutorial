@@ -144,7 +144,7 @@
 
 <ul>
 <li>эмуляция оборудования (QEMU, Bochs, Dynamips)</li>
-<li>полная виртуализация (KVM, HyperV, VirtualBox, ESXi)</li>
+<li>полная виртуализация (KVM, Hyper-V, VirtualBox, VMware ESXi)</li>
 <li>паравиртуализация (Xen, L4, Trango)</li>
 <li>виртуализация уровня ОС (LXC, Virtuozzo, Jails, Solaris Zones)</li>
 </ul>
@@ -242,8 +242,7 @@ QEMU обеспечивает динамическую трансляцию пр
 <li>network — предоставляет отдельным процессам логически изолированный от других стек сетевых протоколов, сетевой интерфейс, IP-адрес, таблицу маршрутизации, ARP и прочие реквизиты</li>
 <li>IPC — обеспечивает разделяемую память и взаимодействие между процессами</li>
 <li>UTS — изоляция идентификаторов узла, таких как имя хоста (hostname) и домена (domain)</li>
-<li>user — позволяет иметь один и тот же набор пользователей и групп в рамках разных пространств имен, в каждом контейнере могут быть свой
-root и любые другие пользователи и группы</li>
+<li>user — позволяет иметь один и тот же набор пользователей и групп в рамках разных пространств имен, в каждом контейнере может быть свой root и любые другие пользователи и группы</li>
 </ul>
 
 <p>CGroups (Control Groups) — позволяет ограничить аппаратные ресурсы некоторого набора процессов.
@@ -417,7 +416,7 @@ Password: пароль_пользователя_root
 <pre><code>[root@virtuozzo ~]# timedatectl set-timezone Europe/Moscow
 </code></pre>
 
-<p>По умолчанию сервер <code>ntp</code> уже установлен в системе, поэтому достаточно только добавить сервис в автозагрузку:</p>
+<p>По умолчанию сервер <code>ntp</code> уже установлен в системе (задается во время установки системы), поэтому достаточно только добавить сервис в автозагрузку:</p>
 
 <pre><code>[root@virtuozzo ~]# systemctl start ntpd
 [root@virtuozzo ~]# systemctl enable ntpd
@@ -459,7 +458,7 @@ ubuntu-15.04-x86_64
 <pre><code>[root@virtuozzo ~]# yum install debian-8.0-x86_64-ez fedora-22-x86_64-ez ubuntu-14.04-x86_64-ez ubuntu-14.10-x86_64-ez ubuntu-15.04-x86_64-ez
 </code></pre>
 
-<p>После этого можно увидеть список доступных локально шаблонов гостевых ОС:</p>
+<p>После этого можно увидеть локальный список доступных шаблонов гостевых ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
 fedora-22-x86_64                   :Fedora 22 (for AMD64/Intel EM64T) Virtuozzo Template
@@ -499,7 +498,7 @@ centos-6-x86_64                    2015-10-19 00:43:44
 <a id="Шаблоны-приложений" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="app-templates"></a>Шаблоны приложений</h3>
 
 <p>Существует возможность установки шаблонов приложений для контейнеров.
-Основное отличие между шаблонами гостевых ОС и шаблонами приложений в том, что шаблоны гостевых ОС используются для создания контейнеров, а шаблоны приложений, обеспечивают дополнительное ПО для уже имеющихся контейнеров.</p>
+Основное отличие между шаблонами гостевых ОС и шаблонами приложений в том, что шаблоны гостевых ОС используются для создания контейнеров, а шаблоны приложений, обеспечивают установку дополнительного ПО для уже имеющихся контейнеров.</p>
 
 <p>Просмотр списка шаблонов приложений для <code>centos-7-x86_64</code>:</p>
 
@@ -2086,9 +2085,8 @@ ha_prio              HA_PRIO
 <li>снапшоты и клонирование шаблонов</li>
 <li>бэкапы</li>
 <li>
-<code>prlctl</code> для управления дисковыми квотами, <code>--memguarantee</code> вместо <code>--vm_overcommit</code>
-</li>
-<li>некоторые ключи для <code>prlctl</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--description</code> <code>--template</code> <code>--autostart-delay</code> <code>--autostop</code> <code>--start-as-user</code>
+<code>prlctl</code> для управления дисковыми квотами (<code>--diskinodes</code> для <code>prlctl</code> не работает)</li>
+<li>некоторые ключи для <code>prlctl</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--description</code> <code>--template</code> <code>--autostart-delay</code> <code>--autostop</code> <code>--start-as-user</code>, <code>--memguarantee</code>
 </li>
 </ul>
 
