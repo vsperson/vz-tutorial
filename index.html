@@ -689,6 +689,11 @@ esxrcH7dyoA46LY
 <pre><code>[root@virtuozzo ~]# prlctl set ct1 --onboot yes
 </code></pre>
 
+<p>Также можно добавить краткое описание контейнера:</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set ct1 --description "Frontend for app"
+</code></pre>
+
 <h3>
 <a id="Запуск-и-вход" class="anchor" href="#%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B2%D1%85%D0%BE%D0%B4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="run-enter"></a>Запуск и вход</h3>
 
@@ -1451,15 +1456,15 @@ The VM has been successfully created.
 
 <pre><code>[root@virtuozzo ~]# prlctl create vm1 -d list
 The following values are allowed:
-win-2000        win-xp          win-2003        win-vista       
-win-2008        win-7           win-8           win-2012        
-win-8.1         win             rhel            rhel7           
-suse            debian          fedora-core     fc              
-xandros         ubuntu          mandriva        mandrake        
-centos          centos7         psbm            redhat          
-opensuse        linux-2.4       linux-2.6       linux           
-mageia          mint            freebsd-4       freebsd-5       
-freebsd-6       freebsd-7       freebsd-8       freebsd         
+win-2000        win-xp          win-2003        win-vista
+win-2008        win-7           win-8           win-2012
+win-8.1         win             rhel            rhel7    
+suse            debian          fedora-core     fc       
+xandros         ubuntu          mandriva        mandrake
+centos          centos7         psbm            redhat   
+opensuse        linux-2.4       linux-2.6       linux    
+mageia          mint            freebsd-4       freebsd-5
+freebsd-6       freebsd-7       freebsd-8       freebsd  
 </code></pre>
 
 <p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с именем <code>$NAME.pvm</code>:</p>
@@ -1494,19 +1499,19 @@ config.pvs  config.pvs.backup  harddisk.hdd
 
 <pre><code>[root@virtuozzo ~]# prlctl list -a
 UUID                                    STATUS       IP_ADDR         T  NAME
-{6fe60288-fe50-49fe-a68d-7a8330837358}  stopped      -               CT ct1
-{2cdb07fd-a68a-4279-81c1-3d269460c2f7}  stopped      -               CT ct2
+{6fe60288-fe50-49fe-a68d-7a8330837358}  stopped      192.168.0.161   CT ct1
+{2cdb07fd-a68a-4279-81c1-3d269460c2f7}  stopped      192.168.0.162   CT ct2
 {485372f0-2ae3-4bfe-aa55-e556c37fea9f}  stopped      -               VM vm1
 </code></pre>
 
 <p>По аналогии с контейнерами установим необходимые параметры для виртуальной машины:</p>
 
-<pre><code>[root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd 192.168.0.180/24
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --description "Backend for app"
+[root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd 192.168.0.180/24
+[root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd 192.168.0.180/24
 [root@virtuozzo ~]# prlctl set vm1 --device-set net0 --ipadd FE80:0:0:0:20C:29FF:FE01:FB07
 [root@virtuozzo ~]# prlctl set vm1 --nameserver 192.168.0.1,192.168.0.2
-[root@virtuozzo ~]# prlctl set vm1 --autostart on
 [root@virtuozzo ~]# prlctl set vm1 --memsize 1024
-[root@virtuozzo ~]# prlctl set vm1 --videosize 64
 [root@virtuozzo ~]# prlctl set vm1 --cpus 2
 [root@virtuozzo ~]# prlctl set vm1 --cpuunits 1000
 [root@virtuozzo ~]# prlctl set vm1 --cpulimit 1024m
@@ -1516,9 +1521,12 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 [root@virtuozzo ~]# prlctl set vm1 --iopslimit 0
 </code></pre>
 
-<p>Ключ <code>--autostart</code> аналогичен <code>--onboot</code> для контейнеров, который указывает возможность автостарта контейнера при старте хост-ноды.</p>
-
 <p>Ключ <code>--videosize</code> указывает размер выделяемой видеопамяти в MB для виртуальной машины.</p>
+
+<pre><code>[root@virtuozzo ~]# prlctl set vm1 --videosize 64
+</code></pre>
+
+
 
 <p>Параметры виртуальной машины установлены, ее можно запускать, однако для установки гостевой ОС необходим образ ОС.
 Для хранения образов ОС можно создать каталог и централизованно хранить все там:</p>
@@ -1671,6 +1679,7 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 <p>Команды управления контейнерами с помощью <code>prlctl</code> аналогично используются и для ВМ:</p>
 
 <ul>
+<li><code>set</code></li>
 <li><code>start</code></li>
 <li><code>exec</code></li>
 <li><code>enter</code></li>
@@ -2086,7 +2095,11 @@ ha_prio              HA_PRIO
 <li>бэкапы</li>
 <li>
 <code>prlctl</code> для управления дисковыми квотами (<code>--diskinodes</code> для <code>prlctl</code> не работает)</li>
-<li>некоторые ключи для <code>prlctl</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--description</code> <code>--template</code> <code>--autostart-delay</code> <code>--autostop</code> <code>--start-as-user</code>, <code>--memguarantee</code>
+<li>некоторые ключи для <code>prlctl</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code> <code>--memguarantee</code>
+</li>
+<li>измененная схема архитектуры Virtuozzo</li>
+<li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ</li>
+<li>не работает <code>capture</code>
 </li>
 </ul>
 
