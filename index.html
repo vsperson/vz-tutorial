@@ -1456,15 +1456,15 @@ The VM has been successfully created.
 
 <pre><code>[root@virtuozzo ~]# prlctl create vm1 -d list
 The following values are allowed:
-win-2000        win-xp          win-2003        win-vista
-win-2008        win-7           win-8           win-2012
-win-8.1         win             rhel            rhel7    
-suse            debian          fedora-core     fc       
-xandros         ubuntu          mandriva        mandrake
-centos          centos7         psbm            redhat   
-opensuse        linux-2.4       linux-2.6       linux    
-mageia          mint            freebsd-4       freebsd-5
-freebsd-6       freebsd-7       freebsd-8       freebsd  
+win-2000        win-xp          win-2003        win-vista  
+win-2008        win-7           win-8           win-2012   
+win-8.1         win             rhel            rhel7      
+suse            debian          fedora-core     fc         
+xandros         ubuntu          mandriva        mandrake   
+centos          centos7         psbm            redhat     
+opensuse        linux-2.4       linux-2.6       linux      
+mageia          mint            freebsd-4       freebsd-5  
+freebsd-6       freebsd-7       freebsd-8       freebsd    
 </code></pre>
 
 <p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с именем <code>$NAME.pvm</code>:</p>
@@ -2095,10 +2095,10 @@ ha_prio              HA_PRIO
 <li>бэкапы</li>
 <li>
 <code>prlctl</code> для управления дисковыми квотами (<code>--diskinodes</code> для <code>prlctl</code> не работает)</li>
-<li>некоторые ключи для <code>prlctl</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code> <code>--memguarantee</code>
+<li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code> <code>--memguarantee</code>
 </li>
 <li>измененная схема архитектуры Virtuozzo</li>
-<li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ</li>
+<li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ (<a href="https://bugs.openvz.org/browse/OVZ-6715">https://bugs.openvz.org/browse/OVZ-6715</a>)</li>
 <li>не работает <code>capture</code>
 </li>
 </ul>
