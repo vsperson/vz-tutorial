@@ -1897,7 +1897,7 @@ set cpu mask 0-2
 
 <p>Поиск дубликатов накладывает дополнительную нагрузку на процессорные ресурсы, поэтому в технологии была предусмотрена оценка — насколько часто будут те или иные страницы памяти изменяться, чтобы в тех случаях, когда ресурсные издержки сравнительно высоки не прибегать к слиянию страниц.
 KSM обеспечивает системам виртуализации возможность перезакладки ресурсов оперативной памяти (memory overcommitment).
-В условиях достаточно однородных экземпляров гостевых операционных систем возможен значительный эффект, в частности, экспериментальная реализация KSM от Red Hat показала, что 52 виртуальных экземпляра Windows XP с выделенными 1 ГБ памяти, могут работать на компьютере с 16 ГБ оперативной памяти.</p>
+В условиях достаточно однородных экземпляров гостевых операционных систем возможен значительный эффект, в частности, экспериментальная реализация KSM от Red Hat показала, что 52 виртуальных экземпляра Windows XP с выделенными 1GB памяти, могут работать на хост-ноде с 16GB оперативной памяти.</p>
 
 <p>Для включения KSM в Virtuozzo необходимо запустить сервисы <code>ksm</code> и <code>ksmtuned</code>:</p>
 
@@ -2032,10 +2032,12 @@ ha_prio              HA_PRIO
 <a id="-Рекомендации-системному-администратору" class="anchor" href="#-%D0%A0%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%BC%D1%83-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="recommendations"></a>Рекомендации системному администратору</h2>
 
 <ul>
-<li>если работа хост-ноды замедлилась, для анализа нагрузки можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code> <code>dmesg</code>, <code>atop</code>
+<li>если работа хост-ноды замедлилась, для анализа нагрузки можно воспользоваться утилитами <code>ps</code>, <code>vzps</code>, <code>top</code>, <code>vztop</code>, <code>iotop</code>, <code>atop</code>
 </li>
-<li>для обнаружения сетевых проблем можно воспользоваться утилитами <code>ping</code>, <code>traceroute</code>, <code>nmap</code>, <code>mtr</code>, <code>tcpdump</code>, <code>nc</code>, <code>iftop</code>
+<li>для обнаружения сетевых проблем можно воспользоваться утилитами <code>ping</code>, <code>traceroute</code>, <code>nmap</code>, <code>mtr</code>, <code>tcpdump</code>, <code>nc</code>, <code>iftop</code>, <code>netstat</code>, <code>ss</code>
 </li>
+<li>
+<code>strace</code> будет верным помощником для отслеживания системных вызовов</li>
 <li>используйте RAID, LVM</li>
 <li>для экстренных ситуаций, когда могут быть проблемы с сетью необходимо всегда иметь под рукой IPMI или KVM-доступ</li>
 <li>не перезагружайте хост-ноду без выяснения обстоятельств неполадок, делайте это только в самых крайних случаях</li>
@@ -2045,7 +2047,7 @@ ha_prio              HA_PRIO
 <li>для поиска руткитов можно воспользоваться утилитами <code>chrootkit</code> и <code>rkhunter</code>
 </li>
 <li>следите за нагрузкой сервера, обезопастесь от DoS/DDoS</li>
-<li>используйте системы конфигураций, такие как Puppet, Ansible, Chef, SaltStack, если используется большое количество однотипных конфигураций на хост-нодах</li>
+<li>используйте системы конфигураций, такие как Puppet, Ansible, Chef, SaltStack, CFEngine если используется большое количество однотипных конфигураций на хост-нодах</li>
 <li>делайте резервные копии важных данных</li>
 <li>следите за свободным местом на жестких дисках, используйте ротацию логов</li>
 <li>следите за пулом IP-адресов, они могут закончиться в самый неподходящий момент</li>
@@ -2059,7 +2061,7 @@ ha_prio              HA_PRIO
 <li>обновляйте ПО, систему и ее компоненты</li>
 <li>если используете Virtuozzo для хостинга, то стоит позаботиться об автоматизации процессов создания окружений для пользователей, уведомления об окончании дискового пространства и блокировки услуг, например спам, вредоносная активность, повышенное потребление выделенных ресурсов</li>
 <li>cледите за правами пользователей, файлов и каталогов на сервере</li>
-<li>используйте системы мониторинга ресурсов (например Cacti, Munin, MRTG, Zabbix, Nagios)</li>
+<li>используйте системы мониторинга ресурсов (например Cacti, Munin, MRTG, Zabbix, Nagios, Icinga, Monit)</li>
 <li>ведите внутреннюю документацию по серверам и их настройке</li>
 <li>в случае обнаружения проблем, можно обратиться к документации проектов OpenVZ и Virtuozzo, а также задать вопросы на тематических форумах</li>
 </ul>
@@ -2087,19 +2089,20 @@ ha_prio              HA_PRIO
 <a id="-todo" class="anchor" href="#-todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="todo"></a>TODO</h2>
 
 <ul>
-<li>создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
-<li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
-<li>проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
 <li>управление сетью в Virtuozzo (veth/vlan/шейпинг)</li>
-<li>снапшоты и клонирование шаблонов</li>
-<li>бэкапы</li>
+<li>снапшоты</li>
+<li>клонирование шаблонов</li>
+<li>проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
 <li>
-<code>prlctl</code> для управления дисковыми квотами (<code>--diskinodes</code> для <code>prlctl</code> не работает)</li>
+<code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>)</li>
 <li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code> <code>--memguarantee</code>
 </li>
-<li>измененная схема архитектуры Virtuozzo</li>
+<li>создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
+<li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
+<li>резервное копирование</li>
+<li>измененная схема архитектуры Virtuozzo (старая схема тут: <a href="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png">https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png</a>)</li>
 <li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ (<a href="https://bugs.openvz.org/browse/OVZ-6715">https://bugs.openvz.org/browse/OVZ-6715</a>)</li>
-<li>не работает <code>capture</code>
+<li>не работает <code>prlctl capture</code>
 </li>
 </ul>
 
