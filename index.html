@@ -329,7 +329,7 @@ QEMU обеспечивает динамическую трансляцию пр
 <p><em>Экран установки параметров системы</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/anaconda.png" alt="Настройки системы"></p>
 
-<p><em>Пример разметки для 20GB диска</em>
+<p><em>Пример разметки для 23GB диска</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/partitioning.png" alt="Разметка диска"></p>
 
 <p>Необходимо для раздела <code>/</code> выделить не менее 8GB доступного дискового пространства.
@@ -433,49 +433,55 @@ Password: пароль_пользователя_root
 <p>Просмотр списка уже имеющихся локальных шаблонов гостевых ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
-centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
-centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+fedora-23-x86_64                   :Fedora 23 (for AMD64/Intel EM64T) Virtuozzo Template
+debian-7.0-x86_64                  :Debian 7.0 (for AMD64/Intel EM64T) Virtuozzo Template
+ubuntu-15.10-x86_64                :Ubuntu 15.10 (for AMD64/Intel EM64T) Virtuozzo Template
 centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
+centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+vzlinux-7-x86_64                   :VzLinux 7 (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
 <p>Доступные удаленно шаблоны:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list --available --with-summary
-debian-8.0-x86_64
-fedora-22-x86_64
-ubuntu-14.04-x86_64
-ubuntu-14.10-x86_64
-ubuntu-15.04-x86_64
+centos-5-x86                       
+debian-8.0-x86_64                  
+fedora-22-x86_64                   
+suse-42.1-x86_64                   
+ubuntu-14.04-x86_64                
+ubuntu-14.10-x86_64                
+ubuntu-15.04-x86_64                
+ubuntu-16.04-x86_64                
+vzlinux-6-x86_64                   
 </code></pre>
 
-<p>Установка всех доступных шаблонов:</p>
+<p>Установка шаблона:</p>
 
-<pre><code>[root@virtuozzo ~]# vzpkg list --available --with-summary | xargs vzpkg install template
+<pre><code>[root@virtuozzo ~]# vzpkg install template ubuntu-16.04-x86_64
 </code></pre>
 
-<p>Альтернативный вариант установки шаблонов:</p>
+<p>Альтернативный вариант установки шаблона:</p>
 
-<pre><code>[root@virtuozzo ~]# yum install debian-8.0-x86_64-ez fedora-22-x86_64-ez ubuntu-14.04-x86_64-ez ubuntu-14.10-x86_64-ez ubuntu-15.04-x86_64-ez
+<pre><code>[root@virtuozzo ~]# yum install ubuntu-16.04-x86_64-ez
 </code></pre>
 
-<p>После этого можно увидеть локальный список доступных шаблонов гостевых ОС:</p>
+<p>После этого можно увидеть текущий локальный список доступных шаблонов гостевых ОС:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O --with-summary
-fedora-22-x86_64                   :Fedora 22 (for AMD64/Intel EM64T) Virtuozzo Template
-ubuntu-14.10-x86_64                :Ubuntu 14.10 (for AMD64/Intel EM64T) Virtuozzo Template
-ubuntu-14.04-x86_64                :Ubuntu 14.04 (for AMD64/Intel EM64T) Virtuozzo Template
-ubuntu-15.04-x86_64                :Ubuntu 15.04 (for AMD64/Intel EM64T) Virtuozzo Template
-debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo Template
-debian-8.0-x86_64-minimal          :Debian 8.0 minimal (for AMD64/Intel EM64T) Virtuozzo Template
-centos-5-x86                       :Centos 5 (for ix86) Virtuozzo Template
+[root@virtuozzo ~]# vzpkg list -O --with-summary
+fedora-23-x86_64                   :Fedora 23 (for AMD64/Intel EM64T) Virtuozzo Template
+debian-7.0-x86_64                  :Debian 7.0 (for AMD64/Intel EM64T) Virtuozzo Template
+ubuntu-16.04-x86_64                :Ubuntu 16.04 (for AMD64/Intel EM64T) Virtuozzo Template
+ubuntu-15.10-x86_64                :Ubuntu 15.10 (for AMD64/Intel EM64T) Virtuozzo Template
 centos-7-x86_64                    :Centos 7 (for AMD64/Intel EM64T) Virtuozzo Template
 centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo Template
+vzlinux-7-x86_64                   :VzLinux 7 (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
 <p>Установка и обновление кэша шаблона:</p>
 
-<pre><code>[root@virtuozzo ~]# vzpkg create cache ubuntu-14.04-x86_64
-[root@virtuozzo ~]# vzpkg update cache ubuntu-14.04-x86_64
+<pre><code>[root@virtuozzo ~]# vzpkg create cache ubuntu-16.04-x86_64
+[root@virtuozzo ~]# vzpkg update cache ubuntu-16.04-x86_64
 </code></pre>
 
 <p>Если не указывать имя шаблона, то установка или обновление кэша произойдет для всех имеющихся шаблонов.</p>
@@ -483,15 +489,14 @@ centos-6-x86_64                    :Centos 6 (for AMD64/Intel EM64T) Virtuozzo T
 <p>Просмотр даты последнего обновления кэша:</p>
 
 <pre><code>[root@virtuozzo ~]# vzpkg list -O
-fedora-22-x86_64                   2015-10-19 01:24:25
-ubuntu-14.10-x86_64                2015-10-19 01:34:18
-ubuntu-14.04-x86_64                2015-10-19 01:50:54
-ubuntu-15.04-x86_64                2015-10-19 02:10:18
-debian-8.0-x86_64                  2015-10-19 01:00:28
-debian-8.0-x86_64-minimal          2015-10-19 01:20:22
-centos-5-x86                       2015-10-19 00:37:27
-centos-7-x86_64                    2015-10-19 00:48:16
-centos-6-x86_64                    2015-10-19 00:43:44
+fedora-23-x86_64                   
+debian-7.0-x86_64                  
+ubuntu-16.04-x86_64                2016-05-14 02:10:18
+ubuntu-15.10-x86_64                
+centos-7-x86_64                    
+centos-6-x86_64                    
+vzlinux-7-x86_64                   
+
 </code></pre>
 
 <h3>
@@ -504,19 +509,20 @@ centos-6-x86_64                    2015-10-19 00:43:44
 
 <pre><code>[root@virtuozzo ~]# vzpkg list centos-7-x86_64
 centos-7-x86_64                     2016-02-09 17:01:05
-centos-7-x86_64      mod_ssl       
-centos-7-x86_64      jsdk          
-centos-7-x86_64      cyrus-imap    
-centos-7-x86_64      jre           
-centos-7-x86_64      docker        
-centos-7-x86_64      mailman       
-centos-7-x86_64      devel         
+centos-7-x86_64      tomcat        
 centos-7-x86_64      mysql         
 centos-7-x86_64      php           
+centos-7-x86_64      docker        
+centos-7-x86_64      mod_ssl       
 centos-7-x86_64      spamassassin  
-centos-7-x86_64      vzftpd        
 centos-7-x86_64      postgresql    
-centos-7-x86_64      tomcat        
+centos-7-x86_64      cyrus-imap    
+centos-7-x86_64      jsdk          
+centos-7-x86_64      mailman       
+centos-7-x86_64      jre           
+centos-7-x86_64      vzftpd        
+centos-7-x86_64      devel         
+
 </code></pre>
 
 <p>Пример установки шаблона приложений <code>tomcat</code> и <code>jre</code>:</p>
@@ -582,7 +588,7 @@ vps.vzpkgtools.conf-sample
 <p>В этих конфигурационных файлах описаны контрольные параметры ресурсов, выделенное дисковое пространство, оперативная память и т.д.
 Например, при использовании конфига <code>ve-vswap.512MB.conf-sample</code>, создается контейнер с дисковым пространством 10GB, оперативной памятью 512MB и swap 512MB:</p>
 
-<pre><code>[root@virtuozzo ~]# grep "DISKSPACE\|PHYSPAGES\|SWAPPAGES\|DISKINODES" /etc/vz/conf/ve-vswap.512MB.conf-sample
+<pre><code>[root@virtuozzo ~]# egrep "DISKSPACE|PHYSPAGES|SWAPPAGES|DISKINODES" /etc/vz/conf/ve-vswap.512MB.conf-sample
 PHYSPAGES="131072:131072"
 SWAPPAGES="131072"
 DISKSPACE="10485760:10485760"
@@ -870,7 +876,7 @@ The CT has been successfully started.
 </code></pre>
 
 <p>По умолчанию, <code>vzctl reinstall</code> без дополнительных параметров, сохраняет все файлы (частную область) прошлого контейнера  в каталог <code>/old</code> нового контейнера.
-Для того, чтобы не копировать частную область предыдущего контейнера, необходимо использовать ключ <code>--skipbackup</code>:</p>
+Для того, чтобы не копировать частную область предыдущего контейнера, необходимо использовать ключ <code>--skipbackup</code>.</p>
 
 <h3>
 <a id="Клонирование-контейнера" class="anchor" href="#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="clone-ct"></a>Клонирование контейнера</h3>
@@ -1438,7 +1444,7 @@ https://webdav.yandex.ru or hit enter for none.
 <a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vm"></a>Работа с виртуальными машинами</h2>
 
 <p>Помимо создания контейнеров, Virtuozzo 7 поддерживает создание и управление виртуальными машинами на базе QEMU/KVM.
-Утилита <code>prlctl</code> имеет возможно создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью <code>libvirt</code>.</p>
+Утилита <code>prlctl</code> имеет возможность создавать и управлять виртуальными машинами, помимо этого также доступно управление ВМ с помощью <code>libvirt</code>.</p>
 
 <h3>
 <a id="Создание-и-запуск-ВМ" class="anchor" href="#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%92%D0%9C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="create-vm"></a>Создание и запуск ВМ</h3>
@@ -2094,8 +2100,8 @@ ha_prio              HA_PRIO
 <li>клонирование шаблонов</li>
 <li>проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
 <li>
-<code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>)</li>
-<li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code> <code>--memguarantee</code>
+<code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>) и (<a href="https://bugs.openvz.org/browse/OVZ-6505">https://bugs.openvz.org/browse/OVZ-6505</a>)</li>
+<li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code>
 </li>
 <li>создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
 <li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
@@ -2104,6 +2110,8 @@ ha_prio              HA_PRIO
 <li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ (<a href="https://bugs.openvz.org/browse/OVZ-6715">https://bugs.openvz.org/browse/OVZ-6715</a>)</li>
 <li>не работает <code>prlctl capture</code>
 </li>
+<li>
+<code>vztop</code>/<code>vzps</code>/<code>vzstat</code>/<code>vznetstat</code> работают только с UUID (<a href="https://bugs.openvz.org/browse/OVZ-6504">https://bugs.openvz.org/browse/OVZ-6504</a>)</li>
 </ul>
 
 <h2>
