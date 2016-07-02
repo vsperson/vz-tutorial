@@ -108,7 +108,6 @@
 <li><a href="#migration">Миграция контейнеров и виртуальных машин</a></li>
 <li><a href="#extra-info">Расширенная информация о контейнерах и ВМ</a></li>
 <li><a href="#recommendations">Рекомендации системному администратору</a></li>
-<li><a href="#roadmap">Планы Virtuozzo</a></li>
 <li><a href="#links">Ссылки</a></li>
 <li><a href="#todo">TODO</a></li>
 <li><a href="#license">Лицензия</a></li>
@@ -223,7 +222,7 @@ QEMU обеспечивает динамическую трансляцию пр
 
 
 
-<p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP адреса, правила маршрутизации).
+<p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP-адреса, правила маршрутизации).
 В отличие от KVM или Xen, Virtuozzo использует одно ядро, которое является общим для всех виртуальных сред.</p>
 
 <p>Контейнеры можно разделить на две составляющие:</p>
@@ -294,7 +293,7 @@ QEMU обеспечивает динамическую трансляцию пр
 <p>В апреле 2015 года открыт репозиторий с ядром RHEL 7 (3.10), в мае были открыты исходные коды пользовательских утилит, а в июне выложены тестовые сборки ISO-образов и RPM-пакеты.</p>
 
 <p>В марте 2016 года анонсирован выход Virtuozzo 7.0 Beta, с измененной архитектурой, а также с такими нововведениями, как дополнения гостевых ОС для Linux и Windows.
-Также предсталена "живая" миграция для контейнеров, реализованная с помощью инструментария CRIU и P.Haul.</p>
+Также представлена "живая" миграция для контейнеров, реализованная с помощью инструментария CRIU и P.Haul.</p>
 
 <h2>
 <a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="install"></a>Установка и подготовительные действия</h2>
@@ -651,9 +650,9 @@ DEF_OSTEMPLATE=".centos-7"
 <a id="Настройка-контейнера" class="anchor" href="#%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="setup-ct"></a>Настройка контейнера</h3>
 
 <p>Контейнер создан, его можно запускать.
-Но перед первым запуском необходимо установить его IP адреса, hostname, указать DNS сервера и задать пароль суперпользователя.</p>
+Но перед первым запуском необходимо установить его IP-адреса, hostname, указать DNS сервера и задать пароль суперпользователя.</p>
 
-<p>Добавление IP адресов:</p>
+<p>Добавление IP-адресов:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set ct1 --ipadd 192.168.0.161/24
 [root@virtuozzo ~]# prlctl set ct1 --ipadd fe80::20c:29ff:fe01:fb08
@@ -893,7 +892,7 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 {54bc2ba6-b040-469e-9fda-b0eabda822d4}  stopped      192.168.0.161   CT ct2
 </code></pre>
 
-<p>При клонировании контейнера необходимо помнить о смене IP адреса, иначе при попытке запуска будет наблюдаться ошибка:</p>
+<p>При клонировании контейнера необходимо помнить о смене IP-адреса, иначе при попытке запуска будет наблюдаться ошибка:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl start ct2
 Starting the CT...
@@ -902,7 +901,7 @@ Unable to add ip 192.168.0.161: Address already in use
 Failed to start the Container
 </code></pre>
 
-<p>Сначала нужно удалить старые IP адреса:</p>
+<p>Сначала нужно удалить старые IP-адреса:</p>
 
 <pre><code>[root@virtuozzo ~]# prlctl set ct2 --ipdel 192.168.0.161/24
 [root@virtuozzo ~]# prlctl set ct2 --ipdel fe80::20c:29ff:fe01:fb08
@@ -1452,7 +1451,7 @@ freebsd-6           freebsd-7           freebsd-8           freebsd
 chrome-1            chrome              
 </code></pre>
 
-<p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с UUID:</p>
+<p>Для каждой виртуальной машины в каталоге <code>/vz/vmprivate/</code> создается собственная директория с именем, соответствующим ее UUID:</p>
 
 <pre><code>[root@virtuozzo ~]# ls /vz/vmprivate/1bdb465a-31e6-46c5-ad7b-947f6ff00208/
 config.pvs  config.pvs.backup  harddisk.hdd
@@ -1514,7 +1513,7 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 
 
 <p>Параметры виртуальной машины установлены, ее можно запускать, однако для установки гостевой ОС необходим образ ОС.
-Для хранения образов ОС можно создать каталог и централизованно хранить все там:</p>
+Для хранения образов ОС можно создать отдельный каталог и централизованно хранить все образы там:</p>
 
 <pre><code>[root@virtuozzo ~]# mkdir /vz/vmprivate/images/
 [root@virtuozzo ~]# ls /vz/vmprivate/images/ -1
@@ -1596,7 +1595,7 @@ root@192.168.0.180's password: eihaixahghath7A
 <h3>
 <a id="Дополнения-гостевой-ОС" class="anchor" href="#%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D0%BE%D0%B9-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-tools"></a>Дополнения гостевой ОС</h3>
 
-<p>Virtuozzo поддеживает Virtuozzo Guest Tools (дополнения гостевой ОС), которые позволяют выполнять некоторые операции в ВМ такие как:</p>
+<p>Virtuozzo поддерживает Virtuozzo Guest Tools (дополнения гостевой ОС), которые позволяют выполнять некоторые операции в ВМ такие как:</p>
 
 <ul>
 <li>запуск команд в ВМ с помощью <code>prlctl exec</code>
@@ -2031,30 +2030,23 @@ ha_prio              HA_PRIO
 <li>не запускайте блобы или скрипты, которые принадлежат VPS, непосредственно с хост-ноды</li>
 <li>для поиска руткитов можно воспользоваться утилитами <code>chrootkit</code> и <code>rkhunter</code>
 </li>
-<li>следите за нагрузкой сервера, обезопастесь от DoS/DDoS</li>
+<li>следите за нагрузкой сервера, обезопасьтесь от DoS/DDoS</li>
 <li>используйте системы конфигураций, такие как Puppet, Ansible, Chef, SaltStack, CFEngine если используется большое количество однотипных конфигураций на хост-нодах</li>
 <li>делайте резервные копии важных данных</li>
 <li>следите за свободным местом на жестких дисках, используйте ротацию логов</li>
 <li>следите за пулом IP-адресов, они могут закончиться в самый неподходящий момент</li>
 <li>проверяйте каталог <code>/var/log/</code>, который содержит логи системы</li>
-<li>используйте <code>iptables</code>, <code>ssh</code>, <code>ssl</code>, <code>fail2ban</code>, <code>ipset</code>
+<li>используйте <code>iptables</code>, <code>fail2ban</code>, <code>ipset</code>
 </li>
 <li>генерируйте сложные для перебора пароли (например с помощью <code>pwgen</code>), периодически меняйте их, уведомляйте пользователей об этом</li>
 <li>внимательно работайте на сервере под учетной записью <code>root</code>
 </li>
 <li>следите за рассылками новостей по безопасности</li>
 <li>обновляйте ПО, систему и ее компоненты</li>
-<li>cледите за правами пользователей, файлов и каталогов на сервере</li>
+<li>следите за правами пользователей, файлов и каталогов на сервере</li>
 <li>используйте системы мониторинга ресурсов (например Cacti, Munin, MRTG, Zabbix, Nagios, Icinga, Monit)</li>
 <li>ведите внутреннюю документацию по серверам и их настройке</li>
 <li>в случае обнаружения проблем, можно обратиться к документации проектов OpenVZ и Virtuozzo, а также задать вопросы на тематических форумах</li>
-</ul>
-
-<h2>
-<a id="-Планы-virtuozzo" class="anchor" href="#-%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="roadmap"></a>Планы Virtuozzo</h2>
-
-<ul>
-<li>2016 — Virtuozzo RTM</li>
 </ul>
 
 <h2>
@@ -2072,7 +2064,7 @@ ha_prio              HA_PRIO
 <a id="-todo" class="anchor" href="#-todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="todo"></a>TODO</h2>
 
 <ul>
-<li>управление сетью в Virtuozzo (veth/vlan/шейпинг)</li>
+<li>управление сетью в Virtuozzo (veth/vlan/shaping)</li>
 <li>снапшоты</li>
 <li>клонирование шаблонов</li>
 <li>проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
@@ -2082,7 +2074,6 @@ ha_prio              HA_PRIO
 </li>
 <li>создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
 <li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
-<li>резервное копирование</li>
 <li>измененная схема архитектуры Virtuozzo (старая схема тут: <a href="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png">https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png</a>)</li>
 <li>не работает <code>autostart</code>, <code>autostart-delay</code> для ВМ (<a href="https://bugs.openvz.org/browse/OVZ-6715">https://bugs.openvz.org/browse/OVZ-6715</a>)</li>
 <li>не работает <code>prlctl capture</code>
