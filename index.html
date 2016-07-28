@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Руководство по созданию и управлению контейнерами и виртуальными машинами на базе Virtuozzo by Amet13</title>
+    <title>Руководство по созданию и управлению контейнерами и виртуальными машинами на базе OpenVZ 7 by Amet13</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Руководство по созданию и управлению контейнерами и виртуальными машинами на базе Virtuozzo</h1>
+      <h1 class="project-name">Руководство по созданию и управлению контейнерами и виртуальными машинами на базе OpenVZ 7</h1>
       <h2 class="project-tagline"></h2>
       <a href="https://github.com/Amet13/virtuozzo-tutorial" class="btn">View on GitHub</a>
       <a href="https://github.com/Amet13/virtuozzo-tutorial/zipball/master" class="btn">Download .zip</a>
@@ -31,16 +31,15 @@
 <li><a href="#full-virt">Полная виртуализация</a></li>
 <li><a href="#paravirt">Паравиртуализация</a></li>
 <li><a href="#cont-virt">Контейнерная виртуализация (виртуализация уровня ОС)</a></li>
-<li><a href="#vz7">Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</a></li>
+<li><a href="#vz7">OpenVZ — объединение технологий виртуализации уровня ОС и полной виртуализации</a></li>
 </ul>
 </li>
-<li><a href="#history">Краткая история проекта Virtuozzo</a></li>
+<li><a href="#history">Краткая история проектов Virtuozzo/OpenVZ</a></li>
 <li>
 <a href="#install">Установка и подготовительные действия</a>
 
 <ul>
-<li><a href="#bare-metal">Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</a></li>
-<li><a href="#exists-distro">Установка Virtuozzo на заранее установленный дистрибутив</a></li>
+<li><a href="#bare-metal">Установка OpenVZ с помощью ISO-образа (bare-metal installation)</a></li>
 <li><a href="#prepare">Подготовительные действия</a></li>
 </ul>
 </li>
@@ -145,7 +144,7 @@
 <li>эмуляция оборудования (QEMU, Bochs, Dynamips)</li>
 <li>полная виртуализация (KVM, Hyper-V, VirtualBox, VMware ESXi)</li>
 <li>паравиртуализация (Xen, L4, Trango)</li>
-<li>виртуализация уровня ОС (LXC, Virtuozzo, Jails, Solaris Zones)</li>
+<li>виртуализация уровня ОС (LXC, OpenVZ, Jails, Solaris Zones)</li>
 </ul>
 
 <h3>
@@ -214,16 +213,16 @@ QEMU обеспечивает динамическую трансляцию пр
 Ядро обеспечивает полную изолированность контейнеров, поэтому программы из разных контейнеров не могут воздействовать друг на друга.</p>
 
 <h3>
-<a id="virtuozzo--объединение-технологий-виртуализации-уровня-ОС-и-полной-виртуализации" class="anchor" href="#virtuozzo--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="vz7"></a>Virtuozzo — объединение технологий виртуализации уровня ОС и полной виртуализации</h3>
+<a id="openvz--объединение-технологий-виртуализации-уровня-ОС-и-полной-виртуализации" class="anchor" href="#openvz--%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F-%D0%9E%D0%A1-%D0%B8-%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="vz7"></a>OpenVZ — объединение технологий виртуализации уровня ОС и полной виртуализации</h3>
 
-<p>Virtuozzo позволяет создавать множество защищенных, изолированных друг от друга контейнеров на одном узле.
+<p>OpenVZ позволяет создавать множество защищенных, изолированных друг от друга контейнеров на одном узле.
 Помимо этого разрабатываются возможности по созданию виртуальных машин на базе QEMU/KVM.
-Управление контейнерами и виртуальными машинами происходит с помощью специализированных утилит.</p>
-
-
+Управление контейнерами и виртуальными машинами происходит с помощью специализированных утилит.
+<em>Архитектура OpenVZ 7</em>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz7-architect.png" alt="Архитектура OpenVZ 7"></p>
 
 <p>Каждый контейнер ведет себя так же, как автономный сервер и имеет собственные файлы, процессы, сеть (IP-адреса, правила маршрутизации).
-В отличие от KVM или Xen, Virtuozzo использует одно ядро, которое является общим для всех виртуальных сред.</p>
+В отличие от KVM или Xen, OpenVZ использует одно ядро, которое является общим для всех виртуальных сред.</p>
 
 <p>Контейнеры можно разделить на две составляющие:</p>
 
@@ -257,9 +256,9 @@ QEMU обеспечивает динамическую трансляцию пр
 В разработке также находится миграция TCP соединений.</p>
 
 <p>VCMM (Virtuozzo containers memory management) — сервис управления механизмом memory cgroups в пространстве пользователя.
-Менеджер памяти 4 поколения управляет memory cgroups, который присутствует в ванильном ядре, поэтому не требует сторонних патчей со стороны Virtuozzo.</p>
+Менеджер памяти 4 поколения управляет memory cgroups, который присутствует в ванильном ядре, поэтому не требует сторонних патчей со стороны OpenVZ.</p>
 
-<p>Проведенные тестирования показывают, что OpenVZ (Virtuozzo) является одним из наиболее актуальных решений на рынке виртуализации, так как показывает внушительные результаты в различных тестированиях.</p>
+<p>Проведенные тестирования показывают, что OpenVZ является одним из наиболее актуальных решений на рынке виртуализации, так как показывает внушительные результаты в различных тестированиях.</p>
 
 <p><em>График времени отклика системы</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/response-time.png" alt="Время отклика системы"></p>
@@ -274,7 +273,7 @@ QEMU обеспечивает динамическую трансляцию пр
 На графике можно наблюдать, что OpenVZ обеспечивает практическую нативную пропускную способность 10Gb сети (9.7Gbit/s отправка и 9.87Gbit/s прием).</p>
 
 <h2>
-<a id="-Краткая-история-проекта-virtuozzo" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0-virtuozzo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="history"></a>Краткая история проекта Virtuozzo</h2>
+<a id="-Краткая-история-проектов-virtuozzoopenvz" class="anchor" href="#-%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%B0%D1%8F-%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BE%D0%B2-virtuozzoopenvz" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="history"></a>Краткая история проектов Virtuozzo/OpenVZ</h2>
 
 <p>В 1999 году возникла идея создания Linux-контейнеров, а уже в 2002 году компания SWsoft представила первый релиз коммерческой версии Virtuozzo.
 В том же 2002 году появились первые клиенты в Кремниевой долине.</p>
@@ -295,32 +294,30 @@ QEMU обеспечивает динамическую трансляцию пр
 <p>В марте 2016 года анонсирован выход Virtuozzo 7.0 Beta, с измененной архитектурой, а также с такими нововведениями, как дополнения гостевых ОС для Linux и Windows.
 Также представлена "живая" миграция для контейнеров, реализованная с помощью инструментария CRIU и P.Haul.</p>
 
+<p>25 июля 2016 года анонсирован окончательный релиз продукта под именем OpenVZ 7.0.
+В релизе объявлены такие события как отказ от развития SimFS, также объявлено что со следующей версии OpenVZ утилита vzctl будет объявлена устаревшей, рекомендуется вместо нее использовать prlctl или virsh.</p>
+
 <h2>
 <a id="-Установка-и-подготовительные-действия" class="anchor" href="#-%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="install"></a>Установка и подготовительные действия</h2>
 
-<p>Существует два способа установки Virtuozzo:</p>
+<p>Начиная с версии OpenVZ 7.0 доступен только один вариант установки, с помощью ISO-образа дистрибутива.</p>
 
-<ul>
-<li>с помощью ISO-образа дистрибутива</li>
-<li>с помощью установки пакетов и ядра на заранее установленный дистрибутив</li>
-</ul>
-
-<p>Установка Virtuozzo с помощью PXE (Preboot Execution Environment) подробно описана в <a href="https://docs.openvz.org/virtuozzo_7_installation_using_pxe_guide.webhelp/">документации</a>.</p>
+<p>Установка OpenVZ с помощью PXE (Preboot Execution Environment) подробно описана в <a href="https://docs.openvz.org/virtuozzo_7_installation_using_pxe_guide.webhelp/">документации</a>.</p>
 
 <h3>
-<a id="Установка-virtuozzo-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="bare-metal"></a>Установка Virtuozzo с помощью ISO-образа (bare-metal installation)</h3>
+<a id="Установка-openvz-с-помощью-iso-образа-bare-metal-installation" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-openvz-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-iso-%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%B0-bare-metal-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="bare-metal"></a>Установка OpenVZ с помощью ISO-образа (bare-metal installation)</h3>
 
-<p>Дистрибутив Virtuozzo Linux с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком, является самым простым способом установки Virtuozzo на сервер.</p>
+<p>Дистрибутив Virtuozzo Linux (VzLinux) с патчами для ядра RHEL 7, утилитами управления и модифицированным установщиком доступен для скачивания в виде стандартного ISO-образа и в виде netinstall-образа.</p>
 
-<p>Текущая последняя версия ISO-образа доступна по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/iso/</a></p>
+<p>Текущие последние версии ISO-образов доступны по адресу: <a href="https://download.openvz.org/virtuozzo/releases/7.0/x86_64/iso/">https://download.openvz.org/virtuozzo/releases/7.0/x86_64/iso/</a></p>
 
-<p>После записи дистрибутива на носитель, можно приступать к установке Virtuozzo.
+<p>После записи дистрибутива на носитель, можно приступать к установке OpenVZ.
 Для этого необходимо загрузиться с носителя.</p>
 
-<p><em>Экран установки Virtuozzo после загрузки с носителя</em>
-<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/install-vz.png" alt="Экран установки Virtuozzo"></p>
+<p><em>Экран установки OpenVZ после загрузки с носителя</em>
+<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/install-vz.png" alt="Экран установки OpenVZ"></p>
 
-<p>Установка Virtuozzo ничем не отличается от установки обычного Linux-дистрибутива.
+<p>Установка OpenVZ ничем не отличается от установки обычного Linux-дистрибутива.
 Установщик Anaconda предложит установить дату и время, раскладку клавиатуры, языковые параметры.
 Также необходимо будет произвести разметку диска и настроить сеть.
 По умолчанию включен kdump, который позволяет в будущем выяснить причины сбоев в ядре, поэтому рекомендуется его не отключать.</p>
@@ -328,12 +325,12 @@ QEMU обеспечивает динамическую трансляцию пр
 <p><em>Экран установки параметров системы</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/anaconda.png" alt="Настройки системы"></p>
 
-<p><em>Пример разметки для 23GB диска</em>
+<p><em>Пример разметки для 30GB диска</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/partitioning.png" alt="Разметка диска"></p>
 
 <p>Необходимо для раздела <code>/</code> выделить не менее 8GB доступного дискового пространства.
 Размер раздела <code>swap</code> равен примерно половине объема оперативной памяти.
-Все остальное дисковое пространство выделяется под раздел <code>/vz</code> с файловой системой ext4.</p>
+Все остальное дисковое пространство (рекомендуется не менее 30GB) выделяется под раздел <code>/vz</code> с файловой системой ext4.</p>
 
 <p><em>Настройки сетевого интерфейса и имени хоста</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/network.png" alt="Настройки сети"></p>
@@ -345,9 +342,9 @@ QEMU обеспечивает динамическую трансляцию пр
 
 <p>После установки необходимо перезагрузиться.</p>
 
-<p>На этом установка Virtuozzo с помощью ISO-образа завершена.</p>
+<p>На этом установка OpenVZ с помощью ISO-образа завершена.</p>
 
-<p><em>Меню загрузчика Grub после установки Virtuozzo</em>
+<p><em>Меню загрузчика Grub после установки OpenVZ</em>
 <img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub.png" alt="Grub"></p>
 
 <p>Первый вход в систему осуществляется от пользователя <code>vzuser</code>, по SSH.</p>
@@ -360,43 +357,6 @@ vzuser@192.168.0.150's password: пароль_пользователя_vzuser
 Password: пароль_пользователя_root
 [root@virtuozzo ~]#
 </code></pre>
-
-<h3>
-<a id="Установка-virtuozzo-на-заранее-установленный-дистрибутив" class="anchor" href="#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-virtuozzo-%D0%BD%D0%B0-%D0%B7%D0%B0%D1%80%D0%B0%D0%BD%D0%B5%D0%B5-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B4%D0%B8%D1%81%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="exists-distro"></a>Установка Virtuozzo на заранее установленный дистрибутив</h3>
-
-<p>Поддерживаемые дистрибутивы:</p>
-
-<ul>
-<li>CloudLinux 7</li>
-<li>CentOS 7</li>
-<li>Scientific Linux 7</li>
-<li>прочие дистрибутивы, основанные на RHEL 7</li>
-</ul>
-
-<p>Установка пакетов на примере дистрибутива CentOS 7.</p>
-
-<p>Пакет <code>virtuozzo-release</code> содержит метаинформацию и yum-репозитории, необходимые для установки пакетов:</p>
-
-<pre><code>[root@virtuozzo ~]# yum localinstall https://download.openvz.org/virtuozzo/releases/7.0-rtm/x86_64/os/Packages/v/virtuozzo-release-7.0.0-40.vz7.x86_64.rpm
-</code></pre>
-
-<p>Установка необходимых RPM-пакетов:</p>
-
-<pre><code>[root@virtuozzo ~]# yum install prlctl prl-disp-service vzkernel
-</code></pre>
-
-<p>В качестве зависимостей также установятся такие пакеты как <code>criu</code>, <code>libvirt</code>, <code>lvm2</code>, <code>nfs-utils</code>, <code>quota</code>, <code>vcmmd</code>, <code>vzctl</code>, <code>vztt</code> и другие.</p>
-
-<p>По окончании установки пакетов необходимо перезагрузиться:</p>
-
-<pre><code>[root@virtuozzo ~]# reboot
-</code></pre>
-
-<p>В меню загрузчика должен появиться новый пункт <code>Virtuozzo 7</code>.
-Необходимо загрузиться с этого ядра.</p>
-
-<p><em>Меню загрузчика Grub после установки Virtuozzo</em>
-<img src="https://raw.githubusercontent.com/Amet13/virtuozzo-tutorial/master/images/vz-install/grub-vz.png" alt="Grub"></p>
 
 <h3>
 <a id="Подготовительные-действия" class="anchor" href="#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="prepare"></a>Подготовительные действия</h3>
@@ -1982,7 +1942,6 @@ T  STATUS       NAME     HOSTNAME                    DIST         IP_ADDR
 CT running      ct2      ct2.virtuozzo.localhost     debian       192.168.0.162 FE80:0:0:0:20C:29FF:FE01:FB09
 CT running      ct1      ct1.virtuozzo.localhost     debian       192.168.0.161 FE80:0:0:0:20C:29FF:FE01:FB08
 VM stopped      vm1      vm1.virtuozzo.localhost     rhel7        192.168.0.163 FE80:0:0:0:20C:29FF:FE01:FB07
-
 </code></pre>
 
 <p>Список всех доступных полей:</p>
@@ -2090,7 +2049,7 @@ ha_prio              HA_PRIO
 <p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Amet13/virtuozzo-tutorial">Руководство по созданию и управлению контейнерами и виртуальными машинами на базе Virtuozzo</a> is maintained by <a href="https://github.com/Amet13">Amet13</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/Amet13/virtuozzo-tutorial">Руководство по созданию и управлению контейнерами и виртуальными машинами на базе OpenVZ 7</a> is maintained by <a href="https://github.com/Amet13">Amet13</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
