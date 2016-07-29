@@ -1063,7 +1063,7 @@ processor   : 1
 
 <p>Для систем архитектуры NUMA существует возможность привязки контейнера к процессорам NUMA-нод:</p>
 
-<pre><code>[root@vz ~]# vzctl set ct1 --nodemask 0 --save
+<pre><code>[root@vz ~]# prlctl set ct1 --nodemask 0
 </code></pre>
 
 <p>Аналогично все параметры можно вручную прописать в конфигурационный файл контейнера:</p>
@@ -1472,12 +1472,12 @@ UUID                                    STATUS       IP_ADDR         T  NAME
 [root@vz ~]# prlctl set vm1 --iopslimit 0
 </code></pre>
 
-<p>Ключ <code>--videosize</code> указывает размер выделяемой видеопамяти в MB для виртуальной машины.</p>
+<p>Ключ <code>--videosize</code> указывает размер выделяемой видеопамяти в MB для виртуальной машины:</p>
 
 <pre><code>[root@vz ~]# prlctl set vm1 --videosize 64
 </code></pre>
 
-<p>Ключ <code>--autostart</code> аналогичен <code>--onboot</code> для контейнеров, который указывает возможность автостарта контейнера при старте хост-ноды.</p>
+<p>Ключ <code>--autostart</code> аналогичен <code>--onboot</code> для контейнеров, который указывает возможность автостарта контейнера при старте хост-ноды:</p>
 
 <pre><code>[root@vz ~]# prlctl set vm1 --autostart on
 </code></pre>
@@ -1565,7 +1565,7 @@ root@192.168.0.180's password: eihaixahghath7A
 <h3>
 <a id="Дополнения-гостевой-ОС" class="anchor" href="#%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D0%BE%D0%B9-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-tools"></a>Дополнения гостевой ОС</h3>
 
-<p>OpenVZ поддерживает Virtuozzo Guest Tools (дополнения гостевой ОС), которые позволяют выполнять некоторые операции в ВМ такие как:</p>
+<p>OpenVZ поддерживает OpenVZ Guest Tools (дополнения гостевой ОС), которые позволяют выполнять некоторые операции в ВМ такие как:</p>
 
 <ul>
 <li>запуск команд в ВМ с помощью <code>prlctl exec</code>
