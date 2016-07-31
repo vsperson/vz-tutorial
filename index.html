@@ -45,11 +45,12 @@
 </ul>
 </li>
 <li>
-<a href="#templates-ct">Управление шаблонами контейнеров</a>
+<a href="#templates">Управление шаблонами</a>
 
 <ul>
 <li><a href="#guest-os">Шаблоны гостевых ОС</a></li>
 <li><a href="#app-templates">Шаблоны приложений</a></li>
+<li><a href="#templates-%D1%81t-vm">Шаблоны контейнеров и виртуальных машин</a></li>
 </ul>
 </li>
 <li>
@@ -89,8 +90,11 @@
 <ul>
 <li><a href="#tun-tap">TUN/TAP</a></li>
 <li><a href="#fuse">FUSE</a></li>
+<li><a href="#nfs">NFS</a></li>
 </ul>
 </li>
+<li><a href="#simfs-ploop">SimFS и ploop</a></li>
+<li><a href="#snapshots">Управление снапшотами</a></li>
 <li>
 <a href="#vm">Работа с виртуальными машинами</a>
 
@@ -406,7 +410,7 @@ Password: пароль_пользователя_root
 </code></pre>
 
 <h2>
-<a id="-Управление-шаблонами-контейнеров" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="templates-ct"></a>Управление шаблонами контейнеров</h2>
+<a id="-Управление-шаблонами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="templates"></a>Управление шаблонами</h2>
 
 <h3>
 <a id="Шаблоны-гостевых-ОС" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%B2%D1%8B%D1%85-%D0%9E%D0%A1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="guest-os"></a>Шаблоны гостевых ОС</h3>
@@ -425,7 +429,7 @@ debian-8.0-x86_64                  :Debian 8.0 (for AMD64/Intel EM64T) Virtuozzo
 debian-8.0-x86_64-minimal          :Debian 8.0 minimal (for AMD64/Intel EM64T) Virtuozzo Template
 </code></pre>
 
-<p>Доступные удаленно шаблоны:</p>
+<p>Удаленно доступные шаблоны:</p>
 
 <pre><code>[root@vz ~]# vzpkg list --available --with-summary
 debian-7.0-x86_64                  
@@ -524,6 +528,81 @@ Removed:
 [root@vz ~]# vzpkg list ct5
 centos-7-x86_64                    2016-02-09 17:00:57
 centos-7-x86_64      jre           2016-02-09 20:03:50
+</code></pre>
+
+<p>Создадим конфиг, на основе которого будет создаваться контейнер с CentOS 7 и при этом по умолчанию будут устанавливаться Apache Tomcat и JRE:</p>
+
+<pre><code>[root@vz ~]# cd /etc/vz/conf/
+[root@vz conf]# cp ve-basic.conf-sample ve-centos-7-x86_64-tomcat-jre.conf-sample
+[root@vz conf]# echo OSTEMPLATE=".centos-7" &gt;&gt; ve-centos-7-x86_64-tomcat-jre.conf-sample
+[root@vz conf]# echo TEMPLATES=".tomcat .jre" &gt;&gt; ve-centos-7-x86_64-tomcat-jre.conf-sample
+</code></pre>
+
+<p>Создадим кэш для этих приложений:</p>
+
+<pre><code>[root@vz ~]# vzpkg create appcache --config centos-7-x86_64-tomcat-jre
+[root@vz ~]# vzpkg list appcache
+centos-7-x86_64                    2016-07-31 03:12:28
+     jre
+     tomcat
+</code></pre>
+
+<p>На основе нового конфигурационного файла создадим и запустим контейнер:</p>
+
+<pre><code>[root@vz ~]# prlctl create ct5 --config centos-7-x86_64-tomcat-jre --vmtype=ct
+Creating the Virtuozzo Container...
+The Container has been successfully created.
+[root@vz ~]# prlctl start ct5
+Starting the CT...
+The CT has been successfully started.
+</code></pre>
+
+<p>Проверка предустановки Apache Tomcat и JRE в составе шаблона:</p>
+
+<pre><code>[root@vz ~]# prlctl exec ct5 systemctl start tomcat
+[root@vz ~]# prlctl exec ct5 systemctl is-active tomcat
+active
+[root@vz ~]# prlctl exec ct5 ls /usr/lib/jvm/
+java-1.7.0-openjdk-1.7.0.111-2.6.7.2.el7_2.x86_64
+jre
+jre-1.7.0
+jre-1.7.0-openjdk
+jre-1.7.0-openjdk-1.7.0.111-2.6.7.2.el7_2.x86_64
+jre-openjdk
+</code></pre>
+
+<h3>
+<a id="Шаблоны-контейнеров-и-виртуальных-машин" class="anchor" href="#%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%BE%D0%B2-%D0%B8-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="templates-%D1%81t-vm"></a>Шаблоны контейнеров и виртуальных машин</h3>
+
+<p>Помимо шаблонов гостевых ОС и шаблонов приложений, существует также возможность создания контейнера или виртуальной машины на основе других контейнеров или ВМ.</p>
+
+<p>Пример создания шаблона на основе контейнера <code>ct2</code> с установленным веб-сервером nginx:</p>
+
+<pre><code>[root@vz ~]# prlctl clone ct2 --name CentOS7+nginx --template
+Clone the ct2 CT to template CentOS7+nginx...
+The CT has been successfully cloned.
+</code></pre>
+
+<p>Просмотр списка доступных шаблонов:</p>
+
+<pre><code>[root@vz ~]# prlctl list -t
+UUID                                    DIST            T  NAME
+{c28c09dd-a379-43dd-aae9-3e62f972476a}  centos7         CT CentOS7+nginx
+</code></pre>
+
+<p>Создадим новый контейнер на основе шаблона <code>CentOS7+nginx</code>:</p>
+
+<pre><code>[root@vz ~]# prlctl create ct3 --ostemplate CentOS7+nginx
+Creating the VM on the basis of the CentOS7+nginx template...
+Clone the CentOS7+nginx CT to CT ct3...
+The CT has been successfully cloned.
+</code></pre>
+
+<p>Удаление шаблона:</p>
+
+<pre><code>[root@vz ~]# prlctl delete CentOS7+nginx
+Removing the CT...
+The CT has been successfully removed.
 </code></pre>
 
 <h2>
@@ -649,7 +728,7 @@ eVjfsDkTE63s5Nw
 
 <p>Или воспользоваться утилитой <code>pwgen</code>:</p>
 
-<pre><code>[root@vz ~]# yum localinstall http://dl.fedoraproject.org/pub/epel/7/x86_64/p/pwgen-2.07-1.el7.x86_64.rpm
+<pre><code>[root@vz ~]# yum localinstall https://dl.fedoraproject.org/pub/epel/7/x86_64/p/pwgen-2.07-1.el7.x86_64.rpm
 [root@vz ~]# pwgen -s 15 1
 esxrcH7dyoA46LY
 </code></pre>
@@ -1290,7 +1369,6 @@ Disks stats     0.000 0.000
        0    4074  0.0  0.2  36144  2388 ?        Ss   20:10   0:00  \_ /usr/lib/postfix/master
      105    4081  0.0  0.2  38208  2316 ?        S    20:10   0:00      \_ pickup -l -t unix -u -c
      105    4082  0.0  0.2  38256  2336 ?        S    20:10   0:00      \_ qmgr -l -t unix -u
-
 </code></pre>
 
 <p>Утилита <code>vztop</code> теперь заменена алиасом на <code>htop</code> с отображением UUID контейнера, которому принадлежит процесс:</p>
@@ -1340,9 +1418,8 @@ crw------- 1 root root 10, 200 Feb 10 13:12 /dev/net/tun
 Например одну из программ:</p>
 
 <ul>
-<li><a href="http://openvpn.net">OpenVPN</a></li>
-<li><a href="http://tinc-vpn.org">tinc</a></li>
-<li><a href="http://vtun.sourceforge.net">VTun</a></li>
+<li><a href="https://openvpn.net">OpenVPN</a></li>
+<li><a href="https://tinc-vpn.org">tinc</a></li>
 </ul>
 
 <h3>
@@ -1383,6 +1460,132 @@ Please enter the password to authenticate user username with server
 https://webdav.yandex.ru or hit enter for none.
   Password:  pass
 </code></pre>
+
+<h3>
+<a id="nfs" class="anchor" href="#nfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="nfs"></a>NFS</h3>
+
+<p>NFS (Network File System) – это сетевая файловая система, позволяющая пользователям обращаться к файлам и каталогам, расположенным на удаленных компьютерах, как если бы эти файлы и каталоги были локальными.</p>
+
+<p>По умолчанию модуль ядра NFS уже включен в OpenVZ, поэтому нужно всего лишь пробросить устройство в контейнер.
+Перед пробросом модуля контейнер нужно остановить:</p>
+
+<pre><code>[root@vz ~]# prlctl stop ct1
+[root@vz ~]# prlctl set ct1 --features nfsd:on
+set features: nfsd:on
+</code></pre>
+
+<p>А после – включить и проверить работоспособность сервиса <code>nfs</code>:</p>
+
+<pre><code>[root@vz ~]# prlctl start ct1
+[root@vz ~]# prlctl exec ct1 systemctl start nfs
+[root@vz ~]# prlctl exec ct1 systemctl is-active nfs
+active
+</code></pre>
+
+<h2>
+<a id="-simfs-и-ploop" class="anchor" href="#-simfs-%D0%B8-ploop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="simfs-ploop"></a>SimFS и ploop</h2>
+
+<p>Для работы OpenVZ с файлами контейнера, существует два метода:</p>
+
+<ul>
+<li>SimFS (каталоги и файлы в файловой системе хост-компьютера)</li>
+<li>ploop (отдельный файл для каждого контейнера)</li>
+</ul>
+
+<p>По умолчанию в OpenVZ используется ploop.
+SimFS уже давно не используется, и с версии OpenVZ 7 больше не будет поддерживаться.
+Основные преимущества ploop:</p>
+
+<ul>
+<li>поддержка корректной и надежной изоляции пользователей друг от друга</li>
+<li>журнал файловой системы больше не является узким местом</li>
+<li>живая миграция</li>
+<li>поддержка различных типов хранения данных</li>
+<li>быстрое изменение размера контейнера без его отключения</li>
+</ul>
+
+<p>В ploop игнорируются параметры DISKQUOTA, DISKINODES, QUOTATIME.
+Параметр DISKSPACE не игнорируется.
+ploop может работать только с файловой системой ext4.</p>
+
+<p>Для тех, кому требуется использование устаревшего SimFS существует возможность его включения:</p>
+
+<pre><code>[root@vz ~]# vim /etc/vz/vz.conf
+#VEFSTYPE="ext4"
+VEFSTYPE="simfs"
+[root@vz ~]# prlctl create ct3 --vmtype=ct
+[root@vz ~]# ls /vz/private/731a1572-d609-498f-8c8b-8739e336a210/fs/
+.autorelabel  boot/  etc/   lib/     media/  opt/   root/  sbin/  sys/  usr/  .vzfifo
+bin/          dev/   home/  lib64/   mnt/    proc/   run/  srv/   tmp/  var/         
+</code></pre>
+
+<p>Для отключения SimFS нужно в файле <code>/etc/vz/vz.conf</code> установить переменную <code>VEFSTYPE="ext4"</code>.</p>
+
+<h2>
+<a id="-Управление-снапшотами" class="anchor" href="#-%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BD%D0%B0%D0%BF%D1%88%D0%BE%D1%82%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="snapshots"></a>Управление снапшотами</h2>
+
+<p>Перед созданием снапшота рекомендуется закончить установку ПО, загрузку файлов и запись на внешние устройства.
+Также рекомендуется отменить транзакции во внешние БД.</p>
+
+<p>Создание снапшота контейнера:</p>
+
+<pre><code>[root@vz ~]# prlctl snapshot ct2 -n FreshCentOS7 -d "Fresh CentOS7 container"
+Creating the snapshot...
+The snapshot with id {aa9649d9-9ed1-408a-9463-36ce0cea6ba7} has been successfully created.
+</code></pre>
+
+<p>где параметр <code>-n</code> указываем имя снапшота, <code>-d</code> – его описание, описание снапшота всегда указывается в кавычках.</p>
+
+<p>Снапшоты сохраняются в каталог <code>/vz/private/$UUID/dump/</code>:</p>
+
+<pre><code>[root@vz ~]# ls /vz/private/49465252-b780-45f1-9784-538166be2367/dump/
+{aa9649d9-9ed1-408a-9463-36ce0cea6ba7}  {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}.ve.conf
+</code></pre>
+
+<p>Подробная информация о снапшоте:</p>
+
+<pre><code>[root@vz ~]# prlctl snapshot-list ct2 -i {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
+ID: {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
+Name: FreshCentOS7
+Date: 2016-07-31 01:44:43
+State: poweroff
+Description: Fresh CentOS7 container
+</code></pre>
+
+<p>Список доступных снапшотов для контейнера:</p>
+
+<pre><code>[root@vz ~]# prlctl snapshot-list ct2
+PARENT_SNAPSHOT_ID                      SNAPSHOT_ID
+                                        {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
+{aa9649d9-9ed1-408a-9463-36ce0cea6ba7} *{e76f0a0d-aa8e-491f-a720-daa65dfb911a}
+</code></pre>
+
+<p>Символ <code>*</code> указывает текущую использующуюся ветку снапшота:</p>
+
+<pre><code>[root@vz ~]# prlctl snapshot-list ct2 -t
+_{aa9649d9-9ed1-408a-9463-36ce0cea6ba7}*{e76f0a0d-aa8e-491f-a720-daa65dfb911a}
+</code></pre>
+
+<p>Для проверки работы снапшота создадим файл, а потом восстановимся из снапшота, в котором этого файла нет:</p>
+
+<pre><code>[root@vz ~]# prlctl exec ct2 touch /root/file.txt
+[root@vz ~]# prlctl exec ct2 ls /root/file.txt
+/root/file.txt
+[root@vz ~]# prlctl snapshot-switch ct2 --id {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
+Switch to the snapshot...
+The CT has been successfully switched.
+[root@vz ~]# prlctl exec ct2 ls /root/file.txt
+ls: cannot access /root/file.txt: No such file or directory
+</code></pre>
+
+<p>Удаление снапшота:</p>
+
+<pre><code>[root@vz ~]# prlctl snapshot-delete ct2 --id {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
+Delete the snapshot...
+The snapshot has been successfully deleted.
+</code></pre>
+
+<p>При удалении родительского снапшота, снапшоты-потомки не удаляются.</p>
 
 <h2>
 <a id="-Работа-с-виртуальными-машинами" class="anchor" href="#-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC%D0%B8-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="vm"></a>Работа с виртуальными машинами</h2>
@@ -1648,6 +1851,7 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 <li><code>mount</code></li>
 <li><code>umount</code></li>
 <li><code>move</code></li>
+<li><code>snapshot</code></li>
 </ul>
 
 <p>Вдобавок к этим командам существует возможность приостанавливать ВМ:</p>
@@ -2034,19 +2238,16 @@ ha_prio              HA_PRIO
 
 <ul>
 <li>управление сетью в OpenVZ (veth/vlan/shaping)</li>
-<li>снапшоты</li>
-<li>клонирование шаблонов</li>
-<li>проброс устройств (nfs/pptp/usb/vlan) (<a href="http://habrahabr.ru/post/210460/">http://habrahabr.ru/post/210460/</a>)</li>
+<li>проброс устройств (pptp/usb/vlan) (<a href="https://habrahabr.ru/post/210460/">https://habrahabr.ru/post/210460/</a>)</li>
 <li>
 <code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>) и (<a href="https://bugs.openvz.org/browse/OVZ-6505">https://bugs.openvz.org/browse/OVZ-6505</a>)</li>
 <li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code>
 </li>
-<li>создание шаблона приложения для автоматического создания контейнера (<a href="https://bugs.openvz.org/browse/OVZ-6682">https://bugs.openvz.org/browse/OVZ-6682</a>)</li>
 <li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
-<li>не работает <code>prlctl capture</code>
-</li>
+<li>не работает <code>prlctl capture</code> (возможно нужно протестировать с иксами)</li>
 <li>
 <code>vztop</code>/<code>vzps</code>/<code>vzstat</code>/<code>vznetstat</code> работают только с UUID (<a href="https://bugs.openvz.org/browse/OVZ-6504">https://bugs.openvz.org/browse/OVZ-6504</a>)</li>
+<li>не создается снапшот со включенным nfsd (<a href="https://bugs.openvz.org/browse/OVZ-6780">https://bugs.openvz.org/browse/OVZ-6780</a>)</li>
 </ul>
 
 <h2>
