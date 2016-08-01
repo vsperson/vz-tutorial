@@ -341,7 +341,7 @@ QEMU обеспечивает динамическую трансляцию пр
 Для этого необходимо загрузиться с носителя.</p>
 
 <p><em>Экран установки OpenVZ после загрузки с носителя</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/install-vz.png" alt="Экран установки OpenVZ"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/install-vz.png" alt="Экран установки OpenVZ"></p>
 
 <p>Установка OpenVZ ничем не отличается от установки обычного Linux-дистрибутива.
 Установщик Anaconda предложит установить дату и время, раскладку клавиатуры, языковые параметры.
@@ -349,29 +349,29 @@ QEMU обеспечивает динамическую трансляцию пр
 По умолчанию включен kdump, который позволяет в будущем выяснить причины сбоев в ядре, поэтому рекомендуется его не отключать.</p>
 
 <p><em>Экран установки параметров системы</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/anaconda.png" alt="Настройки системы"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/anaconda.png" alt="Настройки системы"></p>
 
 <p><em>Пример разметки для 30GB диска</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/partitioning.png" alt="Разметка диска"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/partitioning.png" alt="Разметка диска"></p>
 
 <p>Необходимо для раздела <code>/</code> выделить не менее 8GB доступного дискового пространства.
 Размер раздела <code>swap</code> равен примерно половине объема оперативной памяти.
 Все остальное дисковое пространство (рекомендуется не менее 30GB) выделяется под раздел <code>/vz</code> с файловой системой ext4.</p>
 
 <p><em>Настройки сетевого интерфейса и имени хоста</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/network.png" alt="Настройки сети"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/network-install.png" alt="Настройки сети"></p>
 
 <p>Также необходимо задать пароль пользователя <code>root</code> и создать локального пользователя, например <code>vzuser</code>.</p>
 
 <p><em>Установка пароля суперпользователя и создание локального пользователя</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/user.png" alt="Настройки пользователей"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/user.png" alt="Настройки пользователей"></p>
 
 <p>После установки необходимо перезагрузиться.</p>
 
 <p>На этом установка OpenVZ с помощью ISO-образа завершена.</p>
 
 <p><em>Меню загрузчика Grub после установки OpenVZ</em>
-<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/vz-install/grub.png" alt="Grub"></p>
+<img src="https://raw.githubusercontent.com/Amet13/vz-tutorial/master/images/grub.png" alt="Grub"></p>
 
 <p>Первый вход в систему осуществляется от пользователя <code>vzuser</code>, по SSH.</p>
 
