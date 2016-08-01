@@ -1488,7 +1488,7 @@ active
 <p>Для работы OpenVZ с файлами контейнера, существует два метода:</p>
 
 <ul>
-<li>SimFS (каталоги и файлы в файловой системе хост-компьютера)</li>
+<li>SimFS (каталоги и файлы в файловой системе хост-ноды)</li>
 <li>ploop (отдельный файл для каждого контейнера)</li>
 </ul>
 
@@ -1504,8 +1504,8 @@ SimFS уже давно не используется, и с версии OpenVZ
 <li>быстрое изменение размера контейнера без его отключения</li>
 </ul>
 
-<p>В ploop игнорируются параметры DISKQUOTA, DISKINODES, QUOTATIME.
-Параметр DISKSPACE не игнорируется.
+<p>В ploop игнорируются параметры <code>DISKQUOTA</code>, <code>DISKINODES</code>, <code>QUOTATIME</code>.
+Параметр <code>DISKSPACE</code> не игнорируется.
 ploop может работать только с файловой системой ext4.</p>
 
 <p>Для тех, кому требуется использование устаревшего SimFS существует возможность его включения:</p>
@@ -1516,7 +1516,7 @@ VEFSTYPE="simfs"
 [root@vz ~]# prlctl create ct3 --vmtype=ct
 [root@vz ~]# ls /vz/private/731a1572-d609-498f-8c8b-8739e336a210/fs/
 .autorelabel  boot/  etc/   lib/     media/  opt/   root/  sbin/  sys/  usr/  .vzfifo
-bin/          dev/   home/  lib64/   mnt/    proc/   run/  srv/   tmp/  var/         
+bin/          dev/   home/  lib64/   mnt/    proc/  run/   srv/   tmp/  var/         
 </code></pre>
 
 <p>Для отключения SimFS нужно в файле <code>/etc/vz/vz.conf</code> установить переменную <code>VEFSTYPE="ext4"</code>.</p>
@@ -1529,7 +1529,7 @@ bin/          dev/   home/  lib64/   mnt/    proc/   run/  srv/   tmp/  var/
 
 <p>Создание снапшота контейнера:</p>
 
-<pre><code>[root@vz ~]# prlctl snapshot ct2 -n FreshCentOS7 -d "Fresh CentOS7 container"
+<pre><code>[root@vz ~]# prlctl snapshot ct2 -n FreshCentOS7 -d "Fresh CentOS 7 container"
 Creating the snapshot...
 The snapshot with id {aa9649d9-9ed1-408a-9463-36ce0cea6ba7} has been successfully created.
 </code></pre>
@@ -1549,7 +1549,7 @@ ID: {aa9649d9-9ed1-408a-9463-36ce0cea6ba7}
 Name: FreshCentOS7
 Date: 2016-07-31 01:44:43
 State: poweroff
-Description: Fresh CentOS7 container
+Description: Fresh CentOS 7 container
 </code></pre>
 
 <p>Список доступных снапшотов для контейнера:</p>
@@ -1837,19 +1837,21 @@ uid=1000(testuser) gid=1000(testuser) groups=1000(testuser)
 
 <ul>
 <li><code>set</code></li>
+<li><code>list</code></li>
 <li><code>start</code></li>
-<li><code>exec</code></li>
-<li><code>enter</code></li>
-<li><code>console</code></li>
-<li><code>status</code></li>
 <li><code>stop</code></li>
 <li><code>restart</code></li>
 <li><code>suspend</code></li>
 <li><code>resume</code></li>
+<li><code>exec</code></li>
+<li><code>enter</code></li>
+<li><code>console</code></li>
+<li><code>status</code></li>
+<li><code>create</code></li>
 <li><code>delete</code></li>
-<li><code>clone</code></li>
 <li><code>mount</code></li>
 <li><code>umount</code></li>
+<li><code>clone</code></li>
 <li><code>move</code></li>
 <li><code>snapshot</code></li>
 </ul>
