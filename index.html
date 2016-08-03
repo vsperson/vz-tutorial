@@ -91,6 +91,7 @@
 <li><a href="#tun-tap">TUN/TAP</a></li>
 <li><a href="#fuse">FUSE</a></li>
 <li><a href="#nfs">NFS</a></li>
+<li><a href="#pptp">PPTP</a></li>
 </ul>
 </li>
 <li><a href="#simfs-ploop">SimFS и ploop</a></li>
@@ -1482,6 +1483,52 @@ set features: nfsd:on
 active
 </code></pre>
 
+<h3>
+<a id="pptp" class="anchor" href="#pptp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="pptp"></a>PPTP</h3>
+
+<p>PPTP (Point-to-Point Tunneling Protocol) — туннельный протокол типа точка-точка, позволяющий компьютеру устанавливать защищенное соединение с сервером за счет создания специального туннеля в стандартной, незащищенной сети.
+PPTP может также использоваться для организации туннеля между двумя локальными сетями.</p>
+
+<p>Для работы PPTP в контейнере OpenVZ нужно включить соответствующие модули ядра на хост-ноде.</p>
+
+<p>Добавим модули ядра <code>ppp_async</code>, <code>ppp_deflate</code>, <code>ppp_mppe</code>:</p>
+
+<pre><code>[root@vz ~]# modprobe ppp_async
+[root@vz ~]# modprobe ppp_deflate
+[root@vz ~]# modprobe ppp_mppe
+[root@vz ~]# lsmod | grep ppp
+ppp_mppe               13002  0
+ppp_deflate            12950  0
+zlib_deflate           26914  1 ppp_deflate
+ppp_async              17413  0
+ppp_generic            33029  3 ppp_mppe,ppp_async,ppp_deflate
+slhc                   13450  1 ppp_generic
+crc_ccitt              12707  1 ppp_async
+</code></pre>
+
+<p>Добавил модули в автозагрузку:</p>
+
+<pre><code>[root@vz ~]# echo ppp_async &gt;&gt; /etc/modules-load.d/vz.conf
+[root@vz ~]# echo ppp_deflate &gt;&gt; /etc/modules-load.d/vz.conf
+[root@vz ~]# echo ppp_mppe &gt;&gt; /etc/modules-load.d/vz.conf
+</code></pre>
+
+<p>Остановим контейнер, пробросим устройство и запустим контейнер:</p>
+
+<pre><code>[root@vz ~]# prlctl stop ct1
+[root@vz ~]# vzctl set ct1 --devnodes ppp:rw --save
+[root@vz ~]# prlctl start ct1
+</code></pre>
+
+<p>Проверка работы сервиса:</p>
+
+<pre><code>[root@vz ~]# prlctl enter ct1
+[root@ct1 ~]# ls /dev/ppp
+/dev/ppp
+[root@ct1 ~]# /usr/sbin/pppd
+~�}#�!}!}!} }4}"}&amp;} } } } }%}&amp;}0V��}'}"}(}"ty
+</code></pre>
+
 <h2>
 <a id="-simfs-и-ploop" class="anchor" href="#-simfs-%D0%B8-ploop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="simfs-ploop"></a>SimFS и ploop</h2>
 
@@ -1504,9 +1551,7 @@ SimFS уже давно не используется, и с версии OpenVZ
 <li>быстрое изменение размера контейнера без его отключения</li>
 </ul>
 
-<p>В ploop игнорируются параметры <code>DISKQUOTA</code>, <code>DISKINODES</code>, <code>QUOTATIME</code>.
-Параметр <code>DISKSPACE</code> не игнорируется.
-ploop может работать только с файловой системой ext4.</p>
+<p>ploop может работать только с файловой системой ext4.</p>
 
 <p>Для тех, кому требуется использование устаревшего SimFS существует возможность его включения:</p>
 
@@ -2240,7 +2285,7 @@ ha_prio              HA_PRIO
 
 <ul>
 <li>управление сетью в OpenVZ (veth/vlan/shaping)</li>
-<li>проброс устройств (pptp/usb/vlan) (<a href="https://habrahabr.ru/post/210460/">https://habrahabr.ru/post/210460/</a>)</li>
+<li>проброс устройств (usb/vlan) (<a href="https://habrahabr.ru/post/210460/">https://habrahabr.ru/post/210460/</a>)</li>
 <li>
 <code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>) и (<a href="https://bugs.openvz.org/browse/OVZ-6505">https://bugs.openvz.org/browse/OVZ-6505</a>)</li>
 <li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code>
