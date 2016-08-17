@@ -92,6 +92,7 @@
 <li><a href="#fuse">FUSE</a></li>
 <li><a href="#nfs">NFS</a></li>
 <li><a href="#pptp">PPTP</a></li>
+<li><a href="#netfilter">Netfilter/IPTables</a></li>
 </ul>
 </li>
 <li><a href="#simfs-ploop">SimFS и ploop</a></li>
@@ -895,6 +896,17 @@ The CT has been successfully moved.
 dump/       fs/         .lck        .owner      root.hdd/   scripts/    templates/  .uptime     ve.conf     .ve.layout  .ve.xml
 </code></pre>
 
+<p>Сброс аптайма контейнера:</p>
+
+<pre><code>[root@vz ~]# prlctl list -i ct1 | grep Uptime
+Uptime: 01:15:57 (since 2016-07-31 01:18:41)
+[root@vz ~]# prlctl reset-uptime ct1
+Performing reset uptime operation to the CT...
+The CT uptime has been successfully reset.
+[root@vz ~]# prlctl list -i ct1 | grep Uptime
+Uptime: 00:00:00 (since 2016-08-17 23:18:22)
+</code></pre>
+
 <h3>
 <a id="Переустановка-контейнера" class="anchor" href="#%D0%9F%D0%B5%D1%80%D0%B5%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="reinstall-ct"></a>Переустановка контейнера</h3>
 
@@ -1137,16 +1149,6 @@ processor   : 1
 <pre><code>[root@vz ~]# prlctl set ct1 --nodemask 0
 </code></pre>
 
-<p>Аналогично все параметры можно вручную прописать в конфигурационный файл контейнера:</p>
-
-<pre><code>CPUUNITS="2000"
-CPUMASK="0-3,6,7"
-CPULIMIT="15"
-CPULIMIT_MHZ="600"
-CPUS="2"
-NODEMASK="0"
-</code></pre>
-
 <p>Утилиты контроля ресурсов процессора, гарантируют любому контейнеру количество времени центрального процессора, которое собственно и получает этот контейнер.
 При этом контейнер может потреблять больше времени, чем определено этой величиной, если нет другого конкурирующего с ним за время CPU сервера.</p>
 
@@ -1204,13 +1206,6 @@ set IOPS limit 300
 </code></pre>
 
 <p>По умолчанию значение этого параметра равно 0, что означает отсутствие лимитов.</p>
-
-<p>Параметры можно указать вручную в конфигурационном файле контейнера:</p>
-
-<pre><code>IOPRIO="6"
-IOLIMIT="20971520"
-IOPSLIMIT="300"
-</code></pre>
 
 <p>Проверка ограничения пропускной способностей операций ввода/вывода на примере <code>IOLIMIT</code>.</p>
 
@@ -1520,6 +1515,47 @@ crc_ccitt              12707  1 ppp_async
 ~�}#�!}!}!} }4}"}&amp;} } } } }%}&amp;}0V��}'}"}(}"ty
 </code></pre>
 
+<h3>
+<a id="netfilteriptables" class="anchor" href="#netfilteriptables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="netfilter"></a>Netfilter/IPTables</h3>
+
+<p>Netfilter — это межсетевой экран в ядре Linux.</p>
+
+<p>В OpenVZ существует возможность включать или отключать Netfilter для контейнера.</p>
+
+<p>Доступно четыре режима работы Netfilter в контейнере:</p>
+
+<ul>
+<li>disabled — отключены все модули</li>
+<li>stateless (по умолчанию) — все модули включены, за исключением NAT и conntracks</li>
+<li>stateful — все модули включены, за исключением NAT</li>
+<li>full — все модули включены</li>
+</ul>
+
+<p>Для изменения параметров Netfilter, контейнер должен быть отключен.</p>
+
+<p>Пример отключения всех модулей Netfilter для контейнера:</p>
+
+<pre><code>[root@vz ~]# prlctl set ct1 --netfilter disabled
+Set netfilter: disabled
+[root@vz ~]# prlctl exec ct1 iptables -L INPUT
+iptables v1.4.21: can't initialize iptables table `filter': Table does not exist (do you need to insmod?)
+Perhaps iptables or your kernel needs to be upgraded.
+</code></pre>
+
+<p>Включение всех модулей:</p>
+
+<pre><code>[root@vz ~]# prlctl set ct1 --netfilter full
+Set netfilter: full
+[root@vz ~]# prlctl exec ct1 iptables -L INPUT
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
+ACCEPT     icmp --  anywhere             anywhere
+ACCEPT     all  --  anywhere             anywhere
+ACCEPT     tcp  --  anywhere             anywhere             state NEW tcp dpt:ssh
+REJECT     all  --  anywhere             anywhere             reject-with icmp-host-prohibited
+</code></pre>
+
 <h2>
 <a id="-simfs-и-ploop" class="anchor" href="#-simfs-%D0%B8-ploop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#toc">[⬆]</a> <a name="simfs-ploop"></a>SimFS и ploop</h2>
 
@@ -1640,7 +1676,7 @@ Generate the VM configuration for rhel7.
 The VM has been successfully created.
 </code></pre>
 
-<p>Ключ <code>--distribution</code> указывает на семейство ОС или дистрибутив для оптимизации виртуального окружения.
+<p>Ключ <code>--distribution</code> (<code>-d</code>) указывает на семейство ОС или дистрибутив для оптимизации виртуального окружения.
 Список всех официально поддерживаемых ОС:</p>
 
 <pre><code>[root@vz ~]# prlctl create vm1 -d list
@@ -2275,7 +2311,7 @@ ha_prio              HA_PRIO
 <li>проброс устройств (usb/vlan) (<a href="https://habrahabr.ru/post/210460/">https://habrahabr.ru/post/210460/</a>)</li>
 <li>
 <code>prlctl</code> для управления дисковыми квотами, <code>--diskinodes</code> для <code>prlctl</code> не работает (<a href="https://bugs.openvz.org/browse/OVZ-6717">https://bugs.openvz.org/browse/OVZ-6717</a>) и (<a href="https://bugs.openvz.org/browse/OVZ-6505">https://bugs.openvz.org/browse/OVZ-6505</a>)</li>
-<li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--template</code> <code>--autostop</code> <code>--start-as-user</code>
+<li>некоторые ключи для <code>prlctl set</code>: <code>--3d-accelerate</code> <code>--vertical-sync</code> <code>--memguarantee</code> <code>--autostop</code> <code>--start-as-user</code> <code>--autostart-delay</code> <code>--autostop</code> <code>--autocompact</code>
 </li>
 <li>создание шаблона гостевой ОС на основе vztt/vzmktmpl</li>
 <li>не работает <code>prlctl capture</code> (возможно нужно протестировать с иксами)</li>
